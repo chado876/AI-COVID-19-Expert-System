@@ -8,8 +8,8 @@ eel.init('web')
 @eel.expose
 def get_symptoms():
     symptoms = read_symptoms()
-    print("SYMPTOMS::" + symptoms)
-    eel.print_symptoms(symptoms)
+    print("SYMPTOMS::", symptoms)
+    eel.add_symptom_checkboxes(symptoms)
     
 @eel.expose
 def get_random_name():

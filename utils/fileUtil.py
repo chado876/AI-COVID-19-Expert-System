@@ -2,11 +2,9 @@
 import os
 
 def read_symptoms():
-    f = open("symptoms.txt", "r")
-    symptoms = f.read()
-    f.close()
-    return symptoms
+    with open("symptoms.txt") as f:
+        symptoms = f.readlines()
+        # you may also want to remove whitespace characters like `\n` at the end of each line
+        symptoms_list = [x.strip() for x in symptoms] 
+        return symptoms
 
-# f = open("symptoms.txt", "r") 
-# print(f.read())
-# f.close()
