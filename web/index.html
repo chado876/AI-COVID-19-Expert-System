@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet" />
+    <title>MOH Covid-19 Expert System</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+    <div class="grey-box">
+        <div class="moh-logo">
+            <img src="assets/moh.png">
+        </div>
+    </div>
+    <div class="content-box">
+        <div class="main-menu" id="main-menu">
+            <span class="covid-header">COVID-19</span>
+            <span class="covid-header">Expert System</span>
+            <center>
+                <button type="button" id="diagnose-btn" class="main-btn" onclick="switchToDiagnosisScreen()">Diagnose</button><br>
+                <button type="button" id="add-btn" class="main-btn">Add Symptom</button>
+            </center>
+        </div>
+        <div class="page-1" id="page-1" style="display:none">
+            <form>
+                <span class="covid-header">Diagnosis</span>
+                <label class="form-label" for="temperature">Please enter your temperature in degrees celsius (°C):</label><br>
+                <input type="number" class="form-text" id="temperature"><br><br>
+                <label class="form-label" for="age">Please enter your age:</label><br>
+                <input type="number" class="form-text" id="age"><br><br><br><br><br><br>
+                <button type="button" id="next-btn" class="main-btn" style="float:right"
+                 onclick="switchToDiagnosisScreen2()">Next</button>
+                 <button type="button" id="back-btn" class="main-btn" 
+                 style="float:right; background-color: #f1b815; margin-right: 5px;"
+                 onclick="switchToMainScreen()">Back</button>
+            </form>
+        </div>
+        <div class="page-2" id="page-2" style="display: none;">
+        <form>
+            <span class="covid-header">Diagnosis</span>
+            <span style="padding-left: 5px; padding-top: 10px;">Please check the appropriate checkboxes below to indicate your symptoms.</span>
+            <br><br>
+            <div id="symptom-checkboxes">
+
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+</html>

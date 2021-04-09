@@ -1,0 +1,4 @@
+Fever
+Headache
+Flu
+Runny Nose
