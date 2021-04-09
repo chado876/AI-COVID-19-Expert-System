@@ -1,9 +1,16 @@
 import eel
 import random
 from datetime import datetime
+from utils.fileUtil import read_symptoms
 
 eel.init('web')
 
+@eel.expose
+def get_symptoms():
+    symptoms = read_symptoms()
+    print("SYMPTOMS::" + symptoms)
+    eel.print_symptoms(symptoms)
+    
 @eel.expose
 def get_random_name():
     eel.prompt_alerts('Random name')

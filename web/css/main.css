@@ -42,7 +42,7 @@ body{
   background-color: #4CA230; /* Green */
   border: 2px solid black;
   color: black;
-  padding: 15px 32px;
+  padding: 10px 22px;
   text-decoration: none;
   font-size: 16px;
   margin-top: 25px;
@@ -59,7 +59,7 @@ body{
   box-sizing: border-box;
 }
 
-input, select, textarea {
+.form-text, select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -67,7 +67,10 @@ input, select, textarea {
   resize: vertical;
 }
 
-label {
+.form-label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
+
+
+
