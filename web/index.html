@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet" />
+    <title>MOH Covid-19 Expert System</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+    <div class="grey-box">
+        <div class="moh-logo">
+            <img src="assets/moh.png">
+        </div>
+    </div>
+    <div class="content-box">
+        <div class="main-menu" id="main-menu">
+            <span class="covid-header">COVID-19</span>
+            <span class="covid-header">Expert System</span>
+            <center>
+                <button type="button" id="diagnose-btn" class="main-btn" onclick="switchToDiagnoseScreen()">Diagnose</button>
+            </center>
+        </div>
+        <div class="page-1" id="page-1" style="display:none">
+            <form>
+                <span class="covid-header">Diagnosis</span>
+                <label for="temperature">Please enter your temperature in degrees celsius (°C):</label><br>
+                <input type="number" id="temperature"><br><br>
+                <label for="age">Please enter your age:</label><br>
+                <input type="number" id="age"><br><br>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
