@@ -1,15 +1,19 @@
 import * as symptoms from './modules/symptoms.js';
 
-document.getElementById('diagnose-btn').addEventListener('click', () => {navigate('main-menu','page-1')}, false);
+document.getElementById('diagnose-btn').addEventListener('click', () => {navigate('main-menu','page-0')}, false);
 document.getElementById('add-btn').addEventListener('click', () => {navigate('main-menu','add-symptom')}, false);
+document.getElementById('next-btn-0').addEventListener('click', () => 
+{navigate('page-0','page-1'), eel.get_symptoms()}, false);
 document.getElementById('next-btn-1').addEventListener('click', () => 
 {navigate('page-1','page-2'), eel.get_symptoms()}, false);
-document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','main-menu')}, false);
+document.getElementById('back-btn-0').addEventListener('click', () => {navigate('page-0','main-menu')}, false);
+document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','page-0')}, false);
 document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
 document.getElementById('submit-btn-1').addEventListener('click', () => {updateStats('total')}, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 
+eel.read_stats();
 
 eel.expose(add_symptom_checkboxes);
 function add_symptom_checkboxes(symptoms) {
@@ -37,7 +41,6 @@ function updateStats(stat){
 function navigate(fromScreen,toScreen){
   document.getElementById(fromScreen).style.display="none";
   document.getElementById(toScreen).style.display="inline";
-  eel.read_stats();
 }
 
 function switchScreen(fromScreen,toScreen){
