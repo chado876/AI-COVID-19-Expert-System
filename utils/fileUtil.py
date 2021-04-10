@@ -8,3 +8,11 @@ def read_symptoms():
         symptoms_list = [x.strip() for x in symptoms] 
         return symptoms
 
+def add_symptom(symptom):
+    # Open a file with access mode 'a'
+    file_object = open('symptoms.txt', 'a')
+    # Append 'hello' at the end of file
+    file_object.write(symptom + "\n")
+    # Close the file
+    file_object.close()
+

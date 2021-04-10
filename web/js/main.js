@@ -1,7 +1,13 @@
-// document.getElementById("diagnose-btn").addEventListener("click", ()=>{eel.get_random_name()}, false);
-// document.getElementById("button-number").addEventListener("click", ()=>{eel.get_random_number()}, false);
-// document.getElementById("button-date").addEventListener("click", ()=>{eel.get_date()}, false);
-// document.getElementById("button-ip").addEventListener("click", ()=>{eel.get_ip()}, false);
+import * as symptoms from './modules/symptoms.js';
+
+document.getElementById('diagnose-btn').addEventListener('click', () => {navigate('main-menu','page-1')}, false);
+document.getElementById('add-btn').addEventListener('click', () => {navigate('main-menu','add-symptom')}, false);
+document.getElementById('next-btn-1').addEventListener('click', () => 
+{navigate('page-1','page-2'), eel.get_symptoms()}, false);
+document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','main-menu')}, false);
+document.getElementById('back-btn-2').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
+document.getElementById('submit-btn-1').addEventListener('click', addSymptom, false);
+
 
 
 eel.expose(add_symptom_checkboxes);
@@ -10,25 +16,19 @@ function add_symptom_checkboxes(symptoms) {
   console.log(symptoms);
 }
 
-eel.expose(prompt_alerts);
-function prompt_alerts(description) {
-  alert(description);
+function addSymptom(){
+  var symptom = document.getElementById("symptom-input").value;
+  eel.add_symptom(symptom);
 }
 
-function switchToDiagnosisScreen() {
-  document.getElementById("main-menu").style.display="none";
-  document.getElementById("page-1").style.display="inline";
+function navigate(fromScreen,toScreen){
+  document.getElementById(fromScreen).style.display="none";
+  document.getElementById(toScreen).style.display="inline";
 }
 
-function switchToDiagnosisScreen2(){
-  document.getElementById("page-1").style.display="none";
-  document.getElementById("page-2").style.display="inline";
-  eel.get_symptoms()
-}
-
-function switchToMainScreen(){
-  document.getElementById("main-menu").style.display="inline";
-  document.getElementById("page-1").style.display="none";
+function switchScreen(fromScreen,toScreen){
+  document.getElementById(fromScreen).style.display="none";
+  document.getElementById(toScreen).style.display="inline";
 }
 
 function createCheckboxes(symptoms){

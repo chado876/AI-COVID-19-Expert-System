@@ -1,4 +1,5 @@
 Fever
 Headache
 Flu
-Runny Nose
+Runny NoseSneezingWheezing
+Cough
