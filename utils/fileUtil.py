@@ -1,5 +1,5 @@
-
 import os
+import utils.prologUtil as prologUtil
 
 def read_symptoms():
     with open("symptoms.txt") as f:
@@ -15,4 +15,6 @@ def add_symptom(symptom):
     file_object.write(symptom + "\n")
     # Close the file
     file_object.close()
+    prologUtil.assert_symptom()
+
 
