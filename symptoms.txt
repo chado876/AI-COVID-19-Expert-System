@@ -4,3 +4,4 @@ flu
 cough
 bleeding
 wheezing
+nausea

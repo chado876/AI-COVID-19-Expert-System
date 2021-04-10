@@ -33,7 +33,13 @@ function switchScreen(fromScreen,toScreen){
 }
 
 function createCheckboxes(symptoms){
-  for (var i = 0; i < symptoms.length; i++){
+
+  const parent = document.getElementById('symptom-checkboxes') //clear current checkboxes
+  while (parent.firstChild) {
+      parent.firstChild.remove();
+  }
+
+  for (var i = 0; i < symptoms.length; i++){   
     console.log(symptoms[i]);
 
     var checkbox = document.createElement('input');
