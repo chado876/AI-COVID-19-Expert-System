@@ -5,7 +5,8 @@ document.getElementById('add-btn').addEventListener('click', () => {navigate('ma
 document.getElementById('next-btn-1').addEventListener('click', () => 
 {navigate('page-1','page-2'), eel.get_symptoms()}, false);
 document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','main-menu')}, false);
-document.getElementById('back-btn-2').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
+document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
+document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
 document.getElementById('submit-btn-1').addEventListener('click', addSymptom, false);
 
 

@@ -1,5 +1,6 @@
-Fever
-Headache
-Flu
-Runny NoseSneezingWheezing
-Cough
+fever
+headache
+flu
+cough
+bleeding
+wheezing
