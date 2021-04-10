@@ -7,8 +7,8 @@ document.getElementById('next-btn-1').addEventListener('click', () =>
 document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','main-menu')}, false);
 document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
-document.getElementById('submit-btn-1').addEventListener('click', addSymptom, false);
-
+document.getElementById('submit-btn-1').addEventListener('click', () => {updateStats('total')}, false);
+document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 
 
 eel.expose(add_symptom_checkboxes);
@@ -20,11 +20,24 @@ function add_symptom_checkboxes(symptoms) {
 function addSymptom(){
   var symptom = document.getElementById("symptom-input").value;
   eel.add_symptom(symptom);
+} 
+
+eel.expose(addStats);
+function addStats(stats) {
+  console.log(stats);
+  document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + stats[0];
 }
+
+function updateStats(stat){ 
+  eel.update_stats(stat); 
+  console.log("updating"); 
+}
+
 
 function navigate(fromScreen,toScreen){
   document.getElementById(fromScreen).style.display="none";
   document.getElementById(toScreen).style.display="inline";
+  eel.read_stats();
 }
 
 function switchScreen(fromScreen,toScreen){
