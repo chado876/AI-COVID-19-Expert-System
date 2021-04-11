@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 def add_diagnosis(diagnosis: Diagnosis):
-    engine = create_engine('sqlite:///diagnoses.db', echo=True)
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
     Base.metadata.create_all(bind=engine)
     Session = sessionmaker(bind=engine)
 
@@ -19,7 +19,7 @@ def add_diagnosis(diagnosis: Diagnosis):
 
 
 def get_diagnoses():
-    engine = create_engine('sqlite:///diagnoses.db', echo=True)
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
     Base.metadata.create_all(bind=engine)
     Session = sessionmaker(bind=engine)
 
