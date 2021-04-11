@@ -5,6 +5,10 @@ import utils.fileUtil as fileUtil
 
 eel.init('web')
 
+# @eel.expose
+# def diagnose():
+    
+
 @eel.expose
 def get_symptoms():
     symptoms = fileUtil.read_symptoms()
