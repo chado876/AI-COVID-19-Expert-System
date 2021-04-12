@@ -65,3 +65,9 @@ def drop_diagnoses():
 # drop_diagnoses()
 # get_diagnoses()
 count_total_diagnoses()
+
+
+
+
+
+			
