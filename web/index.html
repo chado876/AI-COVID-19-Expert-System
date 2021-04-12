@@ -35,15 +35,9 @@
             <form>
                 <span class="covid-header">Diagnosis</span>
                 <label class="form-label" for="f_name">Please enter the patient's first name:</label><br>
-<<<<<<< HEAD
-                <input type="number" class="form-text" id="f_name"><br><br>
-                <label class="form-label" for="l_name">Please enter the patient's last name:</label><br>
-                <input type="number" class="form-text" id="l_name"><br><br><br><br><br><br>
-=======
                 <input type="text" class="form-text" id="f_name"><br><br>
                 <label class="form-label" for="l_name">Please enter the patient's last name:</label><br>
                 <input type="text" class="form-text" id="l_name"><br><br><br><br><br><br>
->>>>>>> 781ce422a3d44c695d47aaa1e0716ff1e7af5369
                 <button type="button" id="next-btn-0" class="main-btn" style="float:right"
                  >Next</button>
                  <button type="button" id="back-btn-0" class="main-btn" 
@@ -80,6 +74,22 @@
                  >Back</button>
         </form>
         </div>
+        <div class="page-3" id="page-3" style="display: none;">
+            <form>
+                <span class="covid-header">Diagnosis</span>
+                <span style="padding-left: 5px; padding-top: 10px;">Please enter your systolic and diastolic values below.</span>
+                <br><br>
+                <label class="form-label" for="sistolic">Systolic value (mm Hg):</label><br>
+                <input type="number" class="form-text" id="systolic"><br><br>
+                <label class="form-label" for="diastolic">Diastolic value (mm Hg):</label><br>
+                <input type="number" class="form-text" id="diastolic"><br><br><br><br><br><br>
+                <button type="button" id="submit-btn-lbp" class="main-btn" style="float:right"
+                >Submit</button>
+                <button type="button" id="back-btn-lbp" class="main-btn" 
+                     style="float:right; background-color: #f1b815; margin-right: 5px;"
+                     >Back</button>
+            </form>
+            </div>
         <div class="add-symptom" id="add-symptom" style="display: none;">
             <form>
                 <span class="covid-header">Add Symptom</span>
