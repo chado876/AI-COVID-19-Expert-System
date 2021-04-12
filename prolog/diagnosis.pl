@@ -1,22 +1,11 @@
-serious_symptoms(difficulty_breathing).
-serious_symptoms(chest_pain).
-serious_symptoms(pressure).
-serious_symptoms(loss_of_speech).
-serious_symptoms(loss_of_movement).
+:- dynamic serious_symptoms/1.
+:- dynamic common_symptoms/1.
+:- dynamic less_common_symptoms/1.
 
-common_symptoms(fever).
-common_symptoms(dry_cough).
-common_symptoms(tiredness).
+serious_symptoms(none).
+common_symptoms(none).
+less_common_symptoms(none).
 
-less_common_symptoms(aches_and_pains).
-less_common_symptoms(sore_throat).
-less_common_symptoms(diarrhoea).
-less_common_symptoms(conjuctivitis).
-less_common_symptoms(headache).
-less_common_symptoms(loss_of_taste).
-less_common_symptoms(loss_of_smell).
-less_common_symptoms(rash_on_skin).
-less_common_symptoms(discolouration).
 
 
 diagnose(Temp,Age,UHI,Fever,DryCough,Tiredness,Aches,SoreThroat,Diarrhoea,Conjuctivitis,Headache,LossOfTasteOrSmell,RashOrDiscolouration,ChestPain,LossOfSpeechOrMovement,Serious,Common,LessCommon,CurrentFever,Result):-    			
