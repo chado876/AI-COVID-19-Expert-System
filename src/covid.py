@@ -1,13 +1,16 @@
 import eel
 import random
 from datetime import datetime
-import utils.fileUtil as fileUtil
+import fileUtil as fileUtil
+import diagnosis_service as diagnosis_service
 
 eel.init('web')
 
-# @eel.expose
-# def diagnose():
-    
+@eel.expose
+def diagnose(firstname,lastname,age,gender,symptoms,temperature):
+    symptoms = ','.join(symptoms) #convert list of symptoms to single string seperated by commas
+    print("DIAGNOSIS DETAILS::" + firstname + lastname + age + gender + symptoms + temperature)
+    diagnosis_service.diagnose(firstname,lastname,age,gender,symptoms,temperature)
 
 @eel.expose
 def get_symptoms():

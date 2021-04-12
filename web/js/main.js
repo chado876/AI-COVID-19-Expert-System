@@ -1,14 +1,49 @@
 import * as symptoms from './modules/symptoms.js';
 
-document.getElementById('diagnose-btn').addEventListener('click', () => {navigate('main-menu','page-1')}, false);
+document.getElementById('diagnose-btn').addEventListener('click', () => {navigate('main-menu','page-0')}, false);
 document.getElementById('add-btn').addEventListener('click', () => {navigate('main-menu','add-symptom')}, false);
+document.getElementById('next-btn-0').addEventListener('click', () => 
+{navigate('page-0','page-1'), eel.get_symptoms()}, false);
 document.getElementById('next-btn-1').addEventListener('click', () => 
 {navigate('page-1','page-2'), eel.get_symptoms()}, false);
-document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','main-menu')}, false);
+document.getElementById('back-btn-0').addEventListener('click', () => {navigate('page-0','main-menu')}, false);
+document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','page-0')}, false);
 document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
-document.getElementById('submit-btn-1').addEventListener('click', () => {updateStats('total')}, false);
+document.getElementById('submit-btn-1').addEventListener('click', submit, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
+
+eel.read_stats();
+
+
+
+function submit(){
+  getDiagnosisDetails();
+  updateStats('total');
+}
+
+function getDiagnosisDetails() {
+  var firstname = document.getElementById('f_name').value;
+  var lastname = document.getElementById('l_name').value;
+  var age = document.getElementById('age').value;
+  var temperature = document.getElementById('temperature').value;
+
+  var symptoms = [];
+  var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+  for(var i = 0; i < checkboxes.length; i++){
+    symptoms.push(checkboxes[i].value);
+  }
+
+  console.log(firstname);
+  console.log(lastname);
+  console.log(age);
+  console.log(temperature);
+  console.log(symptoms);
+  var gender = "male";
+
+  eel.diagnose(firstname,lastname,age,gender,symptoms,temperature);
+}
 
 
 eel.expose(add_symptom_checkboxes);
@@ -37,7 +72,6 @@ function updateStats(stat){
 function navigate(fromScreen,toScreen){
   document.getElementById(fromScreen).style.display="none";
   document.getElementById(toScreen).style.display="inline";
-  eel.read_stats();
 }
 
 function switchScreen(fromScreen,toScreen){

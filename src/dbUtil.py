@@ -16,6 +16,7 @@ def add_diagnosis(diagnosis: Diagnosis):
     session = Session()
     session.add(diagnosis)
     session.commit()
+    get_diagnoses()
 
 
 def get_diagnoses():
@@ -29,15 +30,37 @@ def get_diagnoses():
 
     diagnoses = session.query(Diagnosis).all()
     for diagnosis in diagnoses:
-        print("Diagnosis with id- %s" % diagnosis.id)
+        print("Diagnosis with id-%s" %diagnosis.id + " and first name - " + diagnosis.first_name)
 
     session.commit()
     session.close()
 
 
-diagnosis = Diagnosis()
-diagnosis.first_name = "Mason"
-diagnosis.last_name = 'Mount'
+# diagnosis = Diagnosis()
+# diagnosis.first_name = "Mason"
+# diagnosis.last_name = 'Mount'
 
-add_diagnosis(diagnosis)
-get_diagnoses()
+# add_diagnosis(diagnosis)
+# get_diagnoses()
+
+def count_total_diagnoses():
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    rows = session.query(Diagnosis).count()
+    session.commit()
+    print("TOTAL DIAGNOSES:: %s" % rows)
+
+
+def drop_diagnoses():
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    session.query(Diagnosis).delete()
+    session.commit()
+
+# drop_diagnoses()
+# get_diagnoses()
+count_total_diagnoses()
