@@ -1,5 +1,5 @@
 from pyswip import Prolog
-import utils.fileUtil as fileUtil
+import fileUtil as fileUtil
 
 def assert_symptom():
     prolog = Prolog()

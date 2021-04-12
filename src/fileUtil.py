@@ -1,5 +1,5 @@
 import os
-import utils.prologUtil as prologUtil
+import prologUtil as prologUtil
 
 def read_symptoms():
     with open("symptoms.txt") as f:
