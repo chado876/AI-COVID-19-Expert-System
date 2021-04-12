@@ -10,10 +10,32 @@ document.getElementById('back-btn-0').addEventListener('click', () => {navigate(
 document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','page-0')}, false);
 document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
-document.getElementById('submit-btn-1').addEventListener('click', submit, false);
+document.getElementById('back-btn-lbp').addEventListener('click', () => {navigate('page-3','page-2')}, false);
+document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
+document.getElementById('submit-btn-lbp').addEventListener('click',submit, false);
+
 
 eel.get_total_diagnoses();
+
+function checkSymptomValues(){
+  var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+  var lowBp = false;
+  for(var i = 0; i < checkboxes.length; i++){
+    console.log(checkboxes[i].value + "==" + "dizziness");
+    if(checkboxes[i].value === "dizziness\n" || checkboxes[i].value === "blurred vision\n" || checkboxes[i].value === "fainting\n"){
+      lowBp = true;
+      console.log("ture");
+      break;
+    } 
+  }
+  if(lowBp == true){
+    document.getElementById('page-2').style.display="none";
+    document.getElementById('page-3').style.display="inline";
+  } else {
+    // submit();
+  }
+}
 
 function submit(){
   getDiagnosisDetails();
@@ -51,10 +73,6 @@ function celciusToFarenheit(celsius)
   console.log(message);
   return cToFahr;
 }
-
-
-
-
 
 eel.expose(add_symptom_checkboxes);
 function add_symptom_checkboxes(symptoms) {
