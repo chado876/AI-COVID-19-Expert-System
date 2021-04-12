@@ -1,11 +1,10 @@
 import os
-import prologUtil as prologUtil
 
 def read_symptoms():
     with open("symptoms.txt") as f:
         symptoms = f.readlines()
         # you may also want to remove whitespace characters like `\n` at the end of each line
-        symptoms_list = [x.strip() for x in symptoms] 
+        symptoms_list = [x.rstrip() for x in symptoms] 
         return symptoms
 
 def add_symptom(symptom):
@@ -15,7 +14,7 @@ def add_symptom(symptom):
     file_object.write(symptom + "\n")
     # Close the file
     file_object.close()
-    prologUtil.assert_symptom()
+    # prologUtil.assert_symptom()
 
 def update_stats(stat):
     # total - total diagnoses, high - high risk, low- low risk

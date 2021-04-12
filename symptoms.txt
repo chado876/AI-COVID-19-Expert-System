@@ -1,6 +1,6 @@
 dizziness
 fainting
-blurred vision
+blurred_vision
 fever
 headache
 flu
