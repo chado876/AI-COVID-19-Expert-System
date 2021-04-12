@@ -10,10 +10,55 @@ document.getElementById('back-btn-0').addEventListener('click', () => {navigate(
 document.getElementById('back-btn-1').addEventListener('click', () => {navigate('page-1','page-0')}, false);
 document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
-document.getElementById('submit-btn-1').addEventListener('click', () => {updateStats('total')}, false);
+document.getElementById('submit-btn-1').addEventListener('click', submit, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 
+<<<<<<< HEAD
 eel.read_stats();
+=======
+eel.get_total_diagnoses();
+
+function submit(){
+  getDiagnosisDetails();
+  updateStats('total');
+}
+
+function getDiagnosisDetails() {
+  var firstname = document.getElementById('f_name').value;
+  var lastname = document.getElementById('l_name').value;
+  var age = document.getElementById('age').value;
+  var temperature = document.getElementById('temperature').value;
+
+  var symptoms = [];
+  var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+  for(var i = 0; i < checkboxes.length; i++){
+    symptoms.push(checkboxes[i].value);
+  }
+
+  console.log(firstname);
+  console.log(lastname);
+  console.log(age);
+  celciusToFarenheit(temperature);
+  console.log(symptoms);
+  var gender = "male";
+
+  eel.diagnose(firstname,lastname,age,gender,symptoms,temperature);
+}
+
+function celciusToFarenheit(celsius) 
+{
+  var cTemp = celsius;
+  var cToFahr = cTemp * 9 / 5 + 32;
+  var message = cTemp+'\xB0C is ' + cToFahr + ' \xB0F.';
+  console.log(message);
+  return cToFahr;
+}
+
+
+
+
+>>>>>>> 781ce422a3d44c695d47aaa1e0716ff1e7af5369
 
 eel.expose(add_symptom_checkboxes);
 function add_symptom_checkboxes(symptoms) {
@@ -29,7 +74,7 @@ function addSymptom(){
 eel.expose(addStats);
 function addStats(stats) {
   console.log(stats);
-  document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + stats[0];
+  document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + stats;
 }
 
 function updateStats(stat){ 
