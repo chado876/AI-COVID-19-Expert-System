@@ -51,6 +51,7 @@ def count_total_diagnoses():
     rows = session.query(Diagnosis).count()
     session.commit()
     print("TOTAL DIAGNOSES:: %s" % rows)
+    return rows
 
 
 def drop_diagnoses():

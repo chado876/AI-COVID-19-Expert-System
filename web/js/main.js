@@ -13,9 +13,7 @@ document.getElementById('back-btn-3').addEventListener('click', () => {navigate(
 document.getElementById('submit-btn-1').addEventListener('click', submit, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 
-eel.read_stats();
-
-
+eel.get_total_diagnoses();
 
 function submit(){
   getDiagnosisDetails();
@@ -38,12 +36,24 @@ function getDiagnosisDetails() {
   console.log(firstname);
   console.log(lastname);
   console.log(age);
-  console.log(temperature);
+  celciusToFarenheit(temperature);
   console.log(symptoms);
   var gender = "male";
 
   eel.diagnose(firstname,lastname,age,gender,symptoms,temperature);
 }
+
+function celciusToFarenheit(celsius) 
+{
+  var cTemp = celsius;
+  var cToFahr = cTemp * 9 / 5 + 32;
+  var message = cTemp+'\xB0C is ' + cToFahr + ' \xB0F.';
+  console.log(message);
+  return cToFahr;
+}
+
+
+
 
 
 eel.expose(add_symptom_checkboxes);
@@ -60,7 +70,7 @@ function addSymptom(){
 eel.expose(addStats);
 function addStats(stats) {
   console.log(stats);
-  document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + stats[0];
+  document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + stats;
 }
 
 function updateStats(stat){ 
