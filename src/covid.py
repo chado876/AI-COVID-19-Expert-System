@@ -3,6 +3,7 @@ import random
 from datetime import datetime
 import fileUtil as fileUtil
 import diagnosis_service as diagnosis_service
+import dbUtil as dbUtil
 
 eel.init('web')
 
@@ -31,6 +32,11 @@ def read_stats():
     stats = fileUtil.read_stats()
     print("STATS::", stats)
     eel.addStats(stats)
+
+@eel.expose 
+def get_total_diagnoses():
+    total = dbUtil.count_total_diagnoses()
+    eel.addStats(total)
 
     
 
