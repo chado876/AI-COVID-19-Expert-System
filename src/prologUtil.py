@@ -21,13 +21,13 @@ def assert_common_symptom():
 
 def diagnose():
     prolog.consult("./prolog/diagnosis.pl")
-    for soln in prolog.query("diagnose(100.5,34,3,fever,nausea,tiedness,ahes_and_pains,ore_throat,diarroea,conjuctiitis,headahe,loss_of_tate,ash,chest_pain,los_of_speech,Serious,Common,LessCommon,CurrentFever,Result)"):
+    for soln in prolog.query("diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)"):
         R = soln
         print 
     print(R["Result"])
-    print(R["Serious"])
-    print(R["Common"])
-    print(R["LessCommon"])
+    print(R["TotalSerious"])
+    print(R["TotalCommon"])
+    print(R["TotalLessCommon"])
     print(R["CurrentFever"])
 
 

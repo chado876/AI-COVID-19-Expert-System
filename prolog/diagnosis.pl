@@ -7,64 +7,59 @@ common_symptoms(none).
 less_common_symptoms(none).
 
 
-
-diagnose(Temp,Age,UHI,Fever,DryCough,Tiredness,Aches,SoreThroat,Diarrhoea,Conjuctivitis,Headache,LossOfTasteOrSmell,RashOrDiscolouration,ChestPain,LossOfSpeechOrMovement,Serious,Common,LessCommon,CurrentFever,Result):-    			
-    			(Temp > 100.4 ->  HasFever = y; HasFever = n),
+diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Symptom6,Symptom7,Symptom8,
+		Symptom9,Symptom10,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result):-    			
+    			(Temperature > 100.4 ->  HasFever = y; HasFever = n),
     			write("TEMP:"),write(Temp),nl,
-    			write("FEVER"),write(Fever),nl,
    				write("HasFever::"),
     			write(HasFever),nl,
     			
-    			(serious_symptoms(Fever) -> SeriousSymptomsVal1 is 1; SeriousSymptomsVal1 is 0),
-				(serious_symptoms(DryCough) -> SeriousSymptomsVal2 is SeriousSymptomsVal1 + 1; SeriousSymptomsVal2 is SeriousSymptomsVal1),
-				(serious_symptoms(Conjuctivitis) -> SeriousSymptomsVal3 is SeriousSymptomsVal2 + 1; SeriousSymptomsVal3 is SeriousSymptomsVal2),
-    			(serious_symptoms(Tiredness) -> SeriousSymptomsVal4 is SeriousSymptomsVal2 + 1; SeriousSymptomsVal4 is SeriousSymptomsVal3),
-				(serious_symptoms(Aches) -> SeriousSymptomsVal5 is SeriousSymptomsVal4 + 1; SeriousSymptomsVal5 is SeriousSymptomsVal4),
-				(serious_symptoms(SoreThroat) -> SeriousSymptomsVal6 is SeriousSymptomsVal5 + 1; SeriousSymptomsVal6 is SeriousSymptomsVal5),
-				(serious_symptoms(Diarrhoea) -> SeriousSymptomsVal7 is SeriousSymptomsVal6 + 1; SeriousSymptomsVal7 is SeriousSymptomsVal6),
-				(serious_symptoms(Headache) -> SeriousSymptomsVal8 is SeriousSymptomsVal7 + 1; SeriousSymptomsVal8 is SeriousSymptomsVal7),
-				(serious_symptoms(LossOfTasteOrSmell) -> SeriousSymptomsVal9 is SeriousSymptomsVal8 + 1; SeriousSymptomsVal9 is SeriousSymptomsVal8),
-				(serious_symptoms(RashOrDiscolouration) -> SeriousSymptomsVal10 is SeriousSymptomsVal9 + 1; SeriousSymptomsVal10 is SeriousSymptomsVal9),
-				(serious_symptoms(ChestPain) -> SeriousSymptomsVal11 is SeriousSymptomsVal10 + 1; SeriousSymptomsVal11 is SeriousSymptomsVal10),
-				(serious_symptoms(LossOfSpeechOrMovement) -> SeriousSymptomsVal is SeriousSymptomsVal11 + 1; SeriousSymptomsVal is SeriousSymptomsVal11),
+    			(serious_symptoms(Symptom1) -> SeriousSymptomsTotal1 is 1; SeriousSymptomsTotal1 is 0),
+				(serious_symptoms(Symptom2) -> SeriousSymptomsTotal2 is SeriousSymptomsTotal1 + 1; SeriousSymptomsTotal2 is SeriousSymptomsTotal1),
+				(serious_symptoms(Symptom3) -> SeriousSymptomsTotal3 is SeriousSymptomsTotal2 + 1; SeriousSymptomsTotal3 is SeriousSymptomsTotal2),
+    			(serious_symptoms(Symptom4) -> SeriousSymptomsTotal4 is SeriousSymptomsTotal2 + 1; SeriousSymptomsTotal4 is SeriousSymptomsTotal3),
+				(serious_symptoms(Symptom5) -> SeriousSymptomsTotal5 is SeriousSymptomsTotal4 + 1; SeriousSymptomsTotal5 is SeriousSymptomsTotal4),
+				(serious_symptoms(Symptom6) -> SeriousSymptomsTotal6 is SeriousSymptomsTotal5 + 1; SeriousSymptomsTotal6 is SeriousSymptomsTotal5),
+				(serious_symptoms(Symptom7) -> SeriousSymptomsTotal7 is SeriousSymptomsTotal6 + 1; SeriousSymptomsTotal7 is SeriousSymptomsTotal6),
+				(serious_symptoms(Symptom8) -> SeriousSymptomsTotal8 is SeriousSymptomsTotal7 + 1; SeriousSymptomsTotal8 is SeriousSymptomsTotal7),
+				(serious_symptoms(Symptom9) -> SeriousSymptomsTotal9 is SeriousSymptomsTotal8 + 1; SeriousSymptomsTotal9 is SeriousSymptomsTotal8),
+				(serious_symptoms(Symptom10) -> SeriousSymptomsTotal is SeriousSymptomsTotal9 + 1; SeriousSymptomsTotal is SeriousSymptomsTotal9),
+			
     			
-    			write("TOTAL SERIOUS SYMPTOM VAL::"),write(SeriousSymptomsVal),nl,
+    			write("TOTAL SERIOUS SYMPTOM Total::"),write(SeriousSymptomsTotal),nl,
     			
-        		(common_symptoms(Fever) -> CommonSymptomsVal1 is 1; CommonSymptomsVal1 is 0),
-				(common_symptoms(DryCough) -> CommonSymptomsVal2 is CommonSymptomsVal1 + 1; CommonSymptomsVal2 is CommonSymptomsVal1),
-				(common_symptoms(Conjuctivitis) -> CommonSymptomsVal3 is CommonSymptomsVal2 + 1; CommonSymptomsVal3 is CommonSymptomsVal2),
-    			(common_symptoms(Tiredness) -> CommonSymptomsVal4 is CommonSymptomsVal2 + 1; CommonSymptomsVal4 is CommonSymptomsVal3),
-				(common_symptoms(Aches) -> CommonSymptomsVal5 is CommonSymptomsVal4 + 1; CommonSymptomsVal5 is CommonSymptomsVal4),
-				(common_symptoms(SoreThroat) -> CommonSymptomsVal6 is CommonSymptomsVal5 + 1; CommonSymptomsVal6 is CommonSymptomsVal5),
-				(common_symptoms(Diarrhoea) -> CommonSymptomsVal7 is CommonSymptomsVal6 + 1; CommonSymptomsVal7 is CommonSymptomsVal6),
-				(common_symptoms(Headache) -> CommonSymptomsVal8 is CommonSymptomsVal7 + 1; CommonSymptomsVal8 is CommonSymptomsVal7),
-				(common_symptoms(LossOfTasteOrSmell) -> CommonSymptomsVal9 is CommonSymptomsVal8 + 1; CommonSymptomsVal9 is CommonSymptomsVal8),
-				(common_symptoms(RashOrDiscolouration) -> CommonSymptomsVal10 is CommonSymptomsVal9 + 1; CommonSymptomsVal10 is CommonSymptomsVal9),
-				(common_symptoms(ChestPain) -> CommonSymptomsVal11 is CommonSymptomsVal10 + 1; CommonSymptomsVal11 is CommonSymptomsVal10),
-				(common_symptoms(LossOfSpeechOrMovement) -> CommonSymptomsVal is CommonSymptomsVal11 + 1; CommonSymptomsVal is CommonSymptomsVal11),
+        		(common_symptoms(Symptom1) -> CommonSymptomsTotal1 is 1; CommonSymptomsTotal1 is 0),
+				(common_symptoms(Symptom2) -> CommonSymptomsTotal2 is CommonSymptomsTotal1 + 1; CommonSymptomsTotal2 is CommonSymptomsTotal1),
+				(common_symptoms(Symptom3) -> CommonSymptomsTotal3 is CommonSymptomsTotal2 + 1; CommonSymptomsTotal3 is CommonSymptomsTotal2),
+    			(common_symptoms(Symptom4) -> CommonSymptomsTotal4 is CommonSymptomsTotal2 + 1; CommonSymptomsTotal4 is CommonSymptomsTotal3),
+				(common_symptoms(Symptom5) -> CommonSymptomsTotal5 is CommonSymptomsTotal4 + 1; CommonSymptomsTotal5 is CommonSymptomsTotal4),
+				(common_symptoms(Symptom6) -> CommonSymptomsTotal6 is CommonSymptomsTotal5 + 1; CommonSymptomsTotal6 is CommonSymptomsTotal5),
+				(common_symptoms(Symptom7) -> CommonSymptomsTotal7 is CommonSymptomsTotal6 + 1; CommonSymptomsTotal7 is CommonSymptomsTotal6),
+				(common_symptoms(Symptom8) -> CommonSymptomsTotal8 is CommonSymptomsTotal7 + 1; CommonSymptomsTotal8 is CommonSymptomsTotal7),
+				(common_symptoms(Symptom9) -> CommonSymptomsTotal9 is CommonSymptomsTotal8 + 1; CommonSymptomsTotal9 is CommonSymptomsTotal8),
+				(common_symptoms(Symptom10) -> CommonSymptomsTotal is CommonSymptomsTotal9 + 1; CommonSymptomsTotal is CommonSymptomsTotal9),
     			
-    			write("TOTAL Common SYMPTOM VAL::"),write(CommonSymptomsVal),nl,
+    			write("TOTAL Common SYMPTOM Total::"),write(CommonSymptomsTotal),nl,
     
-    			(less_common_symptoms(Fever) -> LessCommonSymptomsVal1 is 1; LessCommonSymptomsVal1 is 0),
-				(less_common_symptoms(DryCough) -> LessCommonSymptomsVal2 is LessCommonSymptomsVal1 + 1; LessCommonSymptomsVal2 is LessCommonSymptomsVal1),
-				(less_common_symptoms(Conjuctivitis) -> LessCommonSymptomsVal3 is LessCommonSymptomsVal2 + 1; LessCommonSymptomsVal3 is LessCommonSymptomsVal2),
-    			(less_common_symptoms(Tiredness) -> LessCommonSymptomsVal4 is LessCommonSymptomsVal2 + 1; LessCommonSymptomsVal4 is LessCommonSymptomsVal3),
-				(less_common_symptoms(Aches) -> LessCommonSymptomsVal5 is LessCommonSymptomsVal4 + 1; LessCommonSymptomsVal5 is LessCommonSymptomsVal4),
-				(less_common_symptoms(SoreThroat) -> LessCommonSymptomsVal6 is LessCommonSymptomsVal5 + 1; LessCommonSymptomsVal6 is LessCommonSymptomsVal5),
-				(less_common_symptoms(Diarrhoea) -> LessCommonSymptomsVal7 is LessCommonSymptomsVal6 + 1; LessCommonSymptomsVal7 is LessCommonSymptomsVal6),
-				(less_common_symptoms(Headache) -> LessCommonSymptomsVal8 is LessCommonSymptomsVal7 + 1; LessCommonSymptomsVal8 is LessCommonSymptomsVal7),
-				(less_common_symptoms(LossOfTasteOrSmell) -> LessCommonSymptomsVal9 is LessCommonSymptomsVal8 + 1; LessCommonSymptomsVal9 is LessCommonSymptomsVal8),
-				(less_common_symptoms(RashOrDiscolouration) -> LessCommonSymptomsVal10 is LessCommonSymptomsVal9 + 1; LessCommonSymptomsVal10 is LessCommonSymptomsVal9),
-				(less_common_symptoms(ChestPain) -> LessCommonSymptomsVal11 is LessCommonSymptomsVal10 + 1; LessCommonSymptomsVal11 is LessCommonSymptomsVal10),
-				(less_common_symptoms(LossOfSpeechOrMovement) -> LessCommonSymptomsVal is LessCommonSymptomsVal11 + 1; LessCommonSymptomsVal is LessCommonSymptomsVal11),
+    			(less_common_symptoms(Symptom1) -> LessCommonSymptomsTotal1 is 1; LessCommonSymptomsTotal1 is 0),
+				(less_common_symptoms(Symptom2) -> LessCommonSymptomsTotal2 is LessCommonSymptomsTotal1 + 1; LessCommonSymptomsTotal2 is LessCommonSymptomsTotal1),
+				(less_common_symptoms(Symptom3) -> LessCommonSymptomsTotal3 is LessCommonSymptomsTotal2 + 1; LessCommonSymptomsTotal3 is LessCommonSymptomsTotal2),
+    			(less_common_symptoms(Symptom4) -> LessCommonSymptomsTotal4 is LessCommonSymptomsTotal2 + 1; LessCommonSymptomsTotal4 is LessCommonSymptomsTotal3),
+				(less_common_symptoms(Symptom5) -> LessCommonSymptomsTotal5 is LessCommonSymptomsTotal4 + 1; LessCommonSymptomsTotal5 is LessCommonSymptomsTotal4),
+				(less_common_symptoms(Symptom6) -> LessCommonSymptomsTotal6 is LessCommonSymptomsTotal5 + 1; LessCommonSymptomsTotal6 is LessCommonSymptomsTotal5),
+				(less_common_symptoms(Symptom7) -> LessCommonSymptomsTotal7 is LessCommonSymptomsTotal6 + 1; LessCommonSymptomsTotal7 is LessCommonSymptomsTotal6),
+				(less_common_symptoms(Symptom8) -> LessCommonSymptomsTotal8 is LessCommonSymptomsTotal7 + 1; LessCommonSymptomsTotal8 is LessCommonSymptomsTotal7),
+				(less_common_symptoms(Symptom9) -> LessCommonSymptomsTotal9 is LessCommonSymptomsTotal8 + 1; LessCommonSymptomsTotal9 is LessCommonSymptomsTotal8),
+				(less_common_symptoms(Symptom10) -> LessCommonSymptomsTotal is LessCommonSymptomsTotal9 + 1; LessCommonSymptomsTotal is LessCommonSymptomsTotal9),
     			
-    			write("TOTAL Less Common SYMPTOM VAL::"),write(LessCommonSymptomsVal),nl,
-    			% calculate risk score to determine severity of the info provided by the user
-                (RiskScore is SeriousSymptomsVal+LessCommonSymptomsVal+CommonSymptomsVal),
+    			write("TOTAL Less Common SYMPTOM Total::"),write(LessCommonSymptomsTotal),nl,
+
+                (RiskScore is SeriousSymptomsTotal+LessCommonSymptomsTotal+CommonSymptomsTotal),
+				
     			write("RISK:"),write(RiskScore),nl,
-    			write("SERIOUS:"),write(SeriousSymptomsVal),nl,
-        		write("Common:"),write(CommonSymptomsVal),nl,
-            	write("Less Common:"),write(LessCommonSymptomsVal),nl,
+    			write("SERIOUS:"),write(SeriousSymptomsTotal),nl,
+        		write("Common:"),write(CommonSymptomsTotal),nl,
+            	write("Less Common:"),write(LessCommonSymptomsTotal),nl,
     			write("Age:"),write(Age),nl,
     			write("Total Underlying Health Issues:"),write(UHI),nl,
 
@@ -72,21 +67,21 @@ diagnose(Temp,Age,UHI,Fever,DryCough,Tiredness,Aches,SoreThroat,Diarrhoea,Conjuc
 				%Result is 0,  
    				%nl,write(HasFever),
     			%(HasFever == y) ->  Result is 1;Result is 2.
-    			((HasFever == y, SeriousSymptomsVal > 0) -> Risk = "Very High Risk";
-                (HasFever == y, LessCommonSymptomsVal > 0) -> Risk = "Low Risk";
-                (HasFever == y, CommonSymptomsVal > 0) -> Risk = "High Risk";
-                (Age > 60, UHI > 0, SeriousSymptomsVal > 0) -> Risk = "Very High Risk";  
-				(Age > 60, UHI > 0, LessCommonSymptomsVal > 0) -> Risk = "Low Risk";  
-                (Age > 60, UHI > 0, CommonSymptomsVal > 0) -> Risk = "High Risk";  
+    			((HasFever == y, SeriousSymptomsTotal > 0) -> Risk = "Very High Risk";
+                (HasFever == y, LessCommonSymptomsTotal > 0) -> Risk = "Low Risk";
+                (HasFever == y, CommonSymptomsTotal > 0) -> Risk = "High Risk";
+                (Age > 60, UHI > 0, SeriousSymptomsTotal > 0) -> Risk = "Very High Risk";  
+				(Age > 60, UHI > 0, LessCommonSymptomsTotal > 0) -> Risk = "Low Risk";  
+                (Age > 60, UHI > 0, CommonSymptomsTotal > 0) -> Risk = "High Risk";  
                 (HasFever == y, RiskScore < 1) -> Risk = "Lower Risk";
     			Risk = "Not at Risk"),
     			(HasFever == y -> CurrentFever = "true"; CurrentFever = "false"),
-				Serious = SeriousSymptomsVal,
-				Common = CommonSymptomsVal,
-				LessCommon = LessCommonSymptomsVal,
+				TotalSerious = SeriousSymptomsTotal,
+				TotalCommon = CommonSymptomsTotal,
+				TotalLessCommon = LessCommonSymptomsTotal,
 				Result = Risk.
 			
     			
-	%diagnose(100.2,34,3,n,dy_cough,tiedness,ahes_and_pains,ore_throat,diarroea,conjuctiitis,headahe,loss_of_tate,ash,chest_pain,los_of_speech,Result).
+	%diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,Serious,Common,LessCommon,CurrentFever,Result).
 
 

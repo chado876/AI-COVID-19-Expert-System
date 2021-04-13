@@ -7,9 +7,15 @@ def read_symptoms():
         symptoms_list = [x.rstrip() for x in symptoms] 
         return symptoms
 
-def add_symptom(symptom):
+def add_symptom(symptom,severity):
+    if (severity == "serious"):
+        file_directory = 'serious_symptoms.txt'
+    elif (severity == "common"):
+        file_directory = 'common_symptoms.txt'
+    elif (severity == "less-common"):
+        file_directory = 'less_common_symptoms.txt'
     # Open a file with access mode 'a'
-    file_object = open('symptoms.txt', 'a')
+    file_object = open(file_directory, 'a')
     # Append 'hello' at the end of file
     file_object.write(symptom + "\n")
     # Close the file
