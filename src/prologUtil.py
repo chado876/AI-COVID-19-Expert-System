@@ -3,22 +3,29 @@ import fileUtil
 
 prolog = Prolog()
 
-def assert_symptom():
+def assert_symptom(new_symptom,severity):
     prolog.consult("./prolog/symptoms.pl")
-    symptoms = fileUtil.read_symptoms()
-    for symptom in symptoms:
-        prolog.assertz('symptom(%s)' % symptom)
-    for symptom in prolog.query("symptom(X)"):
-        print(symptom["X"])
+    new_symptom = new_symptom.replace(" ", "_").lower()
+    if (severity == "serious"):
+        prolog.assertz('serious_symptoms(%s)' % new_symptom)
+        print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
+        print("UPDATED FACTS - SERIOUS SYMPTOMS")
+        for symptom in prolog.query("serious_symptoms(X)"):
+            print(symptom["X"])
+    elif (severity == "common"):
+        prolog.assertz('common_symptoms(%s)' % new_symptom)
+        print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
+        print("UPDATED FACTS - COMMON SYMPTOMS")
+        for symptom in prolog.query("common_symptoms(X)"):
+            print(symptom["X"])
 
-def assert_common_symptom():
-    prolog.consult("./prolog/diagnosis.pl")
-    symptoms = fileUtil.read_symptoms()
-    for symptom in symptoms:
-        prolog.assertz('common_symptoms(%s)' % symptom)
-    for symptom in prolog.query("common_symptoms(X)"):
-        print(symptom["X"])
-
+    elif (severity == "less-common"):
+        prolog.assertz('less_common_symptoms(%s)' % new_symptom)
+        print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
+        print("UPDATED FACTS - LESS COMMON SYMPTOMS:")
+        for symptom in prolog.query("less_common_symptoms(X)"):
+            print(symptom["X"])
+    
 def diagnose():
     prolog.consult("./prolog/diagnosis.pl")
     for soln in prolog.query("diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)"):
@@ -30,8 +37,6 @@ def diagnose():
     print(R["TotalLessCommon"])
     print(R["CurrentFever"])
 
-
-assert_common_symptom()
 diagnose()
 
 
