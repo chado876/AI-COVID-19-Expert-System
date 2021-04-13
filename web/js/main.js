@@ -17,6 +17,7 @@ document.getElementById('submit-btn-lbp').addEventListener('click',submit, false
 
 
 eel.get_total_diagnoses();
+eel.assert_all_symptoms_from_txt();
 
 function checkSymptomValues(){
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');

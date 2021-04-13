@@ -1,7 +1,14 @@
 import os
 
-def read_symptoms():
-    with open("symptoms.txt") as f:
+def read_symptoms(severity):
+    if (severity == "serious"):
+        file_directory = 'serious_symptoms.txt'
+    elif (severity == "common"):
+        file_directory = 'common_symptoms.txt'
+    elif (severity == "less-common"):
+        file_directory = 'less_common_symptoms.txt'
+
+    with open(file_directory) as f:
         symptoms = f.readlines()
         # you may also want to remove whitespace characters like `\n` at the end of each line
         symptoms_list = [x.rstrip() for x in symptoms] 

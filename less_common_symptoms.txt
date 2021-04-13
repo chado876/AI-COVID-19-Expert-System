@@ -8,3 +8,5 @@ Loss of Taste
 Loss of Smell
 Rash 
 Discolouration
+test
+teSt DatA
