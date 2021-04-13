@@ -52,5 +52,13 @@ def read_stats():
         print(stats_list)
         return stats_list
 
+def read_all_symptoms():
+    serious = read_symptoms("serious")
+    common = read_symptoms("common")
+    less_common = read_symptoms("less-common")
+
+    all_symptoms = serious + common + less_common
+    all_symptoms[:] = [x for x in all_symptoms if x.strip()]
+    return all_symptoms
    
 
