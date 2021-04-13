@@ -20,8 +20,8 @@ def get_symptoms():
     eel.add_symptom_checkboxes(symptoms)
     
 @eel.expose
-def add_symptom(symptom):
-    fileUtil.add_symptom(symptom) 
+def add_symptom(symptom,severity):
+    fileUtil.add_symptom(symptom,severity) 
 
 @eel.expose
 def update_stats(stat): 

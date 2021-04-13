@@ -81,8 +81,10 @@ function add_symptom_checkboxes(symptoms) {
 }
 
 function addSymptom(){
+  var severity = document.querySelector('input[name="severity"]:checked').value;
+  console.log(severity);
   var symptom = document.getElementById("symptom-input").value;
-  eel.add_symptom(symptom);
+  eel.add_symptom(symptom,severity);
 } 
 
 eel.expose(addStats);
