@@ -16,7 +16,7 @@ def diagnose(firstname,lastname,age,gender,symptoms,temperature):
 
 @eel.expose
 def get_symptoms():
-    symptoms = fileUtil.read_symptoms()
+    symptoms = fileUtil.read_all_symptoms()
     print("SYMPTOMS::", symptoms)
     eel.add_symptom_checkboxes(symptoms)
 
