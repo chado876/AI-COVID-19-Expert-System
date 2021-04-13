@@ -1,5 +1,5 @@
 Fever
 Dry Cough
 Tiredness
-tEST
-test
+
+teSt

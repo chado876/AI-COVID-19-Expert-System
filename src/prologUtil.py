@@ -25,6 +25,24 @@ def assert_symptom(new_symptom,severity):
         print("UPDATED FACTS - LESS COMMON SYMPTOMS:")
         for symptom in prolog.query("less_common_symptoms(X)"):
             print(symptom["X"])
+
+def assert_all_symptoms():
+    serious_symptoms = fileUtil.read_symptoms("serious")
+    common_symptoms = fileUtil.read_symptoms("common")
+    less_common_symptoms = fileUtil.read_symptoms("less-common")
+    prolog.consult("./prolog/diagnosis.pl")
+
+    for symptom in serious_symptoms:
+        symptom = symptom.replace(" ", "_").lower()
+        prolog.assertz('serious_symptoms(%s)' % symptom)
+    for symptom in common_symptoms:
+        symptom = symptom.replace(" ", "_").lower()
+        prolog.assertz('common_symptoms(%s)' % symptom)
+    for symptom in less_common_symptoms:
+        symptom = symptom.replace(" ", "_").lower()    
+        prolog.assertz('less_common_symptoms(%s)' % symptom)    
+
+
     
 def diagnose():
     prolog.consult("./prolog/diagnosis.pl")

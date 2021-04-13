@@ -19,7 +19,11 @@ def get_symptoms():
     symptoms = fileUtil.read_symptoms()
     print("SYMPTOMS::", symptoms)
     eel.add_symptom_checkboxes(symptoms)
-    
+
+@eel.expose
+def assert_all_symptoms_from_txt():
+    prologUtil.assert_all_symptoms()
+
 @eel.expose
 def add_symptom(symptom,severity):
     fileUtil.add_symptom(symptom,severity)
