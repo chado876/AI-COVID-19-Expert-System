@@ -19,6 +19,7 @@ def add_diagnosis(diagnosis: Diagnosis):
     get_diagnoses()
 
 
+
 def get_diagnoses():
     engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
     Base.metadata.create_all(bind=engine)
@@ -64,7 +65,10 @@ def drop_diagnoses():
 
 # drop_diagnoses()
 # get_diagnoses()
-count_total_diagnoses()
+# count_total_diagnoses()
+# engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+# Base.metadata.create_all(bind=engine)
+
 
 
 

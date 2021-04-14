@@ -1,11 +1,12 @@
 from pyswip import Prolog
 import fileUtil 
+from models.diagnosis import Diagnosis
 
 prolog = Prolog()
 
 def assert_symptom(new_symptom,severity):
     prolog.consult("./prolog/symptoms.pl")
-    new_symptom = new_symptom.replace(" ", "_").lower()
+    new_symptom = "'{}'".format(new_symptom.rstrip())
     if (severity == "serious"):
         prolog.assertz('serious_symptoms(%s)' % new_symptom)
         print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
@@ -33,20 +34,30 @@ def assert_all_symptoms():
     prolog.consult("./prolog/diagnosis.pl")
 
     for symptom in serious_symptoms:
-        symptom = symptom.replace(" ", "_").lower()
+        symptom =  "'{}'".format(symptom.rstrip())
         prolog.assertz('serious_symptoms(%s)' % symptom)
+        print("Symptom:" + symptom + " asserted to serious_symptoms successfully.")
     for symptom in common_symptoms:
-        symptom = symptom.replace(" ", "_").lower()
+        symptom =  "'{}'".format(symptom.rstrip())
         prolog.assertz('common_symptoms(%s)' % symptom)
+        print("Symptom:" + symptom + " asserted to common_symptoms successfully.")
     for symptom in less_common_symptoms:
-        symptom = symptom.replace(" ", "_").lower()    
+        symptom =  "'{}'".format(symptom.rstrip())
         prolog.assertz('less_common_symptoms(%s)' % symptom)    
+        print("Symptom:" + symptom + " asserted to less_common_symptoms successfully.")
+
 
 
     
-def diagnose():
+def diagnose(diagnosis:Diagnosis, symptoms):
+    assert_all_symptoms()
     prolog.consult("./prolog/diagnosis.pl")
-    for soln in prolog.query("diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)"):
+    query = (f"diagnose({str(diagnosis.temperature)},{str(diagnosis.age)},{str(diagnosis.total_ulhi)}," +
+    f"'{symptoms[0]}','{symptoms[1]}','{symptoms[2]}','{symptoms[3]}','{symptoms[4]}','{symptoms[5]}','{symptoms[6]}'," +
+    f"'{symptoms[7]}','{symptoms[8]}','{symptoms[9]}',TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)")
+    
+    print("QUERY IS:" + query)
+    for soln in prolog.query(query):
         R = soln
         print 
     print(R["Result"])
@@ -55,6 +66,18 @@ def diagnose():
     print(R["TotalLessCommon"])
     print(R["CurrentFever"])
 
-diagnose()
+def diagnose2():
+    assert_all_symptoms()
+    prolog.consult("./prolog/diagnosis.pl")
+    for soln in prolog.query("diagnose(96.8,24,3,'Loss of Speech','Dry Cough','Tiredness','blank','blank','blank','blank','blank','blank','blank',TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)"):
+        R = soln
+        print 
+    print(R["Result"])
+    print(R["TotalSerious"])
+    print(R["TotalCommon"])
+    print(R["TotalLessCommon"])
+    print(R["CurrentFever"])
+
+# diagnose2()
 
 
