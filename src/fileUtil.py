@@ -1,4 +1,6 @@
 import os
+from openpyxl import Workbook
+
 
 def read_symptoms(severity):
     if (severity == "serious"):
@@ -60,5 +62,15 @@ def read_all_symptoms():
     all_symptoms = serious + common + less_common
     all_symptoms[:] = [x for x in all_symptoms if x.strip()]
     return all_symptoms
+
+def diagnoses_from_db_to_excel():
+    workbook = Workbook()
+    sheet = workbook.active
+
+    sheet["A1"] = "hello"
+    sheet["B1"] = "world!"
+
+    workbook.save(filename="data/diagnoses.xlsx")
    
 
+diagnoses_from_db_to_excel()
