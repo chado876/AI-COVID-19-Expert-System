@@ -21,7 +21,17 @@ def diagnose(firstname,lastname,age,gender,symptoms,temperature):
     symptoms_arr = convert_symptoms_to_arr(diagnosis.symptoms)
     diagnosisResult = prologUtil.diagnose(diagnosis, symptoms_arr)
 
+    diagnosis.result = diagnosisResult["Result"]
+    diagnosis.total_serious = diagnosisResult["TotalSerious"]
+    diagnosis.total_common = diagnosisResult["TotalCommon"]
+    diagnosis.total_less_common = diagnosisResult["TotalLessCommon"]
+    diagnosis.current_fever = False
+
+    results = str(diagnosis.result)
     dbUtil.add_diagnosis(diagnosis)
+
+
+    return results
 
 def convert_symptoms_to_arr(symptoms):
     print("UNFORMATTED SYMPTOMS::")
