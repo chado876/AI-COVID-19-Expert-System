@@ -1,5 +1,6 @@
 import os
 from openpyxl import Workbook
+import dbUtil as dbUtil
 
 
 def read_symptoms(severity):
@@ -66,11 +67,16 @@ def read_all_symptoms():
 def diagnoses_from_db_to_excel():
     workbook = Workbook()
     sheet = workbook.active
+    sheet.title = "Diagnoses"
+    col_names = dbUtil.get_column_names() 
+    diagnoses = dbUtil.get_diagnoses()
 
-    sheet["A1"] = "hello"
-    sheet["B1"] = "world!"
+    for i,x in enumerate(col_names):
+        col_names[i] = x.replace("_", " ").title()
+    sheet.append(col_names)
+    # for diagnosis in diagnoses:
+    #     ws.append(diagnosis)
+    workbook.save("data/diagnoses.xlsx")
 
-    workbook.save(filename="data/diagnoses.xlsx")
-   
 
 diagnoses_from_db_to_excel()

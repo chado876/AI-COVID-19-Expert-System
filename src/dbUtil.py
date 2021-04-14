@@ -30,12 +30,14 @@ def get_diagnoses():
     # diagnosis.gender = "male"
 
     diagnoses = session.query(Diagnosis).all()
+    
     for diagnosis in diagnoses:
         print("Diagnosis with id-%s" %diagnosis.id + " and first name - " + diagnosis.first_name)
+        session.expunge(diagnosis)
 
     session.commit()
     session.close()
-
+    return diagnoses
 
 # diagnosis = Diagnosis()
 # diagnosis.first_name = "Mason"
@@ -43,6 +45,11 @@ def get_diagnoses():
 
 # add_diagnosis(diagnosis)
 # get_diagnoses()
+
+def get_column_names():
+    col_names = Diagnosis.metadata.tables['diagnosis'].columns.keys()
+    return col_names
+
 
 def count_total_diagnoses():
     engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
@@ -68,6 +75,8 @@ def drop_diagnoses():
 # count_total_diagnoses()
 # engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
 # Base.metadata.create_all(bind=engine)
+
+# get_column_names()
 
 
 
