@@ -60,6 +60,12 @@ function submit(){
   getDiagnosisDetails();
 }
 
+eel.expose(showResult)
+function showResult(res){
+  console.log(res);
+  document.getElementById('results').innerHTML = res;
+}
+
 function getDiagnosisDetails() {
   var firstname = document.getElementById('f_name').value;
   var lastname = document.getElementById('l_name').value;
@@ -79,8 +85,8 @@ function getDiagnosisDetails() {
   celciusToFarenheit(temperature);
   console.log(symptoms);
   var gender = "male";
-
   eel.diagnose(firstname,lastname,age,gender,symptoms,celciusToFarenheit(temperature));
+
 }
 
 function celciusToFarenheit(celsius) 

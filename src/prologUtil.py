@@ -65,6 +65,8 @@ def diagnose(diagnosis:Diagnosis, symptoms):
     print(R["TotalCommon"])
     print(R["TotalLessCommon"])
     print(R["CurrentFever"])
+    
+    return R
 
 def diagnose2():
     assert_all_symptoms()
