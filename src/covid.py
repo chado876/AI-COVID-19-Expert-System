@@ -10,8 +10,9 @@ eel.init('web')
 
 @eel.expose
 def diagnose(firstname,lastname,age,gender,symptoms,temperature):
+    symptoms = [x.replace('\n', '') for x in symptoms]
     symptoms = ','.join(symptoms) #convert list of symptoms to single string seperated by commas
-    print("DIAGNOSIS DETAILS::" + firstname + lastname + age + gender + symptoms + temperature)
+    print("DIAGNOSIS DETAILS::" + firstname + lastname + age + gender + symptoms + str(temperature))
     diagnosis_service.diagnose(firstname,lastname,age,gender,symptoms,temperature)
 
 @eel.expose

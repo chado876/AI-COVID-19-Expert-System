@@ -14,10 +14,13 @@ document.getElementById('back-btn-lbp').addEventListener('click', () => {navigat
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 document.getElementById('submit-btn-lbp').addEventListener('click',submit, false);
+document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
 
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 eel.get_total_diagnoses();
-eel.assert_all_symptoms_from_txt();
+// eel.assert_all_symptoms_from_txt();
 
 function checkSymptomValues(){
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
@@ -34,13 +37,27 @@ function checkSymptomValues(){
     document.getElementById('page-2').style.display="none";
     document.getElementById('page-3').style.display="inline";
   } else {
-    // submit();
+    submit();
   }
 }
 
+function timeout(ms) { //pass a time in milliseconds to this function
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function hideSpinner(){
+  document.getElementById("loader-1").style.display="none";
+}
+
+function showSpinner(){
+  document.getElementById("loader-1").style.display="block";
+}
 function submit(){
+  navigate("page-2","results-page");
+  showSpinner();
+  setTimeout(hideSpinner, 3000)
+
   getDiagnosisDetails();
-  updateStats('total');
 }
 
 function getDiagnosisDetails() {
@@ -63,7 +80,7 @@ function getDiagnosisDetails() {
   console.log(symptoms);
   var gender = "male";
 
-  eel.diagnose(firstname,lastname,age,gender,symptoms,temperature);
+  eel.diagnose(firstname,lastname,age,gender,symptoms,celciusToFarenheit(temperature));
 }
 
 function celciusToFarenheit(celsius) 
