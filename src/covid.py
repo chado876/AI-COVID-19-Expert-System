@@ -6,6 +6,7 @@ import diagnosis_service as diagnosis_service
 import dbUtil as dbUtil
 import prologUtil as prologUtil
 import email_service as email_service
+import time
 
 eel.init('web')
 
@@ -19,6 +20,7 @@ def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
     print(result)
     newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
     " short-term and long-term precautions to take going forward.")
+    time.sleep(3)
     eel.showResult(newResultText)
     email_diagnosis(email,result)
 

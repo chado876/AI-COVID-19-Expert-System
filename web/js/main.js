@@ -67,7 +67,7 @@ function showSpinner(){
 function submit(){
   navigate("page-2","results-page");
   showSpinner();
-  setTimeout(hideSpinner, 2000)
+  setTimeout(hideSpinner, 3000)
 
   getDiagnosisDetails();
 }
