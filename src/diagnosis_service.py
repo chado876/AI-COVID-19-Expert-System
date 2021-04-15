@@ -2,12 +2,12 @@ from models.diagnosis import Diagnosis
 import dbUtil as dbUtil
 import prologUtil as prologUtil
 
-def diagnose(firstname,lastname,age,gender,symptoms,temperature):
+def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
     diagnosis = Diagnosis()
 
     diagnosis.first_name = firstname
     diagnosis.last_name = lastname
-    diagnosis.email = "demo@email.com"
+    diagnosis.email = email
     diagnosis.age = age
     diagnosis.symptoms = symptoms
     diagnosis.temperature = temperature

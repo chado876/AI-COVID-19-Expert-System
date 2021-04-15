@@ -77,6 +77,7 @@ function getDiagnosisDetails() {
   var lastname = document.getElementById('l_name').value;
   var age = document.getElementById('age').value;
   var temperature = document.getElementById('temperature').value;
+  var email = document.getElementById('email').value;
 
   var symptoms = [];
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
@@ -91,7 +92,7 @@ function getDiagnosisDetails() {
   celciusToFarenheit(temperature);
   console.log(symptoms);
   var gender = "male";
-  eel.diagnose(firstname,lastname,age,gender,symptoms,celciusToFarenheit(temperature));
+  eel.diagnose(firstname,lastname,email,age,gender,symptoms,celciusToFarenheit(temperature));
 
 }
 

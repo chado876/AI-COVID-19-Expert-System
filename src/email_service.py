@@ -12,7 +12,7 @@ def send_diagnoses_report():
     # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY H:M:S
-    dt_string = now.strftime("%d/%m/%Y %H:%M")
+    dt_string = now.strftime("%d/%m/%Y")
 
     currentTime = int(time.strftime('%H'))   
     if currentTime < 12 :
@@ -21,9 +21,10 @@ def send_diagnoses_report():
         greeting = ('Good afternoon,')
     if currentTime > 6 :
         greeting = ('Good evening,')
-
+    
+    currentTime = str(time.strftime('%I:%M %p'))
     subject = "COVID-19 Diagnoses - " + dt_string
-    body = greeting + "please see attached for a spreadsheet containing diagnoses as of " + dt_string + "."
+    body = greeting + "please see attached for a spreadsheet containing diagnoses as of " + dt_string + " at " + currentTime + "."
     sender_email = "utechmohexpertsystem2021@gmail.com"
     receiver_email = "utechmohexpertsystem2021@gmail.com"
     password = "Password@15"
@@ -67,4 +68,3 @@ def send_diagnoses_report():
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
 
-send_diagnoses_report()
