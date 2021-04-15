@@ -31,6 +31,11 @@ def get_symptoms():
     eel.add_symptom_checkboxes(symptoms)
 
 @eel.expose
+def get_ulhi():
+    ulhi = fileUtil.read_ulhi()
+    eel.createUlhiCheckboxes(ulhi)
+
+@eel.expose
 def assert_all_symptoms_from_txt():
     prologUtil.assert_all_symptoms()
 

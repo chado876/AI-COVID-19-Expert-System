@@ -3,7 +3,7 @@ import * as symptoms from './modules/symptoms.js';
 document.getElementById('diagnose-btn').addEventListener('click', () => {navigate('main-menu','page-0')}, false);
 document.getElementById('add-btn').addEventListener('click', () => {navigate('main-menu','add-symptom')}, false);
 document.getElementById('next-btn-0').addEventListener('click', () => 
-{navigate('page-0','page-1'), eel.get_symptoms()}, false);
+{navigate('page-0','page-1')}, false);
 document.getElementById('next-btn-1').addEventListener('click', () => 
 {navigate('page-1','page-2'), eel.get_symptoms()}, false);
 document.getElementById('back-btn-0').addEventListener('click', () => {navigate('page-0','main-menu')}, false);
@@ -11,9 +11,11 @@ document.getElementById('back-btn-1').addEventListener('click', () => {navigate(
 document.getElementById('back-btn-2').addEventListener('click', () => {navigate('page-2','page-1')}, false);
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
 document.getElementById('back-btn-lbp').addEventListener('click', () => {navigate('page-3','page-2')}, false);
+document.getElementById('back-btn-ulhi').addEventListener('click', () => {navigate('page-4','page-2')}, false);
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
-document.getElementById('submit-btn-lbp').addEventListener('click',submit, false);
+document.getElementById('submit-btn-lbp').addEventListener('click',() => {navigate('page-3','page-4'), eel.get_ulhi()}, false);
+document.getElementById('submit-btn-ulhi').addEventListener('click',submit, false);
 document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
 document.getElementById('email-all-btn').addEventListener('click',emailDiagnosesReport, false);
 // document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
@@ -41,15 +43,15 @@ function checkSymptomValues(){
     console.log(checkboxes[i].value + "==" + "dizziness");
     if(checkboxes[i].value === "dizziness\n" || checkboxes[i].value === "blurred vision\n" || checkboxes[i].value === "fainting\n"){
       lowBp = true;
-      console.log("ture");
+      console.log("true");
       break;
     } 
   }
   if(lowBp == true){
-    document.getElementById('page-2').style.display="none";
-    document.getElementById('page-3').style.display="inline";
+    navigate('page-2','page-3');
   } else {
-    submit();
+    eel.get_ulhi();
+    navigate('page-2','page-4');
   }
 }
 
@@ -65,7 +67,7 @@ function showSpinner(){
   document.getElementById("loader-1").style.display="block";
 }
 function submit(){
-  navigate("page-2","results-page");
+  navigate("page-4","results-page");
   showSpinner();
   setTimeout(hideSpinner, 3000)
 
@@ -113,7 +115,7 @@ function celciusToFarenheit(celsius)
 
 eel.expose(add_symptom_checkboxes);
 function add_symptom_checkboxes(symptoms) {
-  createCheckboxes(symptoms)
+  createSymptomCheckboxes(symptoms)
   console.log(symptoms);
 }
 
@@ -141,12 +143,7 @@ function navigate(fromScreen,toScreen){
   document.getElementById(toScreen).style.display="inline";
 }
 
-function switchScreen(fromScreen,toScreen){
-  document.getElementById(fromScreen).style.display="none";
-  document.getElementById(toScreen).style.display="inline";
-}
-
-function createCheckboxes(symptoms){
+function createSymptomCheckboxes(symptoms){
 
   const parent = document.getElementById('symptom-checkboxes') //clear current checkboxes
   while (parent.firstChild) {
@@ -172,6 +169,36 @@ function createCheckboxes(symptoms){
     container.appendChild(label);
     container.appendChild(br);
     document.getElementById('symptom-checkboxes').appendChild(container);
+  }
+
+  eel.expose(createUlhiCheckboxes);
+  function createUlhiCheckboxes(ulhi){
+
+    const parent = document.getElementById('ulhi-checkboxes') //clear current checkboxes
+    while (parent.firstChild) {
+        parent.firstChild.remove();
+    }
+  
+    for (var i = 0; i < ulhi.length; i++){   
+      console.log(ulhi[i]);
+  
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = ulhi[i];
+      checkbox.value = ulhi[i];
+     
+      var label = document.createElement('label')
+      label.htmlFor = ulhi[i];
+      label.appendChild(document.createTextNode(ulhi[i]));
+      
+      var br = document.createElement('br');
+     
+      var container = document.createElement('container');
+      container.appendChild(checkbox);
+      container.appendChild(label);
+      container.appendChild(br);
+      parent.appendChild(container);
+    }
   }
 
 }
