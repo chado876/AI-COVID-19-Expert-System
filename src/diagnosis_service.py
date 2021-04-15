@@ -15,8 +15,11 @@ def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
     diagnosis.total_common = 0
     diagnosis.total_less_common = 0
     diagnosis.total_serious = 0
-    diagnosis.result = "none"
+    diagnosis.diastolic_val = 0
+    diagnosis.systolic_val = 0
+    diastolic.low_bp = False
     diagnosis.current_fever = False
+    diagnosis.result = "none"
     
     symptoms_arr = convert_symptoms_to_arr(diagnosis.symptoms)
     diagnosisResult = prologUtil.diagnose(diagnosis, symptoms_arr)

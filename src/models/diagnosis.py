@@ -19,6 +19,9 @@ class Diagnosis(Base):
     total_serious = Column(Integer)
     total_common = Column(Integer)
     total_less_common = Column(Integer)
+    diastolic_val = Column(Float)
+    systolic_val = Column(Float)
+    low_bp = Column(Boolean)
     current_fever = Column(Boolean)
     result = Column(String)
 
