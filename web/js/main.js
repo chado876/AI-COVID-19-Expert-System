@@ -16,6 +16,7 @@ document.getElementById('submit-btn-2').addEventListener('click', addSymptom, fa
 document.getElementById('submit-btn-lbp').addEventListener('click',submit, false);
 document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
 document.getElementById('email-all-btn').addEventListener('click',emailDiagnosesReport, false);
+// document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -23,9 +24,14 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 eel.get_total_diagnoses();
 // eel.assert_all_symptoms_from_txt();
 
+// function emailDiagnosis(){
+//   var email = document.getElementById('email').value;
+//   alert("The patient's diagnosis results has been emailed to them successfully!");
+// }
+
 function emailDiagnosesReport(){
 eel.email_all_diagnoses();
-alert("Diagnoses report generated and emailed successfully!")
+alert("Diagnoses report generated and emailed successfully!");
 }
 
 function checkSymptomValues(){
@@ -61,7 +67,7 @@ function showSpinner(){
 function submit(){
   navigate("page-2","results-page");
   showSpinner();
-  setTimeout(hideSpinner, 3000)
+  setTimeout(hideSpinner, 2000)
 
   getDiagnosisDetails();
 }

@@ -17,7 +17,10 @@ def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
     result = diagnosis_service.diagnose(firstname,lastname,email,age,gender,symptoms,temperature)
     print("FINAL DIAGNOSIS:::")
     print(result)
-    eel.showResult(result)
+    newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
+    " short-term and long-term precautions to take going forward.")
+    eel.showResult(newResultText)
+    email_diagnosis(email,result)
 
 @eel.expose
 def get_symptoms():
@@ -55,6 +58,9 @@ def email_all_diagnoses():
     fileUtil.diagnoses_from_db_to_excel() #generate spreadsheet
     email_service.send_diagnoses_report()
 
+@eel.expose
+def email_diagnosis(email, resultText):
+    email_service.send_diagnosis(email,resultText)
     
 
 eel.start('index.html',size=(700,480)),
