@@ -1,4 +1,7 @@
 import os
+from openpyxl import Workbook
+import dbUtil as dbUtil
+
 
 def read_symptoms(severity):
     if (severity == "serious"):
@@ -60,5 +63,40 @@ def read_all_symptoms():
     all_symptoms = serious + common + less_common
     all_symptoms[:] = [x for x in all_symptoms if x.strip()]
     return all_symptoms
-   
 
+def diagnoses_from_db_to_excel():
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "Diagnoses"
+    col_names = dbUtil.get_column_names() 
+    diagnoses = dbUtil.get_diagnoses()
+    col_count = len(col_names)
+    for i,x in enumerate(col_names):
+        col_names[i] = x.replace("_", " ").title()
+    sheet.append(col_names)
+    
+    iter = 1
+    for x,diagnosis in enumerate(diagnoses):
+        offset = 1
+        for i in range(col_count):
+            print(diagnosis.first_name)
+            sheet.cell(row=offset+iter,column=1).value = diagnosis.id
+            sheet.cell(row=offset+iter,column=2).value = diagnosis.first_name
+            sheet.cell(row=offset+iter,column=3).value = diagnosis.last_name
+            sheet.cell(row=offset+iter,column=4).value = diagnosis.email
+            sheet.cell(row=offset+iter,column=5).value = diagnosis.temperature
+            sheet.cell(row=offset+iter,column=6).value = diagnosis.age
+            sheet.cell(row=offset+iter,column=7).value = diagnosis.symptoms
+            sheet.cell(row=offset+iter,column=8).value = diagnosis.total_ulhi
+            sheet.cell(row=offset+iter,column=9).value = diagnosis.total_serious
+            sheet.cell(row=offset+iter,column=10).value = diagnosis.total_common
+            sheet.cell(row=offset+iter,column=11).value = diagnosis.total_less_common
+            sheet.cell(row=offset+iter,column=12).value = diagnosis.current_fever
+            sheet.cell(row=offset+iter,column=13).value = diagnosis.result
+
+        iter = iter + 1
+
+    workbook.save("data/diagnoses.xlsx")
+
+
+diagnoses_from_db_to_excel()
