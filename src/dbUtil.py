@@ -48,6 +48,7 @@ def get_diagnoses():
 
 def get_column_names():
     col_names = Diagnosis.metadata.tables['diagnosis'].columns.keys()
+    print(col_names)
     return col_names
 
 
