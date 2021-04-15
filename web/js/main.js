@@ -15,12 +15,18 @@ document.getElementById('submit-btn-1').addEventListener('click', checkSymptomVa
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 document.getElementById('submit-btn-lbp').addEventListener('click',submit, false);
 document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
+document.getElementById('email-all-btn').addEventListener('click',emailDiagnosesReport, false);
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 eel.get_total_diagnoses();
 // eel.assert_all_symptoms_from_txt();
+
+function emailDiagnosesReport(){
+eel.email_all_diagnoses();
+alert("Diagnoses report generated and emailed successfully!")
+}
 
 function checkSymptomValues(){
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');

@@ -99,4 +99,3 @@ def diagnoses_from_db_to_excel():
     workbook.save("data/diagnoses.xlsx")
 
 
-diagnoses_from_db_to_excel()

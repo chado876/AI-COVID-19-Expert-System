@@ -5,6 +5,7 @@ import fileUtil as fileUtil
 import diagnosis_service as diagnosis_service
 import dbUtil as dbUtil
 import prologUtil as prologUtil
+import email_service as email_service
 
 eel.init('web')
 
@@ -48,6 +49,11 @@ def read_stats():
 def get_total_diagnoses():
     total = dbUtil.count_total_diagnoses()
     eel.addStats(total)
+
+@eel.expose
+def email_all_diagnoses():
+    fileUtil.diagnoses_from_db_to_excel() #generate spreadsheet
+    email_service.send_diagnoses_report()
 
     
 
