@@ -17,7 +17,7 @@ def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
     diagnosis.total_serious = 0
     diagnosis.diastolic_val = 0
     diagnosis.systolic_val = 0
-    diastolic.low_bp = False
+    diagnosis.low_bp = False
     diagnosis.current_fever = False
     diagnosis.result = "none"
     
