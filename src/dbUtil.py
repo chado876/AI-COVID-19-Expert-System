@@ -1,5 +1,6 @@
 import sqlite3
 from models.diagnosis import Diagnosis
+from models.alert import Alert
 from sqlalchemy.orm import relationship, backref, sessionmaker
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -72,6 +73,39 @@ def query_db(res):
     return results
     
 
+def add_alert(alert: Alert):    
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    session.add(alert)
+    session.commit()
+    get_alerts()
+
+def get_alerts():
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+
+    session = Session()
+    alerts = session.query(Alert).all()
+
+    for alert in alerts:
+        print("Alert with id-%s" % alert.id + " and value - " + str(alert.value) + " for - " + alert.alert_type)
+        session.expunge(alert)
+
+    session.commit()
+    session.close()
+    return alerts
+
+def update_alert(alert: Alert):
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    session.query(Alert).filter(Alert.alert_type == alert.alert_type).update({Alert.value: alert.value})
+    session.commit()
+    session.close()
 # query_db("Very High Risk")
 # drop_diagnoses()
 # get_diagnoses()

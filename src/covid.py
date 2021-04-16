@@ -7,6 +7,7 @@ import dbUtil as dbUtil
 import prologUtil as prologUtil
 import email_service as email_service
 import time
+import alert_service as alert_service
 
 eel.init('web')
 
@@ -72,6 +73,11 @@ def email_diagnosis(email, resultText):
 @eel.expose
 def delete_symptoms(symptoms):
     fileUtil.delete_symptoms(symptoms)
+
+@eel.expose
+def init_alerts():
+    alert_service.init_alerts()
+    
     
 
 eel.start('index.html',size=(700,480)),

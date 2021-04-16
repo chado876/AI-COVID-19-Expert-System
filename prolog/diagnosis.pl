@@ -73,7 +73,7 @@ diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Sympto
                 (Age > 60, UHI > 0, SeriousSymptomsTotal > 0) -> Risk = "Very High Risk";  
 				(Age > 60, UHI > 0, LessCommonSymptomsTotal > 0) -> Risk = "Low Risk";  
                 (Age > 60, UHI > 0, CommonSymptomsTotal > 0) -> Risk = "High Risk";  
-                (HasFever == y, RiskScore < 1) -> Risk = "Lower Risk";
+                (HasFever == y, RiskScore < 1) -> Risk = "Low Risk";
     			Risk = "Not at Risk"),
     			(HasFever == y -> CurrentFever = "true"; CurrentFever = "false"),
 				TotalSerious = SeriousSymptomsTotal,

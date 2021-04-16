@@ -12,17 +12,21 @@ document.getElementById('back-btn-2').addEventListener('click', () => {navigate(
 document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu')}, false);
 document.getElementById('back-btn-lbp').addEventListener('click', () => {navigate('page-3','page-2')}, false);
 document.getElementById('back-btn-ulhi').addEventListener('click', () => {navigate('page-4','page-2')}, false);
+document.getElementById('back-btn-alert').addEventListener('click', () => {navigate('set-alert','main-menu')}, false);
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 document.getElementById('submit-btn-lbp').addEventListener('click',() => {navigate('page-3','page-4'), eel.get_ulhi()}, false);
 document.getElementById('submit-btn-ulhi').addEventListener('click',submit, false);
 document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
 document.getElementById('email-all-btn').addEventListener('click',emailDiagnosesReport, false);
+document.getElementById('alert-btn').addEventListener('click', () => {navigate('main-menu','set-alert')}, false);
+
 // document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+eel.init_alerts(); //ensure alerts are initially 0
 eel.get_total_diagnoses();
 // eel.assert_all_symptoms_from_txt();
 
