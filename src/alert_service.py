@@ -33,8 +33,20 @@ def init_alerts():
         print("DEFAULT ALERTS SEEDED SUCCESSFULLY")
     dbUtil.get_alerts()
 
-def update_alert(alert: Alert):
+def update_alert(alert_type,val):
+    alert = Alert()
+    alert.alert_type = alert_type
+    alert.value = val
     dbUtil.update_alert(alert)
+
+def get_alert_vals():
+    alerts = dbUtil.get_alerts()
+    alert_val_list = []
+
+    for alert in alerts:
+        alert_val_list.append(alert.value)
+
+    return alert_val_list
 
 # alert = Alert()
 # alert.alert_type = "High Risk"

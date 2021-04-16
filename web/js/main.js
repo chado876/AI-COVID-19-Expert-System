@@ -19,8 +19,8 @@ document.getElementById('submit-btn-lbp').addEventListener('click',() => {naviga
 document.getElementById('submit-btn-ulhi').addEventListener('click',submit, false);
 document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
 document.getElementById('email-all-btn').addEventListener('click',emailDiagnosesReport, false);
-document.getElementById('alert-btn').addEventListener('click', () => {navigate('main-menu','set-alert')}, false);
-
+document.getElementById('alert-btn').addEventListener('click', () => {navigate('main-menu','set-alert'), eel.get_alert_vals()}, false);
+document.getElementById('submit-btn-alert').addEventListener('click', setAlert, false);
 // document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
 
 
@@ -34,6 +34,20 @@ eel.get_total_diagnoses();
 //   var email = document.getElementById('email').value;
 //   alert("The patient's diagnosis results has been emailed to them successfully!");
 // }
+eel.expose(setAlertVals)
+function setAlertVals(alertvals) {
+  document.getElementById("alert-lbl-1").innerHTML =  "Very High Risk (" + alertvals[0] + ")"
+  document.getElementById("alert-lbl-2").innerHTML =  "High Risk (" + alertvals[1]+ ")"
+  document.getElementById("alert-lbl-3").innerHTML = "Low Risk (" + alertvals[2]+ ")"
+  document.getElementById("alert-lbl-4").innerHTML =  "Not at Risk (" + alertvals[3]+ ")"
+}
+
+function setAlert(){
+  var alert_type = document.querySelector('input[name="risk"]:checked').value;
+  console.log(alert_type);
+  var val = document.getElementById("alert-input").value;
+  eel.update_alert(alert_type, val);
+}
 
 function emailDiagnosesReport(){
 eel.email_all_diagnoses();

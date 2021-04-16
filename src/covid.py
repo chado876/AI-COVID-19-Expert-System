@@ -77,7 +77,14 @@ def delete_symptoms(symptoms):
 @eel.expose
 def init_alerts():
     alert_service.init_alerts()
-    
-    
+
+@eel.expose 
+def update_alert(alert_type,val):
+    alert_service.update_alert(alert_type,val)
+
+@eel.expose
+def get_alert_vals():
+    vals = alert_service.get_alert_vals()
+    eel.setAlertVals(vals)
 
 eel.start('index.html',size=(700,480)),
