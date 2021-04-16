@@ -108,7 +108,7 @@ def send_diagnosis(email,resultText):
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
 
-def send_alert(val):
+def send_alert(totVhr,totHr,totLr,totNr):
         # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY H:M:S
@@ -124,8 +124,9 @@ def send_alert(val):
     currentTime = str(time.strftime('%I:%M %p'))
     subject = "Spike in COVID-19 High Risk Diagnoses - " + dt_string
     body = (greeting + " please note that there has been an unusual spike in high risk diagnosis results. \n "
-             "As of " + dt_string + " at " + currentTime + ", " + str(val) + " high risk results have been "
-             + "reported. Please see the attached spreadsheet for diagnoses to date.")
+             "As of " + dt_string + " at " + currentTime + ", there has been " + str(totVhr) + " very high risk results,  "
+             + str(totHr) + " high risk results, " + str(totLr) + " low risk results and " 
+             + str(totNr) + " results reported at no risk. Please see the attached spreadsheet for diagnoses to date.")
 
     sender_email = "utechmohexpertsystem2021@gmail.com"
     receiver_email = "utechmohexpertsystem2021@gmail.com"

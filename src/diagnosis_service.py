@@ -1,8 +1,10 @@
 from models.diagnosis import Diagnosis
+from models.alert import Alert
 import dbUtil as dbUtil
 import prologUtil as prologUtil
 import email_service as email_service
 import fileUtil as fileUtil
+import alert_service as alert_service
 
 def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     diagnosis = Diagnosis()
@@ -88,7 +90,34 @@ def convert_symptoms_to_arr(symptoms):
     return symptoms_arr
 
 def check_for_spike():
-    serious_diagnoses = dbUtil.query_db("Very High Risk")
-    if len(serious_diagnoses) >= 1:
+    alerts = alert_service.get_alerts()
+    very_high_risk_diagnoses = dbUtil.query_db("Very High Risk")
+    high_risk_diagnoses = dbUtil.query_db("High Risk")
+    low_risk_diagnoses = dbUtil.query_db("Low Risk")
+    no_risk_diagnoses = dbUtil.query_db("Not at Risk")
+
+    totVhr = len(very_high_risk_diagnoses)
+    totHr = len(high_risk_diagnoses)
+    totLr = len(low_risk_diagnoses)
+    totNr = len(no_risk_diagnoses)
+
+    sendAlert = False
+
+    for alert in alerts:
+        if (alert.value > 0):
+            if (alert.alert_type == "Very High Risk"):
+                if (totVhr >= alert.value):
+                    sendAlert = True
+            elif (alert.alert_type == "High Risk"):
+                if (totHr >= alert.value):
+                    sendAlert = True
+            elif (alert.alert_type == "Low Risk"):
+                if(totLr >= alert.value):
+                    sendAlert = True
+            elif (alert.alert_type == "Not at Risk"):
+                if (totNr >= alert.value):
+                    sendAlert = True
+                    
+    if sendAlert == True:
         fileUtil.diagnoses_from_db_to_excel() #generate spreadsheet
-        email_service.send_alert(len(serious_diagnoses))
+        email_service.send_alert(totVhr,totHr,totLr,totNr)
