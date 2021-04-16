@@ -1,6 +1,8 @@
 from models.diagnosis import Diagnosis
 import dbUtil as dbUtil
 import prologUtil as prologUtil
+import email_service as email_service
+import fileUtil as fileUtil
 
 def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     diagnosis = Diagnosis()
@@ -59,8 +61,9 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     " common symptoms, " + str(total_less_common) + " less common symptoms, " + str(total_ulhi) + " underlying health issues " +
     " and " + currentFever)
 
-    dbUtil.add_diagnosis(diagnosis)    
-    
+    dbUtil.add_diagnosis(diagnosis)   
+
+    check_for_spike()
     return resText
 
 def convert_symptoms_to_arr(symptoms):
@@ -84,3 +87,8 @@ def convert_symptoms_to_arr(symptoms):
     print(symptoms_arr)
     return symptoms_arr
 
+def check_for_spike():
+    serious_diagnoses = dbUtil.query_db("Very High Risk")
+    if len(serious_diagnoses) >= 1:
+        fileUtil.diagnoses_from_db_to_excel() #generate spreadsheet
+        email_service.send_alert(len(serious_diagnoses))
