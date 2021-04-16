@@ -88,10 +88,16 @@ function getDiagnosisDetails() {
   var email = document.getElementById('email').value;
 
   var symptoms = [];
-  var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+  var symptom_checkboxes = document.querySelectorAll('#symptom-checkboxes input[type=checkbox]:checked');
+  var ulhi = [];
+  var ulhi_checkboxes = document.querySelectorAll('#ulhi-checkboxes input[type=checkbox]:checked');
 
-  for(var i = 0; i < checkboxes.length; i++){
-    symptoms.push(checkboxes[i].value);
+  for(var i = 0; i < symptom_checkboxes.length; i++){
+    symptoms.push(symptom_checkboxes[i].value);
+  }
+
+  for(var i = 0; i < ulhi_checkboxes.length; i++){
+    ulhi.push(ulhi_checkboxes[i].value);
   }
 
   console.log(firstname);
@@ -99,8 +105,7 @@ function getDiagnosisDetails() {
   console.log(age);
   celciusToFarenheit(temperature);
   console.log(symptoms);
-  var gender = "male";
-  eel.diagnose(firstname,lastname,email,age,gender,symptoms,celciusToFarenheit(temperature));
+  eel.diagnose(firstname,lastname,email,age,symptoms,ulhi,celciusToFarenheit(temperature));
 
 }
 

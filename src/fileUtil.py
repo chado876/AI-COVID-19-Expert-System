@@ -73,15 +73,16 @@ def diagnoses_from_db_to_excel():
             sheet.cell(row=offset+iter,column=5).value = diagnosis.temperature
             sheet.cell(row=offset+iter,column=6).value = diagnosis.age
             sheet.cell(row=offset+iter,column=7).value = diagnosis.symptoms
-            sheet.cell(row=offset+iter,column=8).value = diagnosis.total_ulhi
-            sheet.cell(row=offset+iter,column=9).value = diagnosis.total_serious
-            sheet.cell(row=offset+iter,column=10).value = diagnosis.total_common
-            sheet.cell(row=offset+iter,column=11).value = diagnosis.total_less_common
-            sheet.cell(row=offset+iter,column=12).value = diagnosis.systolic_val
-            sheet.cell(row=offset+iter,column=13).value = diagnosis.diastolic_val
-            sheet.cell(row=offset+iter,column=14).value = diagnosis.low_bp
-            sheet.cell(row=offset+iter,column=15).value = diagnosis.current_fever
-            sheet.cell(row=offset+iter,column=16).value = diagnosis.result
+            sheet.cell(row=offset+iter,column=8).value = diagnosis.underlying_health_issues
+            sheet.cell(row=offset+iter,column=9).value = diagnosis.total_ulhi
+            sheet.cell(row=offset+iter,column=10).value = diagnosis.total_serious
+            sheet.cell(row=offset+iter,column=11).value = diagnosis.total_common
+            sheet.cell(row=offset+iter,column=12).value = diagnosis.total_less_common
+            sheet.cell(row=offset+iter,column=13).value = diagnosis.systolic_val
+            sheet.cell(row=offset+iter,column=14).value = diagnosis.diastolic_val
+            sheet.cell(row=offset+iter,column=15).value = diagnosis.low_bp
+            sheet.cell(row=offset+iter,column=16).value = diagnosis.current_fever
+            sheet.cell(row=offset+iter,column=17).value = diagnosis.result
 
         iter = iter + 1
 
