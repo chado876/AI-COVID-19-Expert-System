@@ -15,6 +15,7 @@ class Diagnosis(Base):
     temperature = Column(Float)
     age = Column(Integer)
     symptoms = Column(String)
+    underlying_health_issues = Column(String)
     total_ulhi = Column(Integer)
     total_serious = Column(Integer)
     total_common = Column(Integer)

@@ -1,0 +1,20 @@
+Cancer
+Chronic Kidney Disease
+Chronic Lung Disease
+Asthma
+Interstitial Lung disease
+Cystic Fibrosis
+Pulmonary Hypertension
+Dementia
+Diabetes (type 1 or type 2)
+Down syndrome
+Heart conditions
+HIV infection
+Immunocompromised state (weakened immune system)
+Liver disease
+Overweight and obesity
+Pregnancy
+Sickle cell disease or thalassemia
+Smoking (current or former)
+Stroke or cerebrovascular disease
+Substance use disorders

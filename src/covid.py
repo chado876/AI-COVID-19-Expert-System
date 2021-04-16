@@ -11,11 +11,11 @@ import time
 eel.init('web')
 
 @eel.expose
-def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
+def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     symptoms = [x.replace('\n', '') for x in symptoms]
     symptoms = ','.join(symptoms) #convert list of symptoms to single string seperated by commas
-    print("DIAGNOSIS DETAILS::" + firstname + lastname + age + gender + symptoms + str(temperature))
-    result = diagnosis_service.diagnose(firstname,lastname,email,age,gender,symptoms,temperature)
+    print("DIAGNOSIS DETAILS::" + firstname + lastname + age  + symptoms + str(temperature))
+    result = diagnosis_service.diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature)
     print("FINAL DIAGNOSIS:::")
     print(result)
     newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
@@ -29,6 +29,11 @@ def get_symptoms():
     symptoms = fileUtil.read_all_symptoms()
     print("SYMPTOMS::", symptoms)
     eel.add_symptom_checkboxes(symptoms)
+
+@eel.expose
+def get_ulhi():
+    ulhi = fileUtil.read_ulhi()
+    eel.createUlhiCheckboxes(ulhi)
 
 @eel.expose
 def assert_all_symptoms_from_txt():

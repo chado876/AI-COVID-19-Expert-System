@@ -2,16 +2,20 @@ from models.diagnosis import Diagnosis
 import dbUtil as dbUtil
 import prologUtil as prologUtil
 
-def diagnose(firstname,lastname,email,age,gender,symptoms,temperature):
+def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     diagnosis = Diagnosis()
+
+    ulhi_str = [x.replace('\n', '') for x in ulhi]
+    ulhi_str = ','.join(ulhi) #convert list of ulhi to single string seperated by commas
 
     diagnosis.first_name = firstname
     diagnosis.last_name = lastname
     diagnosis.email = email
     diagnosis.age = age
     diagnosis.symptoms = symptoms
+    diagnosis.underlying_health_issues = ulhi_str
     diagnosis.temperature = temperature
-    diagnosis.total_ulhi = 3
+    diagnosis.total_ulhi = len(ulhi)
     diagnosis.total_common = 0
     diagnosis.total_less_common = 0
     diagnosis.total_serious = 0
@@ -70,8 +74,9 @@ def convert_symptoms_to_arr(symptoms):
 
     for i,x in enumerate(symptoms_arr):
         if(i < len(new_symptoms)):
-            print(str(i) + " " + new_symptoms[i])
             symptoms_arr[i] = new_symptoms[i]
+        elif (x == ""):
+            symptoms_arr[i] = 'blank'
         else:
             symptoms_arr[i] = 'blank'
     
