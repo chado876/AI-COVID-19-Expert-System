@@ -27,35 +27,36 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     
     symptoms_arr = convert_symptoms_to_arr(diagnosis.symptoms)
     diagnosisResult = prologUtil.diagnose(diagnosis, symptoms_arr)
-
-    diagnosis.result = diagnosisResult["Result"]
+    
+    encoding = 'utf-8'
+    diagnosis.result = diagnosisResult["Result"].decode(encoding)
     diagnosis.total_serious = diagnosisResult["TotalSerious"]
     diagnosis.total_common = diagnosisResult["TotalCommon"]
     diagnosis.total_less_common = diagnosisResult["TotalLessCommon"]
     diagnosis.current_fever = False
-
-    results = str(diagnosis.result)
-    total_serious = str(diagnosis.total_serious)
-    total_common = str(diagnosis.total_common)
-    total_less_common = str(diagnosis.total_less_common)
-    total_ulhi = str(diagnosis.total_ulhi)
+    
+    results = diagnosis.result
+    total_serious = diagnosis.total_serious
+    total_common = diagnosis.total_common
+    total_less_common = diagnosis.total_less_common
+    total_ulhi = diagnosis.total_ulhi
 
     if(diagnosis.current_fever == True):
         currentFever = "has an active fever."
     else:
         currentFever = "does not have an active fever."
-    if("b'Very High Risk'") == results:
+    if("Very High Risk") == results:
         riskVal = "Very High Risk"
-    elif("b'High Risk'") == results:
+    elif("High Risk") == results:
         riskVal = "High Risk"
-    elif("b'Low Risk'") == results:
+    elif("Low Risk") == results:
         riskVal = "Low Risk"
     else:
         riskVal = "No Risk"
 
     resText = ("According to our diagnosis, patient " + diagnosis.first_name + " " + diagnosis.last_name +
-    " is at a " + riskVal + " of having COVID-19. They have " + total_serious + " serious symptoms, " + total_common +
-    " common symptoms, " + total_less_common + " less common symptoms, " + total_ulhi + " underlying health issues " +
+    " is at a " + riskVal + " of having COVID-19. They have " + str(total_serious) + " serious symptoms, " + str(total_common) +
+    " common symptoms, " + str(total_less_common) + " less common symptoms, " + str(total_ulhi) + " underlying health issues " +
     " and " + currentFever)
 
     dbUtil.add_diagnosis(diagnosis)    

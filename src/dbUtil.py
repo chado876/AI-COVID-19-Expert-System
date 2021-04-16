@@ -12,7 +12,6 @@ def add_diagnosis(diagnosis: Diagnosis):
     engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
     Base.metadata.create_all(bind=engine)
     Session = sessionmaker(bind=engine)
-
     session = Session()
     session.add(diagnosis)
     session.commit()
@@ -26,25 +25,15 @@ def get_diagnoses():
     Session = sessionmaker(bind=engine)
 
     session = Session()
-    # diagnosis = Diagnosis()
-    # diagnosis.gender = "male"
-
     diagnoses = session.query(Diagnosis).all()
-    
+
     for diagnosis in diagnoses:
-        print("Diagnosis with id-%s" %diagnosis.id + " and first name - " + diagnosis.first_name)
+        print("Diagnosis with id-%s" %diagnosis.id + " and first name - " + diagnosis.first_name + " and result - " + diagnosis.result)
         session.expunge(diagnosis)
 
     session.commit()
     session.close()
     return diagnoses
-
-# diagnosis = Diagnosis()
-# diagnosis.first_name = "Mason"
-# diagnosis.last_name = 'Mount'
-
-# add_diagnosis(diagnosis)
-# get_diagnoses()
 
 def get_column_names():
     col_names = Diagnosis.metadata.tables['diagnosis'].columns.keys()
@@ -71,6 +60,19 @@ def drop_diagnoses():
     session.query(Diagnosis).delete()
     session.commit()
 
+def query_db(res):
+    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    results = session.query(Diagnosis).filter(Diagnosis.result==res).all()
+    for result in results:
+        print("QUERY: Diagnosis with id-%s" %result.id + " first name - " + result.first_name + " and result - " + result.result)
+        session.expunge(result)
+    return results
+    
+
+# query_db("Very High Risk")
 # drop_diagnoses()
 # get_diagnoses()
 # count_total_diagnoses()
