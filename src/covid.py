@@ -21,7 +21,7 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
     " short-term and long-term precautions to take going forward.")
     time.sleep(3)
-    eel.showResult(newResultText)
+    eel.showResult(newResultText) 
     email_diagnosis(email,result)
 
 @eel.expose
@@ -68,6 +68,10 @@ def email_all_diagnoses():
 @eel.expose
 def email_diagnosis(email, resultText):
     email_service.send_diagnosis(email,resultText)
+
+@eel.expose
+def delete_symptoms(symptoms):
+    fileUtil.delete_symptoms(symptoms)
     
 
 eel.start('index.html',size=(700,480)),

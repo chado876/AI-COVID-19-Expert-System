@@ -88,4 +88,62 @@ def diagnoses_from_db_to_excel():
 
     workbook.save("data/diagnoses.xlsx")
 
+def delete_symptoms(symptoms):
+    serious = read_symptoms("serious")
+    common = read_symptoms("common")
+    less_common = read_symptoms("less-common")
+    ulhi = read_ulhi()
+    
+    new_serious = []
+    new_common = []
+    new_less_common = []
+    new_ulhi = []
+
+    for symptom in symptoms:
+        for x in serious:
+            if x == symptom:
+                serious.remove(x)
+        for x in common:
+            if x == symptom:
+                common.remove(x)
+        for x in less_common:
+            if x == symptom:
+                less_common.remove(x)
+        for x in ulhi:
+             if x == symptom:
+                ulhi.remove(x)
+    
+    print("NEW SERIOUS:",serious)
+    print("NEW COMMON:",common)
+    print("NEW LESS COMMON:",less_common)
+    print("NEW ULHI:",ulhi)
+
+    overwrite_symptoms(serious,"serious")
+    overwrite_symptoms(common,"common")
+    overwrite_symptoms(less_common,"less-common")
+    overwrite_symptoms(ulhi,"ulhi")
+
+
+def overwrite_symptoms(symptoms,severity):
+    if (severity == "serious"):
+            file_directory = 'serious_symptoms.txt'
+    elif (severity == "common"):
+            file_directory = 'common_symptoms.txt'
+    elif (severity == "less-common"):
+            file_directory = 'less_common_symptoms.txt'
+    elif (severity == "ulhi"):
+            file_directory = 'underlying_health_issues.txt'        
+
+    with open(file_directory, "w") as f:
+        for symptom in symptoms:
+            f.write(symptom + "\n")
+         
+            
+# delete_symptoms(["Fever","Headache","Dementia","Loss of Taste"])
+
+
+
+
+
+
 
