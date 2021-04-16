@@ -29,7 +29,8 @@
             <center>
                 <button type="button" id="diagnose-btn" class="main-btn">Diagnose</button><br>
                 <button type="button" id="add-btn" class="main-btn" >Add Symptom</button><br>
-                <button type="button" id="email-all-btn" class="main-btn" >Email All Diagnoses</button>
+                <button type="button" id="email-all-btn" class="main-btn" >Email All Diagnoses</button><br>
+                <button type="button" id="alert-btn" class="main-btn" >Set Alert</button>
             </center>
         </div>
         <div class="page-0" id="page-0" style="display:none">
@@ -141,6 +142,28 @@
                 <button type="button" id="submit-btn-2" class="main-btn" style="float:right"
                  >Submit</button>
                  <button type="button" id="back-btn-3" class="main-btn" 
+                 style="float:right; background-color: #f1b815; margin-right: 5px;"
+                 >Back</button>
+            </form>
+        </div>
+        <div class="add-symptom" id="set-alert" style="display: none;">
+            <form>
+                <span class="covid-header">Set Alert</span>
+                <label class="form-label" for="symptom-input">Alert me for this amount: (set to 0 for none)</label><br>
+                <input type="number" class="form-text" id="alert-input"><br><br>
+                <span>Risk Type:</span><br>
+                <input type="radio" id="ver-high-risk" value="Very High Risk" name='risk'>
+                <label id="alert-lbl-1" for="very-high-risk"></label><br>
+                <input type="radio" id="high-risk" value="High Risk" name='risk'>
+                <label id="alert-lbl-2" for="high-risk"></label><br>
+                <input type="radio" id="low-risk" value="Low Risk" name='risk'>
+                <label id="alert-lbl-3" for="low-risk"></label><br>
+                <input type="radio" id="no-risk" value="Not at Risk" name='risk'>
+                <label id="alert-lbl-4" for="high-risk"></label><br>
+                <br><br><br><br>
+                <button type="button" id="submit-btn-alert" class="main-btn" style="float:right"
+                 >Submit</button>
+                 <button type="button" id="back-btn-alert" class="main-btn" 
                  style="float:right; background-color: #f1b815; margin-right: 5px;"
                  >Back</button>
             </form>
