@@ -100,6 +100,13 @@ def get_statistics():
 
     eel.getStatValues(total_veryhigh,total_high,total_low,total_norisk)
     
+@eel.expose
+def get_ulhi_and_symptoms():
+    symptoms = fileUtil.read_all_symptoms()
+    ulhi = fileUtil.read_ulhi()
+    values = symptoms + ulhi
+    print(values)
+    eel.createUlhiAndSymptomsCheckboxes(values) 
+
 
 eel.start('index.html',size=(700,480)),
-
