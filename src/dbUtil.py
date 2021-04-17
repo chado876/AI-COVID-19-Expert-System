@@ -106,7 +106,7 @@ def update_alert(alert: Alert):
     session.query(Alert).filter(Alert.alert_type == alert.alert_type).update({Alert.value: alert.value})
     session.commit()
     session.close()
-# query_db("Very High Risk")
+query_db("Very High Risk") 
 # drop_diagnoses()
 # get_diagnoses()
 # count_total_diagnoses()

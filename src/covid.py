@@ -85,8 +85,21 @@ def update_alert(alert_type,val):
 @eel.expose
 def get_alert_vals():
     vals = alert_service.get_alert_vals()
-    eel.setAlertVals(vals)
+    eel.setAlertVals(vals) 
 
+@eel.expose
+def get_statistics():
+    veryhigh_results = dbUtil.query_db("Very High Risk")
+    total_veryhigh = len(veryhigh_results)
+    high_results = dbUtil.query_db("High Risk")
+    total_high = len(high_results)
+    lowrisk_results = dbUtil.query_db("Low Risk")
+    total_low = len(lowrisk_results) 
+    norisk_results = dbUtil.query_db("Not at Risk")
+    total_norisk = len(norisk_results) 
+
+    eel.getStatValues(total_veryhigh,total_high,total_low,total_norisk)
+    
 @eel.expose
 def get_ulhi_and_symptoms():
     symptoms = fileUtil.read_all_symptoms()

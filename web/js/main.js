@@ -30,13 +30,23 @@ document.getElementById('submit-btn-alert').addEventListener('click', setAlert, 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 eel.init_alerts(); //ensure alerts are initially 0
-eel.get_total_diagnoses();
+eel.get_statistics(); 
 // eel.assert_all_symptoms_from_txt();
 
 // function emailDiagnosis(){
 //   var email = document.getElementById('email').value;
 //   alert("The patient's diagnosis results has been emailed to them successfully!");
 // }
+
+eel.expose(getStatValues)
+function getStatValues(veryHighRisk,highRisk,lowRisk,noRisk){
+  document.getElementById("veryhigh-stat").innerHTML = "Total Very High Risk: " + veryHighRisk 
+  document.getElementById("high-stat").innerHTML = "Total High Risk: " + highRisk 
+  document.getElementById("low-stat").innerHTML = "Total Low Risk: " + lowRisk 
+  document.getElementById("norisk-stat").innerHTML = "Total No Risk: " + noRisk 
+
+  eel.get_total_diagnoses();
+} 
 eel.expose(setAlertVals)
 function setAlertVals(alertvals) {
   document.getElementById("alert-lbl-1").innerHTML =  "Very High Risk (" + alertvals[0] + ")"
