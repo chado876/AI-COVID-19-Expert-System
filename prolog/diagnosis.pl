@@ -6,7 +6,8 @@ serious_symptoms(none).
 common_symptoms(none).
 less_common_symptoms(none).
 
-
+%accept temperature,age, underlying health issues, up to 10 symptoms, and variables to hold total serious,
+%total common, total less commmon, if the patient has a current fever & the result
 diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Symptom6,Symptom7,Symptom8,
 		Symptom9,Symptom10,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result):-    			
     			(Temperature > 100.4 ->  HasFever = y; HasFever = n),
@@ -14,6 +15,9 @@ diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Sympto
    				write("HasFever::"),
     			write(HasFever),nl,
     			
+				%check each of the 10 symptoms if they fall under serious, common or less common,
+				%add 1 to the respective total value if it meets the condition
+
     			(serious_symptoms(Symptom1) -> SeriousSymptomsTotal1 is 1; SeriousSymptomsTotal1 is 0),
 				(serious_symptoms(Symptom2) -> SeriousSymptomsTotal2 is SeriousSymptomsTotal1 + 1; SeriousSymptomsTotal2 is SeriousSymptomsTotal1),
 				(serious_symptoms(Symptom3) -> SeriousSymptomsTotal3 is SeriousSymptomsTotal2 + 1; SeriousSymptomsTotal3 is SeriousSymptomsTotal2),
@@ -63,10 +67,6 @@ diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Sympto
     			write("Age:"),write(Age),nl,
     			write("Total Underlying Health Issues:"),write(UHI),nl,
 
-	
-				%Result is 0,  
-   				%nl,write(HasFever),
-    			%(HasFever == y) ->  Result is 1;Result is 2.
     			((HasFever == y, SeriousSymptomsTotal > 0) -> Risk = "Very High Risk";
                 (HasFever == y, LessCommonSymptomsTotal > 0) -> Risk = "Low Risk";
                 (HasFever == y, CommonSymptomsTotal > 0) -> Risk = "High Risk";
@@ -81,7 +81,7 @@ diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Sympto
 				TotalLessCommon = LessCommonSymptomsTotal,
 				Result = Risk.
 			
-    			
+
 	%diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,Serious,Common,LessCommon,CurrentFever,Result).
 
 
