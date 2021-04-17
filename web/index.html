@@ -29,6 +29,7 @@
             <center>
                 <button type="button" id="diagnose-btn" class="main-btn">Diagnose</button><br>
                 <button type="button" id="add-btn" class="main-btn" >Add Symptom</button><br>
+                <button type="button" id="del-btn" class="main-btn" style="background-color:#f1b815">Delete Symptom</button><br>
                 <button type="button" id="email-all-btn" class="main-btn" >Email All Diagnoses</button><br>
                 <button type="button" id="alert-btn" class="main-btn" >Set Alert</button>
             </center>
@@ -146,6 +147,21 @@
                  >Back</button>
             </form>
         </div>
+        <div class="page-2" id="delete-symptoms" style="display: none;">
+            <form>
+                <span class="covid-header">Delete Symptoms</span>
+                <span style="padding-left: 5px; padding-top: 10px;">Please select symptoms/underlying health issues you would like to remove from the knowledge base.</span>
+                <br><br>
+                <div id="all-checkboxes" class="symptom-checkboxes">
+                </div>
+                <button type="button" id="submit-btn-del" class="main-btn" style="float:right; margin-right: 5px;
+                margin-top: 60%;"
+                >Delete</button>
+                <button type="button" id="back-btn-del" class="main-btn" 
+                     style="float:right; background-color: #f1b815; margin-right: 5px; margin-top: 60%;"
+                     >Back</button>
+            </form>
+            </div>
         <div class="add-symptom" id="set-alert" style="display: none;">
             <form>
                 <span class="covid-header">Set Alert</span>

@@ -4,6 +4,7 @@ document.getElementById('diagnose-btn').addEventListener('click', () => {navigat
 document.getElementById('add-btn').addEventListener('click', () => {navigate('main-menu','add-symptom')}, false);
 document.getElementById('next-btn-0').addEventListener('click', () => 
 {navigate('page-0','page-1')}, false);
+document.getElementById('del-btn').addEventListener('click', () => {navigate('main-menu','delete-symptoms'),eel.get_ulhi_and_symptoms()}, false);
 document.getElementById('next-btn-1').addEventListener('click', () => 
 {navigate('page-1','page-2'), eel.get_symptoms()}, false);
 document.getElementById('back-btn-0').addEventListener('click', () => {navigate('page-0','main-menu')}, false);
@@ -13,10 +14,12 @@ document.getElementById('back-btn-3').addEventListener('click', () => {navigate(
 document.getElementById('back-btn-lbp').addEventListener('click', () => {navigate('page-3','page-2')}, false);
 document.getElementById('back-btn-ulhi').addEventListener('click', () => {navigate('page-4','page-2')}, false);
 document.getElementById('back-btn-alert').addEventListener('click', () => {navigate('set-alert','main-menu')}, false);
+document.getElementById('back-btn-del').addEventListener('click', () => {navigate('delete-symptoms','main-menu')}, false);
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', addSymptom, false);
 document.getElementById('submit-btn-lbp').addEventListener('click',() => {navigate('page-3','page-4'), eel.get_ulhi()}, false);
 document.getElementById('submit-btn-ulhi').addEventListener('click',submit, false);
+document.getElementById('submit-btn-del').addEventListener('click',getValuesToDelete, false);
 document.getElementById('finish-btn').addEventListener('click', () => {navigate('results-page','main-menu')}, false);
 document.getElementById('email-all-btn').addEventListener('click',emailDiagnosesReport, false);
 document.getElementById('alert-btn').addEventListener('click', () => {navigate('main-menu','set-alert'), eel.get_alert_vals()}, false);
@@ -193,8 +196,9 @@ function createSymptomCheckboxes(symptoms){
     container.appendChild(br);
     document.getElementById('symptom-checkboxes').appendChild(container);
   }
+}
 
-  eel.expose(createUlhiCheckboxes);
+eel.expose(createUlhiCheckboxes);
   function createUlhiCheckboxes(ulhi){
 
     const parent = document.getElementById('ulhi-checkboxes') //clear current checkboxes
@@ -224,4 +228,47 @@ function createSymptomCheckboxes(symptoms){
     }
   }
 
-}
+eel.expose(createUlhiAndSymptomsCheckboxes);
+  function createUlhiAndSymptomsCheckboxes(values) {
+    console.log("here");
+    console.log(values);
+    
+    const parent = document.getElementById('all-checkboxes') //clear current checkboxes
+    while (parent.firstChild) {
+        parent.firstChild.remove();
+    }
+  
+    for (var i = 0; i < values.length; i++){   
+      console.log(values[i]);
+  
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = values[i];
+      checkbox.value = values[i];
+     
+      var label = document.createElement('label')
+      label.htmlFor = values[i];
+      label.appendChild(document.createTextNode(values[i]));
+      
+      var br = document.createElement('br');
+     
+      var container = document.createElement('container');
+      container.appendChild(checkbox);
+      container.appendChild(label);
+      container.appendChild(br);
+      parent.appendChild(container);
+    }
+
+  }
+
+  eel.expose()
+  function getValuesToDelete(){
+    var values = [];
+    var all_checkboxes = document.querySelectorAll('#all-checkboxes input[type=checkbox]:checked');
+    for(var i = 0; i < all_checkboxes.length; i++){
+      values.push(all_checkboxes[i].value);
+    }
+    eel.delete_symptoms(values);
+  }
+  
+  
