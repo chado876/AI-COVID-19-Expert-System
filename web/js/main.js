@@ -39,13 +39,20 @@ eel.get_statistics();
 // }
 
 eel.expose(getStatValues)
-function getStatValues(veryHighRisk,highRisk,lowRisk,noRisk){
-  document.getElementById("veryhigh-stat").innerHTML = "Total Very High Risk: " + veryHighRisk 
-  document.getElementById("high-stat").innerHTML = "Total High Risk: " + highRisk 
-  document.getElementById("low-stat").innerHTML = "Total Low Risk: " + lowRisk 
-  document.getElementById("norisk-stat").innerHTML = "Total No Risk: " + noRisk 
+function getStatValues(total,veryHighRisk,highRisk,lowRisk,noRisk){
+  var vhrper = ((veryHighRisk/total)*100).toFixed(1);
+  var hrper = ((highRisk/total)*100).toFixed(1);
+  var lrper = ((lowRisk/total)*100).toFixed(1);
+  var nrper = ((noRisk/total)*100).toFixed(1);
+  
 
-  eel.get_total_diagnoses();
+
+
+  document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + total
+  document.getElementById("veryhigh-stat").innerHTML = "Very High Risk: " + veryHighRisk + " (" + vhrper +"%)"
+  document.getElementById("high-stat").innerHTML = "High Risk: " + highRisk + " (" + hrper +"%)"
+  document.getElementById("low-stat").innerHTML = "Low Risk: " + lowRisk + " (" + lrper +"%)"
+  document.getElementById("norisk-stat").innerHTML = "No Risk: " + noRisk + " (" + nrper +"%)"
 } 
 eel.expose(setAlertVals)
 function setAlertVals(alertvals) {
