@@ -71,7 +71,7 @@ def diagnose(diagnosis:Diagnosis, symptoms):
 def diagnose2():
     assert_all_symptoms()
     prolog.consult("./prolog/diagnosis.pl")
-    for soln in prolog.query("diagnose(96.8,24,3,'Loss of Speech','Dry Cough','Tiredness','blank','blank','blank','blank','blank','blank','blank',TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)"):
+    for soln in prolog.query("diagnose(96.8,24,3,'Loss of Speech','Dry Cough','Tiredness','blank','blank','blank','blank','blank','blank','blank',TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,100,80,Low_bp,Result)"):
         R = soln
         print 
     print(R["Result"])
@@ -79,7 +79,8 @@ def diagnose2():
     print(R["TotalCommon"])
     print(R["TotalLessCommon"])
     print(R["CurrentFever"])
+    print(R["Low_bp"])
 
-# diagnose2()
+diagnose2()
 
 
