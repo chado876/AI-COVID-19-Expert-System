@@ -9,12 +9,15 @@ less_common_symptoms(none).
 %accept temperature,age, underlying health issues, up to 10 symptoms, and variables to hold total serious,
 %total common, total less commmon, if the patient has a current fever & the result
 diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Symptom6,Symptom7,Symptom8,
-		Symptom9,Symptom10,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result):-    			
+		Symptom9,Symptom10,TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Systolic,Diastolic,Low_bp,Result):-    			
     			(Temperature > 100.4 ->  HasFever = y; HasFever = n),
-    			write("TEMP:"),write(Temp),nl,
    				write("HasFever::"),
     			write(HasFever),nl,
-    			
+
+				((Systolic < 90, not(Systolic==0))->  Low_bp = "true"; 
+				(Diastolic >60, not(Diastolic==0))->  Low_bp = "true"; 
+				Low_bp ="false"),	
+
 				%check each of the 10 symptoms if they fall under serious, common or less common,
 				%add 1 to the respective total value if it meets the condition
 
@@ -80,8 +83,8 @@ diagnose(Temperature,Age,UHI,Symptom1,Symptom2,Symptom3,Symptom4,Symptom5,Sympto
 				TotalCommon = CommonSymptomsTotal,
 				TotalLessCommon = LessCommonSymptomsTotal,
 				Result = Risk.
-			
 
-	%diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,Serious,Common,LessCommon,CurrentFever,Result).
+
+	%diagnose(100.5,34,3,nausea,tiredness,aches,sore_throat,diarroea,conjuctivitis,headache,loss_of_taste,chest_pain,loss_of_speech,Serious,Common,LessCommon,CurrentFever,30,0,Low_bp,Result).
 
 
