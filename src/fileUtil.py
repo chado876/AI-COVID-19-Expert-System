@@ -99,10 +99,7 @@ def delete_symptoms(symptoms):
     new_less_common = []
     new_ulhi = []
 
-#iterate through each symptom in the array passed to this function,
-#then iterate through the symptoms in each text file; remove element 
- # if condition is met
-    for symptom in symptoms: 
+    for symptom in symptoms:
         for x in serious:
             if x == symptom:
                 serious.remove(x)
@@ -127,7 +124,7 @@ def delete_symptoms(symptoms):
     overwrite_symptoms(ulhi,"ulhi")
 
 
-def overwrite_symptoms(symptoms,severity): #delete symptoms by overwriting what is currently in txt file
+def overwrite_symptoms(symptoms,severity):
     if (severity == "serious"):
             file_directory = 'serious_symptoms.txt'
     elif (severity == "common"):
