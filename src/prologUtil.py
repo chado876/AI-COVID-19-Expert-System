@@ -54,7 +54,8 @@ def diagnose(diagnosis:Diagnosis, symptoms):
     prolog.consult("./prolog/diagnosis.pl")
     query = (f"diagnose({str(diagnosis.temperature)},{str(diagnosis.age)},{str(diagnosis.total_ulhi)}," +
     f"'{symptoms[0]}','{symptoms[1]}','{symptoms[2]}','{symptoms[3]}','{symptoms[4]}','{symptoms[5]}','{symptoms[6]}'," +
-    f"'{symptoms[7]}','{symptoms[8]}','{symptoms[9]}',TotalSerious,TotalCommon,TotalLessCommon,CurrentFever,Result)")
+    f"'{symptoms[7]}','{symptoms[8]}','{symptoms[9]}',TotalSerious,TotalCommon,TotalLessCommon,CurrentFever," +
+    f"{str(diagnosis.systolic_val)},{str(diagnosis.diastolic_val)},Low_bp,Result)")
     
     print("QUERY IS:" + query)
     for soln in prolog.query(query):
@@ -65,6 +66,7 @@ def diagnose(diagnosis:Diagnosis, symptoms):
     print(R["TotalCommon"])
     print(R["TotalLessCommon"])
     print(R["CurrentFever"])
+    print(R["Low_bp"])
     
     return R
 

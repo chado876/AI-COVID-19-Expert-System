@@ -13,15 +13,14 @@
         <div class="moh-logo">
             <img src="assets/moh.png">
         </div> 
-
         <center><h3>Statistics</h3></center>
-
          <div class="stats">
             <span class="stats-decor" id="total-stat"></span><br><br>
             <span class="stats-decor1" id="veryhigh-stat"></span><br><br>
             <span class="stats-decor2" id="high-stat"></span><br><br>
             <span class="stats-decor3" id="low-stat"></span><br><br>
-            <span class="stats-decor4" id="norisk-stat"></span>
+            <span class="stats-decor4" id="norisk-stat"></span><br><br>
+            <center><span style="color: red;" id="reset">Reset Database</span></center>
         </div>
     </div>
     <div class="content-box">
@@ -31,7 +30,7 @@
             <center>
                 <button type="button" id="diagnose-btn" class="main-btn">Diagnose</button><br>
                 <button type="button" id="add-btn" class="main-btn" >Add Symptom</button><br>
-                <button type="button" id="del-btn" class="main-btn" style="background-color:#f1b815">Delete Symptom</button><br>
+                <button type="button" id="del-btn" class="main-btn">Remove Symptom</button><br>
                 <button type="button" id="email-all-btn" class="main-btn" >Email All Diagnoses</button><br>
                 <button type="button" id="alert-btn" class="main-btn" >Set Alert</button>
             </center>
@@ -117,7 +116,7 @@
                 <form>
                     <span class="covid-header">Diagnosis</span>
                     <center>       
-                <div class="loader" id="loader-1" >Performing Diagnosis...</div>
+                    <div class="loader" id="loader-1" >Performing Diagnosis...</div>
                     </center>
                     <span style="padding-left: 5px; padding-top: 10px;" id="results"></span>
                     <br><br><br><br><br>
@@ -187,5 +186,21 @@
             </form>
         </div>
     </div>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 id="header-title"></h2>
+    </div>
+    <div id="modal-body" class="modal-body">
+    <div class="loader2" id="modal-loader" style="display:none"></div>
+     <p id="modal-txt"></p>
+    </div>
+    <div id="modal-footer" class="modal-footer">
+      <!-- <h3>Modal Footer</h3> -->
+    </div>
+  </div>
+</div>
 </body>
 </html>
