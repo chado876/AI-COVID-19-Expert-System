@@ -25,24 +25,74 @@ document.getElementById('email-all-btn').addEventListener('click',emailDiagnoses
 document.getElementById('alert-btn').addEventListener('click', () => {navigate('main-menu','set-alert'), eel.get_alert_vals()}, false);
 document.getElementById('submit-btn-alert').addEventListener('click', setAlert, false);
 // document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
-document.getElementById('reset').addEventListener('click', resetDb, false);
+document.getElementById('reset').addEventListener('click', displayModal, false);
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 eel.init_alerts(); //ensure alerts are initially 0
 eel.get_statistics(); 
-// eel.assert_all_symptoms_from_txt();
 
-// function emailDiagnosis(){
-//   var email = document.getElementById('email').value;
-//   alert("The patient's diagnosis results has been emailed to them successfully!");
-// }
+
+function displayModal(){
+  var modal = document.getElementById("modal");
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+
+  var header = document.getElementById('header-title');
+  header.innerHTML = "Reset Database";
+
+  var modal_body = document.getElementById('modal-txt');
+  modal_body.innerHTML="Are you sure you want to reset the database? This will reset " +
+  "all current diagnoses as well as statistics.";
+  
+  var modal_footer = document.getElementById('modal-footer');
+  var confirm_btn = document.createElement("confirm-btn");
+  confirm_btn.innerHTML = "Confirm";
+  var cancel_btn = document.createElement("cancel-btn");
+  cancel_btn.innerHTML = "Cancel";
+  confirm_btn.className = "modal-btn";
+  cancel_btn.className = "modal-btn";
+
+  modal_footer.style.textAlign="right";
+  const parent = modal_footer;
+  while (parent.firstChild) {
+      parent.firstChild.remove();
+  }
+  
+  modal_footer.appendChild(cancel_btn);
+  modal_footer.appendChild(confirm_btn);
+
+  cancel_btn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+
+  confirm_btn.onclick = function(){
+    modal_body.innerHTML="";
+    var loader = document.getElementById("modal-loader");
+    loader.style.display="block";
+    resetDb();
+    setTimeout(hideModalSpinner, 3000);
+  }
+}
+  
+}
+
 function resetDb() {
   eel.reset_db();
-  if (confirm("Are you sure you would like to reset the current database?")) {
-    alert("Database reset successfully!");
-  } 
+  // if (confirm("Are you sure you would like to reset the current database?")) {
+  //   alert("Database reset successfully!");
+  // } 
 }
 
 eel.expose(getStatValues)
@@ -101,13 +151,19 @@ function hideSpinner(){
   document.getElementById("loader-1").style.display="none";
 }
 
+function hideModalSpinner(){
+  document.getElementById("modal-loader").style.display="none";
+  document.getElementById('modal-txt').innerHTML="Database reset successfully!";
+ document.getElementById("confirm-btn").disabled = true;
+}
+
 function showSpinner(){
   document.getElementById("loader-1").style.display="block";
 }
 function submit(){
   navigate("page-4","results-page");
   showSpinner();
-  setTimeout(hideSpinner, 3000)
+  setTimeout(hideSpinner, 3000);
 
   getDiagnosisDetails();
 }
