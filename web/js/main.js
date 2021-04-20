@@ -22,14 +22,14 @@ document.getElementById('back-btn-1').addEventListener('click', () => {
 document.getElementById('back-btn-2').addEventListener('click', () => {
   navigate('page-2', 'page-1')
 }, false);
-document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu'),hideMessage("success-1"),hideMessage("error-3")}, false);
+document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu'),resetFields(),hideMessage("success-1"),hideMessage("error-3")}, false);
 document.getElementById('back-btn-lbp').addEventListener('click', () => {
   navigate('page-3', 'page-2')
 }, false);
 document.getElementById('back-btn-ulhi').addEventListener('click', () => {
   navigate('page-4', 'page-2')
 }, false);
-document.getElementById('back-btn-alert').addEventListener('click', () => {navigate('set-alert','main-menu'),hideMessage("success-2"),hideMessage("error-4")}, false);
+document.getElementById('back-btn-alert').addEventListener('click', () => {navigate('set-alert','main-menu'),resetFields(),hideMessage("success-2"),hideMessage("error-4")}, false);
 
 document.getElementById('back-btn-del').addEventListener('click', () => {
   navigate('delete-symptoms', 'main-menu')
@@ -58,6 +58,22 @@ var low_bp_symptoms = [];
 eel.init_alerts(); //ensure alerts are initially 0
 eel.get_statistics();
 eel.get_low_bp_symptom();
+
+
+function resetFields(){
+  var fields = document.getElementsByTagName('input'),
+    length = fields.length;
+    while (length--) {
+    if (fields[length].type === 'text' || fields[length].type == 'email' || fields[length].type == 'number'){
+       fields[length].value = ''; 
+      }
+      if (fields[length].type == "radio") {
+        fields[length].checked = false;
+    }
+  }
+
+  document.getElementById("checksymptom").checked = false;
+}
 
 eel.expose(setLbpSymptoms);
 function setLbpSymptoms(values){
@@ -261,6 +277,7 @@ function submit() {
 
   getDiagnosisDetails();
   eel.get_statistics();
+  resetFields();
 }
 
 eel.expose(showResult)
