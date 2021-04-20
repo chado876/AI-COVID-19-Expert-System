@@ -25,6 +25,7 @@ document.getElementById('email-all-btn').addEventListener('click',emailDiagnoses
 document.getElementById('alert-btn').addEventListener('click', () => {navigate('main-menu','set-alert'), eel.get_alert_vals()}, false);
 document.getElementById('submit-btn-alert').addEventListener('click', setAlert, false);
 // document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
+document.getElementById('reset').addEventListener('click', resetDb, false);
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -37,6 +38,12 @@ eel.get_statistics();
 //   var email = document.getElementById('email').value;
 //   alert("The patient's diagnosis results has been emailed to them successfully!");
 // }
+function resetDb() {
+  eel.reset_db();
+  if (confirm("Are you sure you would like to reset the current database?")) {
+    alert("Database reset successfully!");
+  } 
+}
 
 eel.expose(getStatValues)
 function getStatValues(veryHighRisk,highRisk,lowRisk,noRisk){

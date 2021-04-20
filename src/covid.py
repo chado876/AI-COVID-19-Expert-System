@@ -108,5 +108,10 @@ def get_ulhi_and_symptoms():
     print(values)
     eel.createUlhiAndSymptomsCheckboxes(values) 
 
+@eel.expose
+def reset_db():
+    dbUtil.drop_diagnoses()
+
+
 
 eel.start('index.html',size=(700,480)),
