@@ -4,28 +4,28 @@ from models.diagnosis import Diagnosis
 
 prolog = Prolog()
 
-def assert_symptom(new_symptom,severity):
-    prolog.consult("./prolog/symptoms.pl")
-    new_symptom = "'{}'".format(new_symptom.rstrip())
-    if (severity == "serious"):
-        prolog.assertz('serious_symptoms(%s)' % new_symptom)
-        print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
-        print("UPDATED FACTS - SERIOUS SYMPTOMS")
-        for symptom in prolog.query("serious_symptoms(X)"):
-            print(symptom["X"])
-    elif (severity == "common"):
-        prolog.assertz('common_symptoms(%s)' % new_symptom)
-        print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
-        print("UPDATED FACTS - COMMON SYMPTOMS")
-        for symptom in prolog.query("common_symptoms(X)"):
-            print(symptom["X"])
+# def assert_symptom(new_symptom,severity):
+#     prolog.consult("./prolog/symptoms.pl")
+#     new_symptom = "'{}'".format(new_symptom.rstrip())
+#     if (severity == "serious"):
+#         prolog.assertz('serious_symptoms(%s)' % new_symptom)
+#         print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
+#         print("UPDATED FACTS - SERIOUS SYMPTOMS")
+#         for symptom in prolog.query("serious_symptoms(X)"):
+#             print(symptom["X"])
+#     elif (severity == "common"):
+#         prolog.assertz('common_symptoms(%s)' % new_symptom)
+#         print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
+#         print("UPDATED FACTS - COMMON SYMPTOMS")
+#         for symptom in prolog.query("common_symptoms(X)"):
+#             print(symptom["X"])
 
-    elif (severity == "less-common"):
-        prolog.assertz('less_common_symptoms(%s)' % new_symptom)
-        print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
-        print("UPDATED FACTS - LESS COMMON SYMPTOMS:")
-        for symptom in prolog.query("less_common_symptoms(X)"):
-            print(symptom["X"])
+#     elif (severity == "less-common"):
+#         prolog.assertz('less_common_symptoms(%s)' % new_symptom)
+#         print("Symptom:" + new_symptom + " asserted to" + severity + " successfully.")
+#         print("UPDATED FACTS - LESS COMMON SYMPTOMS:")
+#         for symptom in prolog.query("less_common_symptoms(X)"):
+#             print(symptom["X"])
 
 def assert_all_symptoms():
     serious_symptoms = fileUtil.read_symptoms("serious")

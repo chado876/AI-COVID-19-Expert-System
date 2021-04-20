@@ -38,14 +38,15 @@
         <div class="page-0" id="page-0" style="display:none">
             <form>
                 <span class="covid-header">Diagnosis</span>
+                <span class="error" id="error-0" style="display:none" style="color:red">Please fill out all fields.</span><br>
                 <label class="form-label" for="f_name">Please enter the patient's first name:</label><br>
                 <input type="text" class="form-text" id="f_name"><br><br>
                 <label class="form-label" for="l_name">Please enter the patient's last name:</label><br>
                 <input type="text" class="form-text" id="l_name"><br><br>
                 <label class="form-label" for="email">Please enter the patient's email address:</label><br>
                 <input type="email" class="form-text" id="email"><br><br><br><br>
-                <button type="button" id="next-btn-0" class="main-btn" style="float:right"
-                 >Next</button>
+                <button type="button" id="next-btn-0" class="main-btn" style="float:right" 
+                 >Next</button >
                  <button type="button" id="back-btn-0" class="main-btn" 
                  style="float:right; background-color: #f1b815; margin-right: 5px;"
                  >Back</button>
@@ -54,6 +55,7 @@
         <div class="page-1" id="page-1" style="display:none">
             <form>
                 <span class="covid-header">Diagnosis</span>
+                <span class="error" id="error-1" style="display:none" style="color:red">Please fill out all fields.</span><br>
                 <label class="form-label" for="temperature">Please enter your temperature in degrees celsius (°C):</label><br>
                 <input type="number" class="form-text" id="temperature"><br><br>
                 <label class="form-label" for="age">Please enter your age:</label><br>
@@ -84,11 +86,12 @@
         <div class="page-3" id="page-3" style="display: none;">
             <form>
                 <span class="covid-header">Diagnosis</span>
-                <span style="padding-left: 5px; padding-top: 10px;">Please enter your systolic and diastolic values below.</span>
+                <span class="error" id="error-2" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" style="padding-left: 5px; padding-top: 10px;">Please enter your systolic and diastolic values below.</span>
                 <br><br>
                 <label class="form-label" for="sistolic">Systolic value (mm Hg):</label><br>
                 <input type="number" class="form-text" id="systolic"><br><br>
-                <lab        el class="form-label" for="diastolic">Diastolic value (mm Hg):</label><br>
+                <label class="form-label" for="diastolic">Diastolic value (mm Hg):</label><br>
                 <input type="number" class="form-text" id="diastolic"><br><br><br><br><br><br>
                 <button type="button" id="submit-btn-lbp" class="main-btn" style="float:right"
                 >Next</button>
@@ -131,6 +134,8 @@
             <form>
                 <span class="covid-header">Add Symptom</span>
                 <span class="covid-header">to Knowledge Base</span>
+                <span class="error" id="error-3" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" id="success-1" style="display:none" style="color:green">Symptom added successfully.</span><br>
                 <label class="form-label" for="symptom-input">Symptom:</label><br>
                 <input type="text" class="form-text" id="symptom-input"><br><br>
                 <span>Symptom severity:</span><br>
@@ -142,7 +147,7 @@
                 <label for="less-common">Less Common</label>
                 <br><br><br><br><br><br>
                 <button type="button" id="submit-btn-2" class="main-btn" style="float:right"
-                 >Submit</button>
+                 >Submit</button> 
                  <button type="button" id="back-btn-3" class="main-btn" 
                  style="float:right; background-color: #f1b815; margin-right: 5px;"
                  >Back</button>
@@ -166,6 +171,8 @@
         <div class="add-symptom" id="set-alert" style="display: none;">
             <form>
                 <span class="covid-header">Set Alert</span>
+                <span class="error" id="error-4" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" id="success-2" style="display:none" style="color:green">Alert set successfully.</span><br>
                 <label class="form-label" for="symptom-input">Alert me for this amount: (set to 0 for none)</label><br>
                 <input type="number" class="form-text" id="alert-input"><br><br>
                 <span>Risk Type:</span><br>
