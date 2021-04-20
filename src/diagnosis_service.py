@@ -32,8 +32,8 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     symptoms_arr = convert_symptoms_to_arr(diagnosis.symptoms)
     diagnosisResult = prologUtil.diagnose(diagnosis, symptoms_arr)
     
-    encoding = 'utf-8' #pyswip returns results with utf-8 encoding
-    diagnosis.result = diagnosisResult["Result"].decode(encoding) 
+    encoding = 'utf-8'
+    diagnosis.result = diagnosisResult["Result"].decode(encoding)
     diagnosis.total_serious = diagnosisResult["TotalSerious"]
     diagnosis.total_common = diagnosisResult["TotalCommon"]
     diagnosis.total_less_common = diagnosisResult["TotalLessCommon"]
@@ -58,10 +58,10 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     else:
         riskVal = "No Risk"
 
-    resText = ("According to our diagnosis, patient <strong>" + diagnosis.first_name + " " + diagnosis.last_name +
-    "</strong> is at a <strong>" + riskVal + "</strong> of having COVID-19. They have <strong>" + str(total_serious) + " serious symptoms</strong>, <strong>" + str(total_common) +
-    " common symptoms</strong>, <strong>" + str(total_less_common) + " less common symptoms</strong>, <strong>" + str(total_ulhi) + " underlying health issues</strong> " +
-    " and has a current temperature of <strong>" + str(diagnosis.temperature) +"°F</strong>.")
+    resText = ("According to our diagnosis, patient " + diagnosis.first_name + " " + diagnosis.last_name +
+    " is at a " + riskVal + " of having COVID-19. They have " + str(total_serious) + " serious symptoms, " + str(total_common) +
+    " common symptoms, " + str(total_less_common) + " less common symptoms, " + str(total_ulhi) + " underlying health issues " +
+    " and " + currentFever)
 
     dbUtil.add_diagnosis(diagnosis)   
 
@@ -69,16 +69,19 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     return resText
 
 def convert_symptoms_to_arr(symptoms):
+    print("UNFORMATTED SYMPTOMS::")
+    print(symptoms)
     new_symptoms = symptoms.split(",")
-    symptoms_arr = [''] * 10 #use an array of size 10 because the prolog function is expecting 10 symptoms
+    print(new_symptoms)
+
+    symptoms_arr = [''] * 10
 
     print(len(new_symptoms))
 
     for i,x in enumerate(symptoms_arr):
         if(i < len(new_symptoms)):
             symptoms_arr[i] = new_symptoms[i]
-        elif (x == ""): #if diagnosis symptom is an empty string or if they are less than 10, pad the array
-                        #size with array elements 'blank' until the array size (10) is met.
+        elif (x == ""):
             symptoms_arr[i] = 'blank'
         else:
             symptoms_arr[i] = 'blank'
@@ -99,7 +102,7 @@ def check_for_spike():
     totNr = len(no_risk_diagnoses)
 
     sendAlert = False
-    #check alert value stored if current diagnoses matches condition, if so, send alert email
+
     for alert in alerts:
         if (alert.value > 0):
             if (alert.alert_type == "Very High Risk"):

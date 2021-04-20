@@ -68,9 +68,6 @@ def send_diagnoses_report():
         server.sendmail(sender_email, receiver_email, text)
 
 def send_diagnosis(email,resultText):
-    resultText = resultText.replace('<strong>','')
-    resultText = resultText.replace('</strong>','')
-
     # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY H:M:S

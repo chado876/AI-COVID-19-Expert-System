@@ -60,8 +60,6 @@ def drop_diagnoses():
     session = Session()
     session.query(Diagnosis).delete()
     session.commit()
-    engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
-    Base.metadata.create_all(bind=engine)
 
 def query_db(res):
     engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
