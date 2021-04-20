@@ -26,6 +26,3 @@ class Diagnosis(Base):
     current_fever = Column(Boolean)
     result = Column(String)
 
-engine = create_engine('sqlite:///./data/diagnoses.db', echo=True)
-Base.metadata.create_all(bind=engine)
-
