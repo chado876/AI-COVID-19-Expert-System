@@ -260,6 +260,7 @@ function submit() {
   setTimeout(hideSpinner, 3000);
 
   getDiagnosisDetails();
+  eel.get_statistics();
 }
 
 eel.expose(showResult)
@@ -301,9 +302,8 @@ function getDiagnosisDetails() {
 function celciusToFarenheit(celsius) {
   var cTemp = celsius;
   var cToFahr = cTemp * 9 / 5 + 32;
-  var message = cTemp + '\xB0C is ' + cToFahr + ' \xB0F.';
-  console.log(message);
-  return cToFahr;
+
+  return cToFahr.toFixed(1);
 }
 
 eel.expose(add_symptom_checkboxes);
