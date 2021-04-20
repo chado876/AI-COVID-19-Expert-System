@@ -37,7 +37,21 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     diagnosis.total_serious = diagnosisResult["TotalSerious"]
     diagnosis.total_common = diagnosisResult["TotalCommon"]
     diagnosis.total_less_common = diagnosisResult["TotalLessCommon"]
-    diagnosis.current_fever = False
+
+    curFever = diagnosisResult["CurrentFever"].decode(encoding)
+    hasLbp = diagnosisResult["Low_bp"].decode(encoding)
+
+    if (curFever == "true") :
+        diagnosis.current_fever = True
+    else:
+        diagnosis.current_fever = False
+    
+
+    if (hasLbp == "true"):
+        diagnosis.low_bp = True
+    else:
+        diagnosis.low_bp = False
+    
     
     results = diagnosis.result
     total_serious = diagnosis.total_serious
@@ -49,6 +63,12 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
         currentFever = "has an active fever."
     else:
         currentFever = "does not have an active fever."
+    
+    if(diagnosis.low_bp == True):
+        low_bp = "has a low blood pressure"
+    else:
+        low_bp = "does not have a low blood pressure"
+
     if("Very High Risk") == results:
         riskVal = "Very High Risk"
     elif("High Risk") == results:
@@ -61,7 +81,7 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     resText = ("According to our diagnosis, patient <strong>" + diagnosis.first_name + " " + diagnosis.last_name +
     "</strong> is at a <strong>" + riskVal + "</strong> of having COVID-19. They have <strong>" + str(total_serious) + " serious symptoms</strong>, <strong>" + str(total_common) +
     " common symptoms</strong>, <strong>" + str(total_less_common) + " less common symptoms</strong>, <strong>" + str(total_ulhi) + " underlying health issues</strong> " +
-    " and has a current temperature of <strong>" + str(diagnosis.temperature) +"°F</strong>.")
+    " has a current temperature of <strong>" + str(diagnosis.temperature) +"°F</strong>, and <strong>" + low_bp + "</strong>.")
 
     dbUtil.add_diagnosis(diagnosis)   
 

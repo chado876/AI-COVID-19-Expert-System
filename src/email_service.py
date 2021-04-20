@@ -98,7 +98,7 @@ def send_diagnosis(email,resultText):
         + "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public?gclid=Cj0KCQjwse-DBhC7ARIsAI8YcWLN3oNoK4jl-YcEc3Q77HQhlkEeDPmMtv1wzGSHCcbEJHfCuNnH54IaAtG2EALw_wcB")
     elif "High Risk" in resultText: 
         action = ("Precautions for people with high risk of COVID-19: \n"
-        + "1. Plan ahead with your doctor on when too seek routine care and what to do if you were to get sick. \n" 
+        + "1. Plan ahead with your doctor on when to seek routine care and what to do if you were to get sick. \n" 
         + "2. Make sure all your vaccinations are up to date.\n"
         + "3. Have sufficient quantity of your regular medication, non-perishable food and other supplies to minimize trips outside your home. \n"
         + "4. Limit in-home services and visitors to what is essential- only people that are healthy should visit.\n"
