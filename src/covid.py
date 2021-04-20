@@ -15,10 +15,7 @@ eel.init('web')
 def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     symptoms = [x.replace('\n', '') for x in symptoms]
     symptoms = ','.join(symptoms) #convert list of symptoms to single string seperated by commas
-    print("DIAGNOSIS DETAILS::" + firstname + lastname + age  + symptoms + str(temperature))
     result = diagnosis_service.diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature)
-    print("FINAL DIAGNOSIS:::")
-    print(result)
     newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
     " short-term and long-term precautions to take going forward.")
     time.sleep(3)
@@ -28,7 +25,6 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
 @eel.expose
 def get_symptoms():
     symptoms = fileUtil.read_all_symptoms()
-    print("SYMPTOMS::", symptoms)
     eel.add_symptom_checkboxes(symptoms)
 
 @eel.expose
@@ -43,7 +39,6 @@ def assert_all_symptoms_from_txt():
 @eel.expose
 def add_symptom(symptom,severity,isLbp):
     fileUtil.add_symptom(symptom,severity,isLbp)
-    # prologUtil.assert_symptom(symptom,severity)
     
 @eel.expose
 def update_stats(stat): 
@@ -52,7 +47,6 @@ def update_stats(stat):
 @eel.expose
 def read_stats():
     stats = fileUtil.read_stats()
-    print("STATS::", stats)
     eel.addStats(stats)
 
 @eel.expose 
