@@ -1,3 +1,5 @@
 Fever
 Dry Cough
-Tirednessn
+Tiredness
+Dizziness
+Fainting

@@ -41,8 +41,8 @@ def assert_all_symptoms_from_txt():
     prologUtil.assert_all_symptoms()
 
 @eel.expose
-def add_symptom(symptom,severity):
-    fileUtil.add_symptom(symptom,severity)
+def add_symptom(symptom,severity,isLbp):
+    fileUtil.add_symptom(symptom,severity,isLbp)
     # prologUtil.assert_symptom(symptom,severity)
     
 @eel.expose
@@ -112,5 +112,11 @@ def get_ulhi_and_symptoms():
 @eel.expose
 def reset_db():
     dbUtil.drop_diagnoses()
+
+@eel.expose
+def get_low_bp_symptom():
+    symptoms = fileUtil.read_symptoms("low-bp")
+    eel.setLbpSymptoms(symptoms)
+
     
 eel.start('index.html',size=(700,480)),
