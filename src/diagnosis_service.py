@@ -58,10 +58,10 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     else:
         riskVal = "No Risk"
 
-    resText = ("According to our diagnosis, patient " + diagnosis.first_name + " " + diagnosis.last_name +
-    " is at a " + riskVal + " of having COVID-19. They have " + str(total_serious) + " serious symptoms, " + str(total_common) +
-    " common symptoms, " + str(total_less_common) + " less common symptoms, " + str(total_ulhi) + " underlying health issues " +
-    " and " + currentFever)
+    resText = ("According to our diagnosis, patient <strong>" + diagnosis.first_name + " " + diagnosis.last_name +
+    "</strong> is at a <strong>" + riskVal + "</strong> of having COVID-19. They have <strong>" + str(total_serious) + " serious symptoms</strong>, <strong>" + str(total_common) +
+    " common symptoms</strong>, <strong>" + str(total_less_common) + " less common symptoms</strong>, <strong>" + str(total_ulhi) + " underlying health issues</strong> " +
+    " and has a current temperature of <strong>" + str(diagnosis.temperature) +"°F</strong>.")
 
     dbUtil.add_diagnosis(diagnosis)   
 
