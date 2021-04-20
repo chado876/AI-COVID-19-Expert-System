@@ -62,9 +62,8 @@ function setAlert(){
   eel.update_alert(alert_type, val);
 }
 
-function emailDiagnosesReport(){
-eel.email_all_diagnoses();
-alert("Diagnoses report generated and emailed successfully!");
+function emailDiagnosesReport() {
+  eel.email_all_diagnoses();
 }
 
 function checkSymptomValues(){
