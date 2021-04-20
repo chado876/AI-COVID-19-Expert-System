@@ -53,8 +53,17 @@ document.getElementById('reset').addEventListener('click', displayResetModal, fa
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+var low_bp_symptoms = [];
+
 eel.init_alerts(); //ensure alerts are initially 0
 eel.get_statistics();
+eel.get_low_bp_symptom();
+
+eel.expose(setLbpSymptoms);
+function setLbpSymptoms(values){
+  low_bp_symptoms = values;
+  console.log(low_bp_symptoms);
+}
 
 
 function resetDb() {
@@ -211,11 +220,12 @@ function checkSymptomValues() {
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
   var lowBp = false;
   for (var i = 0; i < checkboxes.length; i++) {
-    console.log(checkboxes[i].value + "==" + "dizziness");
-    if (checkboxes[i].value === "dizziness\n" || checkboxes[i].value === "blurred vision\n" || checkboxes[i].value === "fainting\n") {
+    if (low_bp_symptoms.indexOf(checkboxes[i].value)>-1) {     
       lowBp = true;
       console.log("true");
       break;
+    } else {
+      console.log(checkboxes[i].value);
     }
   }
   if (lowBp == true) {
@@ -305,9 +315,10 @@ function add_symptom_checkboxes(symptoms) {
 
 function addSymptom() {
   var severity = document.querySelector('input[name="severity"]:checked').value;
-  console.log(severity);
   var symptom = document.getElementById("symptom-input").value;
-  eel.add_symptom(symptom, severity);
+  var isLbp = document.getElementById("checksymptom").checked;
+  console.log(isLbp);
+  eel.add_symptom(symptom, severity,isLbp);
 }
 
 eel.expose(addStats);
