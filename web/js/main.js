@@ -99,7 +99,6 @@ function setAlert() {
 
 function emailDiagnosesReport() {
   eel.email_all_diagnoses();
-  // alert("Diagnoses report generated and emailed successfully!");
 }
 
 function checkSymptomValues() {
