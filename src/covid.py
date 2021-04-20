@@ -43,9 +43,8 @@ def assert_all_symptoms_from_txt():
 @eel.expose
 def add_symptom(symptom,severity):
     fileUtil.add_symptom(symptom,severity)
-    prologUtil.assert_symptom(symptom,severity)
+    # prologUtil.assert_symptom(symptom,severity)
     
-
 @eel.expose
 def update_stats(stat): 
     fileUtil.update_stats(stat)
@@ -89,7 +88,8 @@ def get_alert_vals():
 
 @eel.expose
 def get_statistics():
-    veryhigh_results = dbUtil.query_db("Very High Risk")
+    total = dbUtil.count_total_diagnoses()
+    veryhigh_results = dbUtil.query_db("Very High Risk") 
     total_veryhigh = len(veryhigh_results)
     high_results = dbUtil.query_db("High Risk")
     total_high = len(high_results)
@@ -98,7 +98,8 @@ def get_statistics():
     norisk_results = dbUtil.query_db("Not at Risk")
     total_norisk = len(norisk_results) 
 
-    eel.getStatValues(total_veryhigh,total_high,total_low,total_norisk)
+    eel.getStatValues(total,total_veryhigh,total_high,total_low,total_norisk)
+
     
 @eel.expose
 def get_ulhi_and_symptoms():
