@@ -6,5 +6,6 @@ Conjunctivitis
 Headache
 Loss of Taste 
 Loss of Smell
-Rash 
+Rash
 Discolouration
+Blurred Vision

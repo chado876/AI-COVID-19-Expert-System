@@ -138,9 +138,14 @@ def overwrite_symptoms(symptoms,severity):
         for symptom in symptoms:
             f.write(symptom + "\n")
          
+def add_low_bp_symptom(symptom):
+    file_directory = "low_bp_symptoms.txt"
+    file_object = open(file_directory, 'a')
+    file_object.write(symptom + "\n")
+    file_object.close()
             
 # delete_symptoms(["Fever","Headache","Dementia","Loss of Taste"])
-
+add_low_bp_symptom("test")
 
 
 
