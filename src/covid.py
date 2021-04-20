@@ -43,9 +43,8 @@ def assert_all_symptoms_from_txt():
 @eel.expose
 def add_symptom(symptom,severity):
     fileUtil.add_symptom(symptom,severity)
-    prologUtil.assert_symptom(symptom,severity)
+    # prologUtil.assert_symptom(symptom,severity)
     
-
 @eel.expose
 def update_stats(stat): 
     fileUtil.update_stats(stat)

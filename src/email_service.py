@@ -82,10 +82,50 @@ def send_diagnosis(email,resultText):
         greeting = ('Good evening,')
     
     currentTime = str(time.strftime('%I:%M %p'))
+    if "No Risk" in resultText: 
+        action = ("To avoid contracting COVID-19:\n"  
+        + "Clean your hands often. Use soap and water, or an alcohol-based hand rub.\n" 
+        + "Maintain a safe distance from anyone who is coughing or sneezing.\n"
+        + "Wear a mask when physical distancing is not possible.\n"
+        + "Don’t touch your eyes, nose or mouth.\n"
+        + "Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.\n"
+        + "Stay home if you feel unwell.\n"
+        + "If you have a fever, cough and difficulty breathing, seek medical attention.\n\n"
+        + "You may visit this link for further information.\n" 
+        + "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public?gclid=Cj0KCQjwse-DBhC7ARIsAI8YcWLN3oNoK4jl-YcEc3Q77HQhlkEeDPmMtv1wzGSHCcbEJHfCuNnH54IaAtG2EALw_wcB")
+    elif "High Risk" in resultText: 
+        action = ("Precautions for people with high risk of COVID-19: \n"
+        + "Plan ahead with your doctor on when too seek routine care and what to do if you were to get sick. \n" 
+        + "Make sure all your vaccinations are up to date.\n"
+        + "Have sufficient quantity of your regular medication, non-perishable food and other supplies to minimize trips outside your home. \n"
+        + "Limit in-home services and visitors to what is essential- only people that are healthy should visit.\n"
+        + "Keep up to date on national public health advice. \n"
+        + "Isolate yourself from any house member and outsiders for atleast 14 days")
+    elif "Low Risk" in resultText: 
+        action = "Precautions for people with low risk of COVID-19: \n"
+        + ("Call your health care provider or COVID-19 hotline at 888-ONE-LOVE (663-5683) to find out where and when to get a test. \n"
+        + "Cooperate with contact-tracing procedures to stop the spread of the virus (If Applicable). \n"
+        + "If testing is not available, stay home and away from others for 14 days. \n"
+        + "While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies. \n"
+        + "Keep at least a 1-metre distance from others, even from your family members. \n"
+        + "Wear a medical mask to protect others, including if/when you need to seek medical care. \n"
+        + "Clean your hands frequently. \n"
+        + "Stay in a separate room from other family members, and if not possible, wear a medical mask. \n"
+        + "Keep the room well-ventilated. \n"
+        + "If you share a room, place beds at least 1 metre apart. \n"
+        + "Monitor yourself for any symptoms for 14 days. \n"
+        + "Call your health care provider immediately if you have any of these danger signs: difficulty breathing, loss of speech or mobility, confusion or chest pain. \n"
+        + "Stay positive by keeping in touch with loved ones by phone or online, and by exercising at home.")
+    else : 
+        action = "" 
+        
+
+
+
     subject = "COVID-19 Diagnoses - " + dt_string
     body = (greeting + " your COVID-19 diagnosis performed at " + 
             dt_string + " at " + currentTime + " has returned the following results:\n\n " + 
-            resultText)
+            resultText + "\n\n" + action)
     sender_email = "utechmohexpertsystem2021@gmail.com"
     receiver_email = email
     password = "Password@15"
