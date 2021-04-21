@@ -458,9 +458,11 @@ function displayResetModal() {
   while (parent.firstChild) {
     parent.firstChild.remove();
   }
-
+  // confirm_btn.className = "confirm"
+  // confirm_btn.className = "cancel"
   modal_footer.appendChild(cancel_btn);
   modal_footer.appendChild(confirm_btn);
+  
 
   cancel_btn.onclick = function () {
     modal.style.display = "none";
@@ -508,6 +510,7 @@ window.onclick = function (event) {
     while (parent.firstChild) {
       parent.firstChild.remove();
     }
+    // close_btn.className = "close"
     modal_footer.appendChild(close_btn);
 
     emailDiagnosesReport();

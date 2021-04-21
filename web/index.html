@@ -20,7 +20,7 @@
             <span class="stats-decor2" id="high-stat"></span><br><br>
             <span class="stats-decor3" id="low-stat"></span><br><br>
             <span class="stats-decor4" id="norisk-stat"></span><br><br>
-            <center><span style="color: red;" id="reset">Reset Database</span></center>
+            <center><button class="reset" style="color: red;" id="reset">Reset Database</button></center>
         </div>
     </div>
     <div class="content-box">
@@ -44,7 +44,7 @@
                 <label class="form-label" for="l_name">Please enter the patient's last name:</label><br>
                 <input type="text" class="form-text" id="l_name"><br><br>
                 <label class="form-label" for="email">Please enter the patient's email address:</label><br>
-                <input type="email" class="form-text" id="email"><br><br><br><br>
+                <input type="email" class="form-text" id="email"><br><br>
                 <button type="button" id="next-btn-0" class="main-btn" style="float:right" 
                  >Next</button >
                  <button type="button" id="back-btn-0" class="main-btn" 
@@ -59,7 +59,7 @@
                 <label class="form-label" for="temperature">Please enter your temperature in degrees celsius (°C):</label><br>
                 <input type="number" class="form-text" id="temperature"><br><br>
                 <label class="form-label" for="age">Please enter your age:</label><br>
-                <input type="number" class="form-text" id="age"><br><br><br><br><br><br>
+                <input type="number" class="form-text" id="age"><br><br>
                 <button type="button" id="next-btn-1" class="main-btn" style="float:right"
                  >Next</button>
                  <button type="button" id="back-btn-1" class="main-btn" 
@@ -92,7 +92,7 @@
                 <label class="form-label" for="sistolic">Systolic value (mm Hg):</label><br>
                 <input type="number" class="form-text" id="systolic"><br><br>
                 <label class="form-label" for="diastolic">Diastolic value (mm Hg):</label><br>
-                <input type="number" class="form-text" id="diastolic"><br><br><br><br><br><br>
+                <input type="number" class="form-text" id="diastolic"><br><br>
                 <button type="button" id="submit-btn-lbp" class="main-btn" style="float:right"
                 >Next</button>
                 <button type="button" id="back-btn-lbp" class="main-btn" 
@@ -145,7 +145,7 @@
                 <label for="common">Common</label><br>  
                 <input type="radio" id="less-common" value="less-common" name='severity'>
                 <label for="less-common">Less Common</label>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br>
                 <button type="button" id="submit-btn-2" class="main-btn" style="float:right"
                  >Submit</button> 
                  <button type="button" id="back-btn-3" class="main-btn" 
@@ -184,7 +184,7 @@
                 <label id="alert-lbl-3" for="low-risk"></label><br>
                 <input type="radio" id="no-risk" value="Not at Risk" name='risk'>
                 <label id="alert-lbl-4" for="high-risk"></label><br>
-                <br><br><br><br>
+                <br><br><br><br><br>
                 <button type="button" id="submit-btn-alert" class="main-btn" style="float:right"
                  >Submit</button>
                  <button type="button" id="back-btn-alert" class="main-btn" 
