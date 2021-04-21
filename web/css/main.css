@@ -3,10 +3,9 @@ body{
   margin:0px;
   } 
 
-  .error{ 
+.error{ 
   color: red;
-
-  } 
+} 
 
 .success{
   color: green; 
@@ -54,10 +53,11 @@ body{
   padding: 10px 22px;
   text-decoration: none;
   font-size: 16px;
+  font-weight: bold;
   margin-top: 25px;
   border-radius: 399px;
   transition-duration: 0.4s;
-
+  cursor:pointer;
 }
 
 .main-btn:hover {
@@ -91,7 +91,6 @@ body{
   padding-left: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-  
 } 
 
 .stats-decor1 {
@@ -307,4 +306,5 @@ body{
   padding:10px;
   background-color: #e7e7e7;
   margin:10px;
+  cursor:pointer;
 }

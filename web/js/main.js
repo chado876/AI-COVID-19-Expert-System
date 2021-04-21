@@ -32,7 +32,7 @@ document.getElementById('back-btn-ulhi').addEventListener('click', () => {
 document.getElementById('back-btn-alert').addEventListener('click', () => {navigate('set-alert','main-menu'),resetFields(),hideMessage("success-2"),hideMessage("error-4")}, false);
 
 document.getElementById('back-btn-del').addEventListener('click', () => {
-  navigate('delete-symptoms', 'main-menu')
+  navigate('delete-symptoms', 'main-menu'), hideMessage("success-3")
 }, false);
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', () => {checkIfValid('add-symptom')}, false); 
@@ -84,6 +84,7 @@ function setLbpSymptoms(values){
 
 function resetDb() {
   eel.reset_db();
+  eel.get_statistics();
   // if (confirm("Are you sure you would like to reset the current database?")) {
   //   alert("Database reset successfully!");
   // } 
@@ -169,7 +170,6 @@ function checkIfValid(screen){
       document.getElementById("success-1").style.display="inline";
       addSymptom();
     }
-
   } 
   else if (screen === "set-alert"){
     var isEmpty = false; 
@@ -201,11 +201,19 @@ function hideMessage(msg){
 
 eel.expose(getStatValues)
 function getStatValues(total,veryHighRisk,highRisk,lowRisk,noRisk){
-  var vhrper = ((veryHighRisk/total)*100).toFixed(1);
-  var hrper = ((highRisk/total)*100).toFixed(1);
-  var lrper = ((lowRisk/total)*100).toFixed(1);
-  var nrper = ((noRisk/total)*100).toFixed(1);
 
+  if (total > 0 ){
+    var vhrper = ((veryHighRisk/total)*100).toFixed(0);
+    var hrper = ((highRisk/total)*100).toFixed(0);
+    var lrper = ((lowRisk/total)*100).toFixed(0);
+    var nrper = ((noRisk/total)*100).toFixed(0);
+  } else {
+    vhrper = 0;
+    hrper = 0;
+    lrper = 0;
+    nrper = 0;  
+  }
+ 
   document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + total
   document.getElementById("veryhigh-stat").innerHTML = "Very High Risk: " + veryHighRisk + " (" + vhrper +"%)"
   document.getElementById("high-stat").innerHTML = "High Risk: " + highRisk + " (" + hrper +"%)"
@@ -459,6 +467,7 @@ function getValuesToDelete() {
     values.push(all_checkboxes[i].value);
   }
   eel.delete_symptoms(values);
+  document.getElementById("success-3").style.display="inline";
 }
 
 function displayResetModal() {
