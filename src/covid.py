@@ -15,10 +15,7 @@ eel.init('web')
 def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     symptoms = [x.replace('\n', '') for x in symptoms]
     symptoms = ','.join(symptoms) #convert list of symptoms to single string seperated by commas
-    print("DIAGNOSIS DETAILS::" + firstname + lastname + age  + symptoms + str(temperature))
     result = diagnosis_service.diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature)
-    print("FINAL DIAGNOSIS:::")
-    print(result)
     newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
     " short-term and long-term precautions to take going forward.")
     time.sleep(3)
@@ -28,7 +25,6 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
 @eel.expose
 def get_symptoms():
     symptoms = fileUtil.read_all_symptoms()
-    print("SYMPTOMS::", symptoms)
     eel.add_symptom_checkboxes(symptoms)
 
 @eel.expose
@@ -41,11 +37,9 @@ def assert_all_symptoms_from_txt():
     prologUtil.assert_all_symptoms()
 
 @eel.expose
-def add_symptom(symptom,severity):
-    fileUtil.add_symptom(symptom,severity)
-    prologUtil.assert_symptom(symptom,severity)
+def add_symptom(symptom,severity,isLbp):
+    fileUtil.add_symptom(symptom,severity,isLbp)
     
-
 @eel.expose
 def update_stats(stat): 
     fileUtil.update_stats(stat)
@@ -53,7 +47,6 @@ def update_stats(stat):
 @eel.expose
 def read_stats():
     stats = fileUtil.read_stats()
-    print("STATS::", stats)
     eel.addStats(stats)
 
 @eel.expose 
@@ -89,7 +82,8 @@ def get_alert_vals():
 
 @eel.expose
 def get_statistics():
-    veryhigh_results = dbUtil.query_db("Very High Risk")
+    total = dbUtil.count_total_diagnoses()
+    veryhigh_results = dbUtil.query_db("Very High Risk") 
     total_veryhigh = len(veryhigh_results)
     high_results = dbUtil.query_db("High Risk")
     total_high = len(high_results)
@@ -98,7 +92,8 @@ def get_statistics():
     norisk_results = dbUtil.query_db("Not at Risk")
     total_norisk = len(norisk_results) 
 
-    eel.getStatValues(total_veryhigh,total_high,total_low,total_norisk)
+    eel.getStatValues(total,total_veryhigh,total_high,total_low,total_norisk)
+
     
 @eel.expose
 def get_ulhi_and_symptoms():
@@ -108,5 +103,14 @@ def get_ulhi_and_symptoms():
     print(values)
     eel.createUlhiAndSymptomsCheckboxes(values) 
 
+@eel.expose
+def reset_db():
+    dbUtil.drop_diagnoses()
 
+@eel.expose
+def get_low_bp_symptom():
+    symptoms = fileUtil.read_symptoms("low-bp")
+    eel.setLbpSymptoms(symptoms)
+
+    
 eel.start('index.html',size=(700,480)),

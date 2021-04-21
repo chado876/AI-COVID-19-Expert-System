@@ -10,6 +10,8 @@ def read_symptoms(severity):
         file_directory = 'common_symptoms.txt'
     elif (severity == "less-common"):
         file_directory = 'less_common_symptoms.txt'
+    elif (severity == "low-bp"):
+        file_directory = 'low_bp_symptoms.txt'
 
     with open(file_directory) as f:
         symptoms = f.readlines()
@@ -17,13 +19,15 @@ def read_symptoms(severity):
         symptoms_list = [x.rstrip() for x in symptoms] 
         return symptoms_list
 
-def add_symptom(symptom,severity):
+def add_symptom(symptom,severity,isLbp):
     if (severity == "serious"):
         file_directory = 'serious_symptoms.txt'
     elif (severity == "common"):
         file_directory = 'common_symptoms.txt'
     elif (severity == "less-common"):
         file_directory = 'less_common_symptoms.txt'
+    if (isLbp):
+        add_low_bp_symptom(symptom)
     # Open a file with access mode 'a'
     file_object = open(file_directory, 'a')
     # Append 'hello' at the end of file
@@ -93,6 +97,7 @@ def delete_symptoms(symptoms):
     common = read_symptoms("common")
     less_common = read_symptoms("less-common")
     ulhi = read_ulhi()
+    low_bp = read_symptoms("low-bp")
     
     new_serious = []
     new_common = []
@@ -110,8 +115,11 @@ def delete_symptoms(symptoms):
             if x == symptom:
                 less_common.remove(x)
         for x in ulhi:
-             if x == symptom:
+            if x == symptom:
                 ulhi.remove(x)
+        for x in low_bp:
+            if x == symptom:
+                low_bp.remove(x)
     
     print("NEW SERIOUS:",serious)
     print("NEW COMMON:",common)
@@ -122,6 +130,8 @@ def delete_symptoms(symptoms):
     overwrite_symptoms(common,"common")
     overwrite_symptoms(less_common,"less-common")
     overwrite_symptoms(ulhi,"ulhi")
+    overwrite_symptoms(low_bp,"low-bp")
+
 
 
 def overwrite_symptoms(symptoms,severity):
@@ -132,15 +142,22 @@ def overwrite_symptoms(symptoms,severity):
     elif (severity == "less-common"):
             file_directory = 'less_common_symptoms.txt'
     elif (severity == "ulhi"):
-            file_directory = 'underlying_health_issues.txt'        
+            file_directory = 'underlying_health_issues.txt'  
+    elif (severity == "low-bp"):
+        file_directory = 'low_bp_symptoms.txt'      
 
     with open(file_directory, "w") as f:
         for symptom in symptoms:
             f.write(symptom + "\n")
          
+def add_low_bp_symptom(symptom):
+    file_directory = "low_bp_symptoms.txt"
+    file_object = open(file_directory, 'a')
+    file_object.write(symptom + "\n")
+    file_object.close()
             
 # delete_symptoms(["Fever","Headache","Dementia","Loss of Taste"])
-
+# add_low_bp_symptom("test")
 
 
 

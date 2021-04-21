@@ -13,15 +13,14 @@
         <div class="moh-logo">
             <img src="assets/moh.png">
         </div> 
-
         <center><h3>Statistics</h3></center>
-
          <div class="stats">
             <span class="stats-decor" id="total-stat"></span><br><br>
             <span class="stats-decor1" id="veryhigh-stat"></span><br><br>
             <span class="stats-decor2" id="high-stat"></span><br><br>
             <span class="stats-decor3" id="low-stat"></span><br><br>
-            <span class="stats-decor4" id="norisk-stat"></span>
+            <span class="stats-decor4" id="norisk-stat"></span><br><br>
+            <center><button class="reset" style="color: red;cursor:pointer;" id="reset">Reset Database</button></center>
         </div>
     </div>
     <div class="content-box">
@@ -29,24 +28,25 @@
             <span class="covid-header">COVID-19</span>
             <span class="covid-header">Expert System</span>
             <center>
-                <button type="button" id="diagnose-btn" class="main-btn">Diagnose</button><br>
-                <button type="button" id="add-btn" class="main-btn" >Add Symptom</button><br>
-                <button type="button" id="del-btn" class="main-btn" style="background-color:#f1b815">Delete Symptom</button><br>
-                <button type="button" id="email-all-btn" class="main-btn" >Email All Diagnoses</button><br>
-                <button type="button" id="alert-btn" class="main-btn" >Set Alert</button>
+                <button type="button" id="diagnose-btn" class="main-btn" style="width: 210px;">Diagnose</button><br>
+                <button type="button" id="add-btn" class="main-btn" style="width: 210px;">Add Symptom</button><br>
+                <button type="button" id="del-btn" class="main-btn" style="width: 210px;">Remove Symptom</button><br>
+                <button type="button" id="email-all-btn" class="main-btn" style="width: 210px;">Email All Diagnoses</button><br>
+                <button type="button" id="alert-btn" class="main-btn" style="width: 210px;">Set Alert</button>
             </center>
         </div>
         <div class="page-0" id="page-0" style="display:none">
             <form>
                 <span class="covid-header">Diagnosis</span>
+                <span class="error" id="error-0" style="display:none" style="color:red">Please fill out all fields.</span><br>
                 <label class="form-label" for="f_name">Please enter the patient's first name:</label><br>
                 <input type="text" class="form-text" id="f_name"><br><br>
                 <label class="form-label" for="l_name">Please enter the patient's last name:</label><br>
                 <input type="text" class="form-text" id="l_name"><br><br>
                 <label class="form-label" for="email">Please enter the patient's email address:</label><br>
-                <input type="email" class="form-text" id="email"><br><br><br><br>
-                <button type="button" id="next-btn-0" class="main-btn" style="float:right"
-                 >Next</button>
+                <input type="email" class="form-text" id="email"><br><br>
+                <button type="button" id="next-btn-0" class="main-btn" style="float:right" 
+                 >Next</button >
                  <button type="button" id="back-btn-0" class="main-btn" 
                  style="float:right; background-color: #f1b815; margin-right: 5px;"
                  >Back</button>
@@ -55,10 +55,11 @@
         <div class="page-1" id="page-1" style="display:none">
             <form>
                 <span class="covid-header">Diagnosis</span>
+                <span class="error" id="error-1" style="display:none" style="color:red">Please fill out all fields.</span><br>
                 <label class="form-label" for="temperature">Please enter your temperature in degrees celsius (°C):</label><br>
                 <input type="number" class="form-text" id="temperature"><br><br>
                 <label class="form-label" for="age">Please enter your age:</label><br>
-                <input type="number" class="form-text" id="age"><br><br><br><br><br><br>
+                <input type="number" class="form-text" id="age"><br><br>
                 <button type="button" id="next-btn-1" class="main-btn" style="float:right"
                  >Next</button>
                  <button type="button" id="back-btn-1" class="main-btn" 
@@ -85,12 +86,13 @@
         <div class="page-3" id="page-3" style="display: none;">
             <form>
                 <span class="covid-header">Diagnosis</span>
-                <span style="padding-left: 5px; padding-top: 10px;">Please enter your systolic and diastolic values below.</span>
+                <span class="error" id="error-2" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" style="padding-left: 5px; padding-top: 10px;">Please enter your systolic and diastolic values below.</span>
                 <br><br>
                 <label class="form-label" for="sistolic">Systolic value (mm Hg):</label><br>
                 <input type="number" class="form-text" id="systolic"><br><br>
-                <lab        el class="form-label" for="diastolic">Diastolic value (mm Hg):</label><br>
-                <input type="number" class="form-text" id="diastolic"><br><br><br><br><br><br>
+                <label class="form-label" for="diastolic">Diastolic value (mm Hg):</label><br>
+                <input type="number" class="form-text" id="diastolic"><br><br>
                 <button type="button" id="submit-btn-lbp" class="main-btn" style="float:right"
                 >Next</button>
                 <button type="button" id="back-btn-lbp" class="main-btn" 
@@ -117,7 +119,7 @@
                 <form>
                     <span class="covid-header">Diagnosis</span>
                     <center>       
-                <div class="loader" id="loader-1" >Performing Diagnosis...</div>
+                    <div class="loader" id="loader-1" >Performing Diagnosis...</div>
                     </center>
                     <span style="padding-left: 5px; padding-top: 10px;" id="results"></span>
                     <br><br><br><br><br>
@@ -132,6 +134,8 @@
             <form>
                 <span class="covid-header">Add Symptom</span>
                 <span class="covid-header">to Knowledge Base</span>
+                <span class="error" id="error-3" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" id="success-1" style="display:none" style="color:green">Symptom added successfully.</span><br>
                 <label class="form-label" for="symptom-input">Symptom:</label><br>
                 <input type="text" class="form-text" id="symptom-input"><br><br>
                 <span>Symptom severity:</span><br>
@@ -141,9 +145,12 @@
                 <label for="common">Common</label><br>  
                 <input type="radio" id="less-common" value="less-common" name='severity'>
                 <label for="less-common">Less Common</label>
-                <br><br><br><br><br><br>
+                <br><br>
+                <input type="checkbox" id="checksymptom" name="checksymptom" value="symptom">
+                <label for="checksymptom"> Check for low blood pressure</label><br>
+                <br><br>
                 <button type="button" id="submit-btn-2" class="main-btn" style="float:right"
-                 >Submit</button>
+                 >Submit</button> 
                  <button type="button" id="back-btn-3" class="main-btn" 
                  style="float:right; background-color: #f1b815; margin-right: 5px;"
                  >Back</button>
@@ -152,6 +159,8 @@
         <div class="page-2" id="delete-symptoms" style="display: none;">
             <form>
                 <span class="covid-header">Delete Symptoms</span>
+                <span class="error" id="error-5" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" id="success-3" style="display:none" style="color:green">Alert set successfully.</span><br>
                 <span style="padding-left: 5px; padding-top: 10px;">Please select symptoms/underlying health issues you would like to remove from the knowledge base.</span>
                 <br><br>
                 <div id="all-checkboxes" class="symptom-checkboxes">
@@ -167,6 +176,8 @@
         <div class="add-symptom" id="set-alert" style="display: none;">
             <form>
                 <span class="covid-header">Set Alert</span>
+                <span class="error" id="error-4" style="display:none" style="color:red">Please fill out all fields.</span><br>
+                <span class="success" id="success-2" style="display:none" style="color:green">Symptom deleted successfully.</span><br>
                 <label class="form-label" for="symptom-input">Alert me for this amount: (set to 0 for none)</label><br>
                 <input type="number" class="form-text" id="alert-input"><br><br>
                 <span>Risk Type:</span><br>
@@ -178,7 +189,7 @@
                 <label id="alert-lbl-3" for="low-risk"></label><br>
                 <input type="radio" id="no-risk" value="Not at Risk" name='risk'>
                 <label id="alert-lbl-4" for="high-risk"></label><br>
-                <br><br><br><br>
+                <br><br><br><br><br>
                 <button type="button" id="submit-btn-alert" class="main-btn" style="float:right"
                  >Submit</button>
                  <button type="button" id="back-btn-alert" class="main-btn" 
@@ -187,5 +198,21 @@
             </form>
         </div>
     </div>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 id="header-title"></h2>
+    </div>
+    <div id="modal-body" class="modal-body">
+    <div class="loader2" id="modal-loader" style="display:none"></div>
+     <p id="modal-txt"></p>
+    </div>
+    <div id="modal-footer" class="modal-footer">
+      <!-- <h3>Modal Footer</h3> -->
+    </div>
+  </div>
+</div>
 </body>
 </html>
