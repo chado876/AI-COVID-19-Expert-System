@@ -3,6 +3,10 @@ body{
   margin:0px;
   } 
 
+button.reset{
+   background:none;border:none;  
+}
+
 .error{ 
   color: red;
 } 
