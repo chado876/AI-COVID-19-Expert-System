@@ -1,18 +1,18 @@
-import * as symptoms from './modules/symptoms.js';
-
 document.getElementById('diagnose-btn').addEventListener('click', () => {
   navigate('main-menu', 'page-0')
 }, false);
 document.getElementById('add-btn').addEventListener('click', () => {
   navigate('main-menu', 'add-symptom')
 }, false);
-document.getElementById('next-btn-0').addEventListener('click', () => 
-{checkIfValid('page-0')}, false);
+document.getElementById('next-btn-0').addEventListener('click', () => {
+  checkIfValid('page-0')
+}, false);
 document.getElementById('del-btn').addEventListener('click', () => {
   navigate('main-menu', 'delete-symptoms'), eel.get_ulhi_and_symptoms()
 }, false);
-document.getElementById('next-btn-1').addEventListener('click', () => 
-{checkIfValid('page-1'), eel.get_symptoms()}, false);
+document.getElementById('next-btn-1').addEventListener('click', () => {
+  checkIfValid('page-1'), eel.get_symptoms()
+}, false);
 document.getElementById('back-btn-0').addEventListener('click', () => {
   navigate('page-0', 'main-menu')
 }, false);
@@ -22,21 +22,29 @@ document.getElementById('back-btn-1').addEventListener('click', () => {
 document.getElementById('back-btn-2').addEventListener('click', () => {
   navigate('page-2', 'page-1')
 }, false);
-document.getElementById('back-btn-3').addEventListener('click', () => {navigate('add-symptom','main-menu'),resetFields(),hideMessage("success-1"),hideMessage("error-3")}, false);
+document.getElementById('back-btn-3').addEventListener('click', () => {
+  navigate('add-symptom', 'main-menu'), resetFields(), hideMessage("success-1"), hideMessage("error-3")
+}, false);
 document.getElementById('back-btn-lbp').addEventListener('click', () => {
   navigate('page-3', 'page-2')
 }, false);
 document.getElementById('back-btn-ulhi').addEventListener('click', () => {
   navigate('page-4', 'page-2')
 }, false);
-document.getElementById('back-btn-alert').addEventListener('click', () => {navigate('set-alert','main-menu'),resetFields(),hideMessage("success-2"),hideMessage("error-4")}, false);
+document.getElementById('back-btn-alert').addEventListener('click', () => {
+  navigate('set-alert', 'main-menu'), resetFields(), hideMessage("success-2"), hideMessage("error-4")
+}, false);
 
 document.getElementById('back-btn-del').addEventListener('click', () => {
   navigate('delete-symptoms', 'main-menu'), hideMessage("success-3")
 }, false);
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
-document.getElementById('submit-btn-2').addEventListener('click', () => {checkIfValid('add-symptom')}, false); 
-document.getElementById('submit-btn-lbp').addEventListener('click',() => {checkIfValid('page-3')}, false);
+document.getElementById('submit-btn-2').addEventListener('click', () => {
+  checkIfValid('add-symptom')
+}, false);
+document.getElementById('submit-btn-lbp').addEventListener('click', () => {
+  checkIfValid('page-3')
+}, false);
 document.getElementById('submit-btn-ulhi').addEventListener('click', submit, false);
 document.getElementById('submit-btn-del').addEventListener('click', getValuesToDelete, false);
 document.getElementById('finish-btn').addEventListener('click', () => {
@@ -46,7 +54,9 @@ document.getElementById('email-all-btn').addEventListener('click', displayEmailM
 document.getElementById('alert-btn').addEventListener('click', () => {
   navigate('main-menu', 'set-alert'), eel.get_alert_vals()
 }, false);
-document.getElementById('submit-btn-alert').addEventListener('click',() => {checkIfValid('set-alert')}, false);
+document.getElementById('submit-btn-alert').addEventListener('click', () => {
+  checkIfValid('set-alert')
+}, false);
 // document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
 document.getElementById('reset').addEventListener('click', displayResetModal, false);
 
@@ -60,23 +70,24 @@ eel.get_statistics();
 eel.get_low_bp_symptom();
 
 
-function resetFields(){
+function resetFields() {
   var fields = document.getElementsByTagName('input'),
-    length = fields.length;
-    while (length--) {
-    if (fields[length].type === 'text' || fields[length].type == 'email' || fields[length].type == 'number'){
-       fields[length].value = ''; 
+      length = fields.length;
+  while (length--) {
+      if (fields[length].type === 'text' || fields[length].type == 'email' || fields[length].type == 'number') {
+          fields[length].value = '';
       }
       if (fields[length].type == "radio") {
-        fields[length].checked = false;
-    }
+          fields[length].checked = false;
+      }
   }
 
   document.getElementById("checksymptom").checked = false;
 }
 
 eel.expose(setLbpSymptoms);
-function setLbpSymptoms(values){
+
+function setLbpSymptoms(values) {
   low_bp_symptoms = values;
   console.log(low_bp_symptoms);
 }
@@ -90,136 +101,134 @@ function resetDb() {
   // } 
 }
 
-function checkIfValid(screen){
-  if(screen === "page-0"){
-    var isEmpty = false;  
+function checkIfValid(screen) {
+  if (screen === "page-0") {
+      var isEmpty = false;
 
-    var f_name = document.getElementById("f_name").value.length;
-    var l_name = document.getElementById("l_name").value.length;
-    var email = document.getElementById("email").value.length;
+      var f_name = document.getElementById("f_name").value.length;
+      var l_name = document.getElementById("l_name").value.length;
+      var email = document.getElementById("email").value.length;
 
-    if(f_name == 0 || l_name == 0 || email == 0){
-      isEmpty = true;
-    } else {
-      isEmpty = false;
-    }
+      if (f_name == 0 || l_name == 0 || email == 0) {
+          isEmpty = true;
+      } else {
+          isEmpty = false;
+      }
 
-    if(isEmpty){
-      document.getElementById("error-0").style.display="inline";
-    } else {
-      document.getElementById("error-0").style.display="none";
-      navigate("page-0","page-1");
-    }
+      if (isEmpty) {
+          document.getElementById("error-0").style.display = "inline";
+      } else {
+          document.getElementById("error-0").style.display = "none";
+          navigate("page-0", "page-1");
+      }
   } else if (screen === "page-1") {
-    var isEmpty = false;  
+      var isEmpty = false;
 
-    var temperature = document.getElementById("temperature").value.length;
-    var age = document.getElementById("age").value.length;
+      var temperature = document.getElementById("temperature").value.length;
+      var age = document.getElementById("age").value.length;
 
-    if(temperature== 0 || age == 0){
-      isEmpty = true;
-    } else {
-      isEmpty = false;
-    }
+      if (temperature == 0 || age == 0) {
+          isEmpty = true;
+      } else {
+          isEmpty = false;
+      }
 
-    if(isEmpty){
-      document.getElementById("error-1").style.display="inline";
-    } else {
-      document.getElementById("error-1").style.display="none";
-      navigate("page-1","page-2");
-    }
+      if (isEmpty) {
+          document.getElementById("error-1").style.display = "inline";
+      } else {
+          document.getElementById("error-1").style.display = "none";
+          navigate("page-1", "page-2");
+      }
 
-  } 
-  else if (screen === "page-3"){
-    var isEmpty = false; 
+  } else if (screen === "page-3") {
+      var isEmpty = false;
 
-    var systolic = document.getElementById("systolic").value.length;
-    var diastolic = document.getElementById("diastolic").value.length;
+      var systolic = document.getElementById("systolic").value.length;
+      var diastolic = document.getElementById("diastolic").value.length;
 
-    if(systolic== 0 || diastolic == 0){
-      isEmpty = true;
-    } else {
-      isEmpty = false;
-    }
+      if (systolic == 0 || diastolic == 0) {
+          isEmpty = true;
+      } else {
+          isEmpty = false;
+      }
 
-    if(isEmpty){
-      document.getElementById("error-2").style.display="inline";
-    } else {
-      document.getElementById("error-2").style.display="none";
-      eel.get_ulhi()
-      navigate("page-3","page-4");
-    }
+      if (isEmpty) {
+          document.getElementById("error-2").style.display = "inline";
+      } else {
+          document.getElementById("error-2").style.display = "none";
+          eel.get_ulhi()
+          navigate("page-3", "page-4");
+      }
 
-  } 
-  else if (screen === "add-symptom"){
-    var isEmpty = false; 
+  } else if (screen === "add-symptom") {
+      var isEmpty = false;
 
-    var symptom = document.getElementById("symptom-input").value.length; 
-    var severity = document.querySelector('input[name="severity"]:checked');
+      var symptom = document.getElementById("symptom-input").value.length;
+      var severity = document.querySelector('input[name="severity"]:checked');
 
-    if(symptom == 0 || severity.length == 0){
-      isEmpty = true;
-    } else {
-      isEmpty = false;
-    }
+      if (symptom == 0 || severity.length == 0) {
+          isEmpty = true;
+      } else {
+          isEmpty = false;
+      }
 
-    if(isEmpty){
-      document.getElementById("error-3").style.display="inline";
-    } else {
-      document.getElementById("error-3").style.display="none";
-      document.getElementById("success-1").style.display="inline";
-      addSymptom();
-    }
-  } 
-  else if (screen === "set-alert"){
-    var isEmpty = false; 
+      if (isEmpty) {
+          document.getElementById("error-3").style.display = "inline";
+      } else {
+          document.getElementById("error-3").style.display = "none";
+          document.getElementById("success-1").style.display = "inline";
+          addSymptom();
+      }
+  } else if (screen === "set-alert") {
+      var isEmpty = false;
 
-    var alert = document.getElementById("alert-input").value.length; 
-    var risk = document.querySelector('input[name="risk"]:checked');
+      var alert = document.getElementById("alert-input").value.length;
+      var risk = document.querySelector('input[name="risk"]:checked');
 
-    if(alert == 0 || risk.length == 0){
-      isEmpty = true;
-    } else {
-      isEmpty = false;
-    }
+      if (alert == 0 || risk.length == 0) {
+          isEmpty = true;
+      } else {
+          isEmpty = false;
+      }
 
-    if(isEmpty){
-      document.getElementById("error-4").style.display="inline";
-    } else {
-      document.getElementById("error-4").style.display="none";
-      document.getElementById("success-2").style.display="inline";
-      setAlert();
-    }
+      if (isEmpty) {
+          document.getElementById("error-4").style.display = "inline";
+      } else {
+          document.getElementById("error-4").style.display = "none";
+          document.getElementById("success-2").style.display = "inline";
+          setAlert();
+      }
   }
-  
-}  
 
-function hideMessage(msg){
-  document.getElementById(msg).style.display="none";
 }
- 
+
+function hideMessage(msg) {
+  document.getElementById(msg).style.display = "none";
+}
+
 
 eel.expose(getStatValues)
-function getStatValues(total,veryHighRisk,highRisk,lowRisk,noRisk){
 
-  if (total > 0 ){
-    var vhrper = ((veryHighRisk/total)*100).toFixed(0);
-    var hrper = ((highRisk/total)*100).toFixed(0);
-    var lrper = ((lowRisk/total)*100).toFixed(0);
-    var nrper = ((noRisk/total)*100).toFixed(0);
+function getStatValues(total, veryHighRisk, highRisk, lowRisk, noRisk) {
+
+  if (total > 0) {
+      var vhrper = ((veryHighRisk / total) * 100).toFixed(0);
+      var hrper = ((highRisk / total) * 100).toFixed(0);
+      var lrper = ((lowRisk / total) * 100).toFixed(0);
+      var nrper = ((noRisk / total) * 100).toFixed(0);
   } else {
-    vhrper = 0;
-    hrper = 0;
-    lrper = 0;
-    nrper = 0;  
+      vhrper = 0;
+      hrper = 0;
+      lrper = 0;
+      nrper = 0;
   }
- 
+
   document.getElementById("total-stat").innerHTML = "Total Diagnoses: " + total
-  document.getElementById("veryhigh-stat").innerHTML = "Very High Risk: " + veryHighRisk + " (" + vhrper +"%)"
-  document.getElementById("high-stat").innerHTML = "High Risk: " + highRisk + " (" + hrper +"%)"
-  document.getElementById("low-stat").innerHTML = "Low Risk: " + lowRisk + " (" + lrper +"%)"
-  document.getElementById("norisk-stat").innerHTML = "No Risk: " + noRisk + " (" + nrper +"%)"
-} 
+  document.getElementById("veryhigh-stat").innerHTML = "Very High Risk: " + veryHighRisk + " (" + vhrper + "%)"
+  document.getElementById("high-stat").innerHTML = "High Risk: " + highRisk + " (" + hrper + "%)"
+  document.getElementById("low-stat").innerHTML = "Low Risk: " + lowRisk + " (" + lrper + "%)"
+  document.getElementById("norisk-stat").innerHTML = "No Risk: " + noRisk + " (" + nrper + "%)"
+}
 eel.expose(setAlertVals)
 
 function setAlertVals(alertvals) {
@@ -244,19 +253,19 @@ function checkSymptomValues() {
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
   var lowBp = false;
   for (var i = 0; i < checkboxes.length; i++) {
-    if (low_bp_symptoms.indexOf(checkboxes[i].value)>-1) {     
-      lowBp = true;
-      console.log("true");
-      break;
-    } else {
-      console.log(checkboxes[i].value);
-    }
+      if (low_bp_symptoms.indexOf(checkboxes[i].value) > -1) {
+          lowBp = true;
+          console.log("true");
+          break;
+      } else {
+          console.log(checkboxes[i].value);
+      }
   }
   if (lowBp == true) {
-    navigate('page-2', 'page-3');
+      navigate('page-2', 'page-3');
   } else {
-    eel.get_ulhi();
-    navigate('page-2', 'page-4');
+      eel.get_ulhi();
+      navigate('page-2', 'page-4');
   }
 }
 
@@ -308,11 +317,11 @@ function getDiagnosisDetails() {
   var ulhi_checkboxes = document.querySelectorAll('#ulhi-checkboxes input[type=checkbox]:checked');
 
   for (var i = 0; i < symptom_checkboxes.length; i++) {
-    symptoms.push(symptom_checkboxes[i].value);
+      symptoms.push(symptom_checkboxes[i].value);
   }
 
   for (var i = 0; i < ulhi_checkboxes.length; i++) {
-    ulhi.push(ulhi_checkboxes[i].value);
+      ulhi.push(ulhi_checkboxes[i].value);
   }
 
   console.log(firstname);
@@ -343,7 +352,7 @@ function addSymptom() {
   var symptom = document.getElementById("symptom-input").value;
   var isLbp = document.getElementById("checksymptom").checked;
   console.log(isLbp);
-  eel.add_symptom(symptom, severity,isLbp);
+  eel.add_symptom(symptom, severity, isLbp);
 }
 
 eel.expose(addStats);
@@ -368,28 +377,28 @@ function createSymptomCheckboxes(symptoms) {
 
   const parent = document.getElementById('symptom-checkboxes') //clear current checkboxes
   while (parent.firstChild) {
-    parent.firstChild.remove();
+      parent.firstChild.remove();
   }
 
   for (var i = 0; i < symptoms.length; i++) {
-    console.log(symptoms[i]);
+      console.log(symptoms[i]);
 
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = symptoms[i];
-    checkbox.value = symptoms[i];
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = symptoms[i];
+      checkbox.value = symptoms[i];
 
-    var label = document.createElement('label')
-    label.htmlFor = symptoms[i];
-    label.appendChild(document.createTextNode(symptoms[i]));
+      var label = document.createElement('label')
+      label.htmlFor = symptoms[i];
+      label.appendChild(document.createTextNode(symptoms[i]));
 
-    var br = document.createElement('br');
+      var br = document.createElement('br');
 
-    var container = document.createElement('container');
-    container.appendChild(checkbox);
-    container.appendChild(label);
-    container.appendChild(br);
-    document.getElementById('symptom-checkboxes').appendChild(container);
+      var container = document.createElement('container');
+      container.appendChild(checkbox);
+      container.appendChild(label);
+      container.appendChild(br);
+      document.getElementById('symptom-checkboxes').appendChild(container);
   }
 }
 
@@ -399,28 +408,28 @@ function createUlhiCheckboxes(ulhi) {
 
   const parent = document.getElementById('ulhi-checkboxes') //clear current checkboxes
   while (parent.firstChild) {
-    parent.firstChild.remove();
+      parent.firstChild.remove();
   }
 
   for (var i = 0; i < ulhi.length; i++) {
-    console.log(ulhi[i]);
+      console.log(ulhi[i]);
 
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = ulhi[i];
-    checkbox.value = ulhi[i];
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = ulhi[i];
+      checkbox.value = ulhi[i];
 
-    var label = document.createElement('label')
-    label.htmlFor = ulhi[i];
-    label.appendChild(document.createTextNode(ulhi[i]));
+      var label = document.createElement('label')
+      label.htmlFor = ulhi[i];
+      label.appendChild(document.createTextNode(ulhi[i]));
 
-    var br = document.createElement('br');
+      var br = document.createElement('br');
 
-    var container = document.createElement('container');
-    container.appendChild(checkbox);
-    container.appendChild(label);
-    container.appendChild(br);
-    parent.appendChild(container);
+      var container = document.createElement('container');
+      container.appendChild(checkbox);
+      container.appendChild(label);
+      container.appendChild(br);
+      parent.appendChild(container);
   }
 }
 
@@ -432,28 +441,28 @@ function createUlhiAndSymptomsCheckboxes(values) {
 
   const parent = document.getElementById('all-checkboxes') //clear current checkboxes
   while (parent.firstChild) {
-    parent.firstChild.remove();
+      parent.firstChild.remove();
   }
 
   for (var i = 0; i < values.length; i++) {
-    console.log(values[i]);
+      console.log(values[i]);
 
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = values[i];
-    checkbox.value = values[i];
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = values[i];
+      checkbox.value = values[i];
 
-    var label = document.createElement('label')
-    label.htmlFor = values[i];
-    label.appendChild(document.createTextNode(values[i]));
+      var label = document.createElement('label')
+      label.htmlFor = values[i];
+      label.appendChild(document.createTextNode(values[i]));
 
-    var br = document.createElement('br');
+      var br = document.createElement('br');
 
-    var container = document.createElement('container');
-    container.appendChild(checkbox);
-    container.appendChild(label);
-    container.appendChild(br);
-    parent.appendChild(container);
+      var container = document.createElement('container');
+      container.appendChild(checkbox);
+      container.appendChild(label);
+      container.appendChild(br);
+      parent.appendChild(container);
   }
 
 }
@@ -464,10 +473,10 @@ function getValuesToDelete() {
   var values = [];
   var all_checkboxes = document.querySelectorAll('#all-checkboxes input[type=checkbox]:checked');
   for (var i = 0; i < all_checkboxes.length; i++) {
-    values.push(all_checkboxes[i].value);
+      values.push(all_checkboxes[i].value);
   }
   eel.delete_symptoms(values);
-  document.getElementById("success-3").style.display="inline";
+  document.getElementById("success-3").style.display = "inline";
 }
 
 function displayResetModal() {
@@ -480,7 +489,7 @@ function displayResetModal() {
 
   var modal_body = document.getElementById('modal-txt');
   modal_body.innerHTML = "Are you sure you want to reset the database? This will reset " +
-    "all current diagnoses as well as statistics.";
+      "all current diagnoses as well as statistics.";
 
   var modal_footer = document.getElementById('modal-footer');
   var confirm_btn = document.createElement("confirm-btn");
@@ -493,70 +502,69 @@ function displayResetModal() {
   modal_footer.style.textAlign = "right";
   const parent = modal_footer;
   while (parent.firstChild) {
-    parent.firstChild.remove();
+      parent.firstChild.remove();
   }
   // confirm_btn.className = "confirm"
   // confirm_btn.className = "cancel"
   modal_footer.appendChild(cancel_btn);
   modal_footer.appendChild(confirm_btn);
-  
 
-  cancel_btn.onclick = function () {
-    modal.style.display = "none";
-  }
 
-  span.onclick = function () {
-    modal.style.display = "none";
-  }
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  cancel_btn.onclick = function() {
+      modal.style.display = "none";
   }
 
-  confirm_btn.onclick = function () {
-    modal_body.innerHTML = "";
-    var loader = document.getElementById("modal-loader");
-    loader.style.display = "block";
-    resetDb();
-    setTimeout(hideModalSpinner, 3000);
+  span.onclick = function() {
+      modal.style.display = "none";
   }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+
+      confirm_btn.onclick = function() {
+          modal_body.innerHTML = "";
+          var loader = document.getElementById("modal-loader");
+          loader.style.display = "block";
+          resetDb();
+          setTimeout(hideModalSpinner, 3000);
+      }
+  }
+
 }
 
-}
 
+function displayEmailModal() {
+  var modal = document.getElementById("modal");
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
 
-  function displayEmailModal() {
-    var modal = document.getElementById("modal");
-    var span = document.getElementsByClassName("close")[0];
-    modal.style.display = "block";
+  var header = document.getElementById('header-title');
+  header.innerHTML = "Email Diagnoses";
 
-    var header = document.getElementById('header-title');
-    header.innerHTML = "Email Diagnoses";
-
-    var modal_body = document.getElementById('modal-txt');
-    modal_body.innerHTML = "A spreadsheet with all diagnoses has successfully been emailed to the admin account " +
+  var modal_body = document.getElementById('modal-txt');
+  modal_body.innerHTML = "A spreadsheet with all diagnoses has successfully been emailed to the admin account " +
       "<strong>'utechmohexpertsystem2021@gmail.com'<strong>. "
 
-    var modal_footer = document.getElementById('modal-footer');
-    var close_btn = document.createElement("close-btn");
-    close_btn.innerHTML = "Close";
-    close_btn.className = "modal-btn";
-    modal_footer.style.textAlign = "right";
-    const parent = modal_footer;
-    while (parent.firstChild) {
+  var modal_footer = document.getElementById('modal-footer');
+  var close_btn = document.createElement("close-btn");
+  close_btn.innerHTML = "Close";
+  close_btn.className = "modal-btn";
+  modal_footer.style.textAlign = "right";
+  const parent = modal_footer;
+  while (parent.firstChild) {
       parent.firstChild.remove();
-    }
-    // close_btn.className = "close"
-    modal_footer.appendChild(close_btn);
-
-    emailDiagnosesReport();
-
-    close_btn.onclick = function () {
-      modal.style.display = "none";
-    }
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
   }
+  // close_btn.className = "close"
+  modal_footer.appendChild(close_btn);
 
+  emailDiagnosesReport();
+
+  close_btn.onclick = function() {
+      modal.style.display = "none";
+  }
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+}
