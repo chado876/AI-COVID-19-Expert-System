@@ -83,6 +83,11 @@ function resetFields() {
   }
 
   document.getElementById("checksymptom").checked = false;
+  document.getElementById('bad').style.display = "none";
+  document.getElementById('good').style.display = "none";
+  document.getElementById('finish-btn').style.display = "none";
+  document.getElementById('results').innerHTML = "";
+
 }
 
 eel.expose(setLbpSymptoms);
@@ -300,8 +305,14 @@ function submit() {
 eel.expose(showResult)
 
 function showResult(res) {
-  console.log(res);
+  if (res.includes("High Risk")){
+    document.getElementById('bad').style.display = "block";
+  } else {
+    document.getElementById('good').style.display = "block";
+  }
   document.getElementById('results').innerHTML = res;
+  document.getElementById('finish-btn').style.display="inline";
+  
 }
 
 function getDiagnosisDetails() {
