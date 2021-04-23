@@ -12,6 +12,8 @@ def read_symptoms(severity):
         file_directory = 'less_common_symptoms.txt'
     elif (severity == "low-bp"):
         file_directory = 'low_bp_symptoms.txt'
+    elif (severity == "ulhi"):
+        file_directory = 'underlying_health_issues.txt'    
 
     with open(file_directory) as f:
         symptoms = f.readlines()
