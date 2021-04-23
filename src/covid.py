@@ -112,5 +112,16 @@ def get_low_bp_symptom():
     symptoms = fileUtil.read_symptoms("low-bp")
     eel.setLbpSymptoms(symptoms)
 
+@eel.expose
+def get_all_symptoms():
+    lbp = fileUtil.read_symptoms("low-bp")
+    serious = fileUtil.read_symptoms("serious")
+    common = fileUtil.read_symptoms("common")
+    less_common = fileUtil.read_symptoms("less-common")
+    ulhi = fileUtil.read_symptoms("ulhi")
+    eel.get_all_symptoms(serious,common,less_common,ulhi,lbp)
+
+ 
+
     
 eel.start('index.html',size=(700,480)),

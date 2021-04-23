@@ -38,6 +38,9 @@ document.getElementById('back-btn-alert').addEventListener('click', () => {
 document.getElementById('back-btn-del').addEventListener('click', () => {
   navigate('delete-symptoms', 'main-menu'), hideMessage("success-3")
 }, false);
+document.getElementById('back-btn-view').addEventListener('click', () => {
+  navigate('view-symptoms', 'main-menu')
+}, false);
 document.getElementById('submit-btn-1').addEventListener('click', checkSymptomValues, false);
 document.getElementById('submit-btn-2').addEventListener('click', () => {
   checkIfValid('add-symptom')
@@ -57,8 +60,12 @@ document.getElementById('alert-btn').addEventListener('click', () => {
 document.getElementById('submit-btn-alert').addEventListener('click', () => {
   checkIfValid('set-alert')
 }, false);
-// document.getElementById('email-btn').addEventListener('click',emailDiagnosis, false);
 document.getElementById('reset').addEventListener('click', displayResetModal, false);
+document.getElementById('view-btn').addEventListener('click', () => {
+  navigate('main-menu', 'view-symptoms'), eel.get_all_symptoms()
+}, false);
+document.getElementById('exit-btn').addEventListener('click', exit, false);
+
 
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -69,6 +76,64 @@ eel.init_alerts(); //ensure alerts are initially 0
 eel.get_statistics();
 eel.get_low_bp_symptom();
 
+function exit(){
+  window.close();
+}
+
+
+eel.expose(get_all_symptoms);
+function get_all_symptoms(serious,common,less_common,ulhi,lbp){
+
+  var values = serious;
+  var view = document.getElementById("symptom-view");
+  view.className = "symptom-view";
+  while(view.firstChild){
+    view.removeChild(view.firstChild);
+}
+  var div = document.createElement("div");
+  view.appendChild(div);
+  var ul = document.createElement('ul');
+  
+  values.forEach(function(str){
+    ul.innerHTML += '<li>'+str+'</li>'
+ });
+ 
+    div.appendChild(ul);
+    document.getElementById('symptom-options').addEventListener('change', function(){
+      var option = document.getElementById('symptom-options').value;
+      
+      while(view.firstChild){
+        view.removeChild(view.firstChild);
+      }     
+
+     switch(option) {
+      case "serious":
+        values = serious;
+        break;
+      case "common":
+        values = common;
+        break;
+      case "less-common":
+        values = less_common;
+        break;
+      case "ulhi":
+        values = ulhi;
+        break;
+      case "lbp":
+        values = lbp;
+        break;
+    }
+    var ul = document.createElement('ul');
+
+    values.forEach(function(str){
+      ul.innerHTML += '<li>'+str+'</li>'
+   });
+      var div = document.createElement("div");
+      div.appendChild(ul);
+      view.appendChild(div);
+  });
+  
+}
 
 function resetFields() {
   var fields = document.getElementsByTagName('input'),

@@ -27,13 +27,17 @@
         <div class="main-menu" id="main-menu">
             <span class="covid-header">COVID-19</span>
             <span class="covid-header">Expert System</span>
-            <center>
-                <button type="button" id="diagnose-btn" class="main-btn" style="width: 210px;">Diagnose</button><br>
-                <button type="button" id="add-btn" class="main-btn" style="width: 210px;">Add Symptom</button><br>
-                <button type="button" id="del-btn" class="main-btn" style="width: 210px;">Remove Symptom</button><br>
-                <button type="button" id="email-all-btn" class="main-btn" style="width: 210px;">Email All Diagnoses</button><br>
-                <button type="button" id="alert-btn" class="main-btn" style="width: 210px;">Set Spike Alert</button>
-            </center>
+            <div class="options">
+                <!-- <center> -->
+                    <button type="button" id="diagnose-btn" class="main-btn" style="width: 210px;">Diagnose</button><br>
+                    <button type="button" id="add-btn" class="main-btn" style="width: 210px;">Add Symptom</button><br>
+                    <button type="button" id="view-btn" class="main-btn" style="width: 210px;">View Symptoms</button>
+                    <button type="button" id="del-btn" class="main-btn" style="width: 210px;">Remove Symptom</button><br>
+                    <button type="button" id="email-all-btn" class="main-btn" style="width: 210px;">Email All Diagnoses</button><br>
+                    <button type="button" id="alert-btn" class="main-btn" style="width: 210px;">Set Spike Alert</button><br>
+                    <button type="button" id="exit-btn" class="main-btn" style="width: 210px; background-color: #f1b815;">Exit</button>
+                <!-- </center> -->
+            </div>
         </div>
         <div class="page-0" id="page-0" style="display:none">
             <form>
@@ -208,6 +212,27 @@
             </form>
         </div>
     </div>
+
+    <div id="view-symptoms" style="display: none;">
+        <span class="covid-header">Set Spike Alert</span>
+        <br>
+      
+        <center>
+            <select id="symptom-options" class="select-style">
+                <option value="serious">Serious Symptoms</option>
+                <option value="common">Common Symptoms</option>
+                <option value="less-common">Less Common Symptoms</option>
+                <option value="ulhi">Underlying Health Issues</option>
+                <option value="lbp">Low Blood Pressure Symptoms</option>
+              </select>
+        </center>
+            <div id="symptom-view" class="symptom-view">
+            </div>     
+            <button type="button" id="back-btn-view" class="main-btn" 
+            style="float:right; background-color: #f1b815; margin-right: 5px; margin-top: 40%;"
+            >Back</button>        
+    </div>
+</div>
 
 <div id="modal" class="modal">
   <div class="modal-content">
