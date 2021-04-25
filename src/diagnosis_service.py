@@ -6,7 +6,7 @@ import email_service as email_service
 import fileUtil as fileUtil
 import alert_service as alert_service
 
-def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
+def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature,systolic,diastolic):
     diagnosis = Diagnosis()
 
     ulhi_str = [x.replace('\n', '') for x in ulhi]
@@ -23,8 +23,8 @@ def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
     diagnosis.total_common = 0
     diagnosis.total_less_common = 0
     diagnosis.total_serious = 0
-    diagnosis.diastolic_val = 0
-    diagnosis.systolic_val = 0
+    diagnosis.diastolic_val = diastolic
+    diagnosis.systolic_val = systolic
     diagnosis.low_bp = False
     diagnosis.current_fever = False
     diagnosis.result = "none"

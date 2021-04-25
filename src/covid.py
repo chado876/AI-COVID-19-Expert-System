@@ -12,10 +12,10 @@ import alert_service as alert_service
 eel.init('web')
 
 @eel.expose
-def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature):
+def diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature,systolic,diastolic):
     symptoms = [x.replace('\n', '') for x in symptoms]
     symptoms = ','.join(symptoms) #convert list of symptoms to single string seperated by commas
-    result = diagnosis_service.diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature)
+    result = diagnosis_service.diagnose(firstname,lastname,email,age,symptoms,ulhi,temperature,systolic,diastolic)
     newResultText = (result + "\n An email has been sent to the patient with these results as well as" +
     " short-term and long-term precautions to take going forward.")
     time.sleep(3)
