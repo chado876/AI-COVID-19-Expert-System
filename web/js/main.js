@@ -322,6 +322,7 @@ function emailDiagnosesReport() {
 function checkSymptomValues() {
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
   var lowBp = false;
+  console.log(low_bp_symptoms);
   for (var i = 0; i < checkboxes.length; i++) {
       if (low_bp_symptoms.indexOf(checkboxes[i].value) > -1) {
           lowBp = true;
@@ -392,6 +393,17 @@ function getDiagnosisDetails() {
   var ulhi = [];
   var ulhi_checkboxes = document.querySelectorAll('#ulhi-checkboxes input[type=checkbox]:checked');
 
+  var systolicInput = document.getElementById('systolic');
+  var diastolicInput = document.getElementById('diastolic');
+  var systolic = 0;
+  var diastolic = 0;
+  if(systolicInput.value.length != 0){
+    systolic = systolicInput.value;
+  }
+  if(diastolicInput.value.length != 0){
+    diastolic = diastolicInput.value;
+  }
+
   for (var i = 0; i < symptom_checkboxes.length; i++) {
       symptoms.push(symptom_checkboxes[i].value);
   }
@@ -405,7 +417,9 @@ function getDiagnosisDetails() {
   console.log(age);
   celciusToFarenheit(temperature);
   console.log(symptoms);
-  eel.diagnose(firstname, lastname, email, age, symptoms, ulhi, celciusToFarenheit(temperature));
+  console.log(systolic);
+  console.log(diastolic);
+  eel.diagnose(firstname, lastname, email, age, symptoms, ulhi, celciusToFarenheit(temperature),systolic,diastolic);
 
 }
 
