@@ -441,8 +441,10 @@ function addSymptom() {
   var severity = document.querySelector('input[name="severity"]:checked').value;
   var symptom = document.getElementById("symptom-input").value;
   var isLbp = document.getElementById("checksymptom").checked;
-  console.log(isLbp);
   eel.add_symptom(symptom, severity, isLbp);
+  if(isLbp){
+    eel.get_low_bp_symptom();
+  }
 }
 
 eel.expose(addStats);
